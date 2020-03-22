@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "364513065073",
+    "firebase_url": "https://climax-aac66.firebaseio.com",
+    "project_id": "climax-aac66",
+    "storage_bucket": "climax-aac66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364513065073:android:71382f1f1b813b8ff443d0",
+        "android_client_info": {
+          "package_name": "com.example.climax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364513065073-94fnb2fopsj2gsmut02dueqbnp7jrscn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTLHmtGu7VhImzJdX-yI6MFHJjQcoKO5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364513065073-94fnb2fopsj2gsmut02dueqbnp7jrscn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
