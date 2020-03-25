@@ -1,12 +1,8 @@
-import 'dart:ui'
-as prefix0;
 import 'dart:ui';
-
 import 'package:climax/views/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/services/auth.dart';
-import 'package:flutter/material.dart' as prefix1;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -48,34 +44,36 @@ class _LoginState extends State < LoginPage > {
 		}
 	}
 	void _submit() async {
-		if (_validateandSave()) {
-			setState(() {
-				_isTrue = false;
+			Navigator.of(context).push(_createRoute());
 
-			});
-			try {
-				String uid = await widget.auth.signIn(_emailOrNom, _password);
-				print("L'utilisateur s'est bien connecté $uid");
-				_formKey.currentState.reset();
-				setState(() {
-					_isTrue = true;
+		// if (_validateandSave()) {
+		// 	setState(() {
+		// 		_isTrue = false;
 
-				});
-				Navigator.of(context).push(_createRoute());
-			} catch (e) {
-				print(e);
-			}
-		}
+		// 	});
+		// 	try {
+		// 		String uid = await widget.auth.signIn(_emailOrNom, _password);
+		// 		print("L'utilisateur s'est bien connecté $uid");
+		// 		_formKey.currentState.reset();
+		// 		setState(() {
+		// 			_isTrue = true;
+		// 		});
+		// 	} catch (e) {
+		// 		print(e);
+		// 	}
+		// }
+
 	}
+
 	Route _createRoute() {
 		return PageRouteBuilder(
+			opaque: true,
 			pageBuilder: (context, animation, secondaryAnimation) => Home(),
 			transitionsBuilder: (context, animation, secondaryAnimation, child) {
 				var begin = Offset(0.0, 1.0);
 				var end = Offset.zero;
 				var tween = Tween(begin: begin, end: end);
 				var offsetAnimation = animation.drive(tween);
-
 				return SlideTransition(
 					position: offsetAnimation,
 					child: child,
@@ -125,14 +123,17 @@ class _LoginState extends State < LoginPage > {
 								crossAxisAlignment: CrossAxisAlignment.center,
 								children: < Widget > [
 									new TextFormField(
-										style: prefix1.TextStyle(
+										style: TextStyle(
 											color: Colors.white.withOpacity(.5)
 										),
 										onSaved: (value) => _emailOrNom = value,
+										cursorColor: Colors.green,
 										validator: (value) => value.isEmpty ? "L'email ou le nom doit etre renseigné" : null,
 										decoration: new InputDecoration(
 											focusColor: Colors.amber.withOpacity(.5),
 											isDense: true,
+											fillColor: Colors.white.withOpacity(.2),
+											filled: true,
 											prefixIcon: Icon(Icons.email, color: Colors.amber),
 											hintText: "Email ou Nom",
 											hasFloatingPlaceholder: true,
@@ -144,10 +145,15 @@ class _LoginState extends State < LoginPage > {
 										),
 									),
 									new TextFormField(
+										style: TextStyle(
+											color: Colors.white.withOpacity(.5)
+										),
 										onSaved: (value) => _password = value,
 										cursorColor: Colors.green,
 										validator: (value) => value.isEmpty ? "Le mot de passe doit etre renseigné" : null,
 										decoration: new InputDecoration(
+											fillColor: Colors.white.withOpacity(.2),
+											filled: true,
 											isDense: true,
 											prefixIcon: Icon(Icons.lock, color: Colors.amber),
 											suffixIcon: FlatButton(
@@ -165,6 +171,17 @@ class _LoginState extends State < LoginPage > {
 										),
 										obscureText: _canObscure,
 									),
+									Row(
+										mainAxisAlignment: MainAxisAlignment.end,
+										children: < Widget > [
+											new FlatButton(
+												textColor: Colors.amber,
+												child: Text("Réinitialisé ?", style: TextStyle(color: Colors.amber), ),
+												onPressed: widget.move,
+											)
+										],
+									),
+
 								],
 							),
 						),
@@ -172,9 +189,8 @@ class _LoginState extends State < LoginPage > {
 							Column(
 								children: < Widget > [
 									FittedBox(
-										fit: BoxFit.contain,
+										fit: BoxFit.fill,
 										child: _isTrue ? new RaisedButton(
-
 											elevation: 12.0,
 											textColor: _hexToColor("#124A2C"),
 											child: new Text("Connexion", style: TextStyle(fontSize: 17.0)),
@@ -186,10 +202,15 @@ class _LoginState extends State < LoginPage > {
 										) : Loading(indicator: BallPulseIndicator(), size: 60.0, color: Colors.amber)
 									),
 									Row(
-										mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+										mainAxisAlignment: MainAxisAlignment.center,
 										children: < Widget > [
 											Text("Vous etes nouveau ?",
-												style: TextStyle(color: Colors.white), ),
+												style: TextStyle(color: Colors.white),
+											),
+											IconButton(
+												icon: Icon(Icons.ac_unit),
+												onPressed: null
+											),
 											new FlatButton(
 												textColor: Colors.amber,
 												child: Text("M'inscrire", style: TextStyle(color: Colors.amber), ),
