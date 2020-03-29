@@ -1,7 +1,7 @@
 import 'package:climax/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/backgroundvideo.dart';
-import 'package:climax/backgroundImage.dart';
+import 'package:climax/first.dart';
 import 'views/login.dart';
 
 void main() => runApp(MyApp());
@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
 			theme: ThemeData(
 				primarySwatch: Colors.blue,
 			),
+			// routes: {
+			// 	"/": (context) => Home(),
+			// },
 			home: Scaffold(
 				body: SafeArea(
 					child: Container(

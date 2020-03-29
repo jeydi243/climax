@@ -44,23 +44,23 @@ class _LoginState extends State < LoginPage > {
 		}
 	}
 	void _submit() async {
-			Navigator.of(context).push(_createRoute());
+		Navigator.of(context).push(_createRoute());
 
 		// if (_validateandSave()) {
-		// 	setState(() {
-		// 		_isTrue = false;
+		// setState(() {
+		// _isTrue = false;
 
-		// 	});
-		// 	try {
-		// 		String uid = await widget.auth.signIn(_emailOrNom, _password);
-		// 		print("L'utilisateur s'est bien connecté $uid");
-		// 		_formKey.currentState.reset();
-		// 		setState(() {
-		// 			_isTrue = true;
-		// 		});
-		// 	} catch (e) {
-		// 		print(e);
-		// 	}
+		// });
+		// try {
+		// String uid = await widget.auth.signIn(_emailOrNom, _password);
+		// print("L'utilisateur s'est bien connecté $uid");
+		// _formKey.currentState.reset();
+		// setState(() {
+		// _isTrue = true;
+		// });
+		// } catch (e) {
+		// print(e);
+		// }
 		// }
 
 	}
@@ -157,7 +157,8 @@ class _LoginState extends State < LoginPage > {
 											isDense: true,
 											prefixIcon: Icon(Icons.lock, color: Colors.amber),
 											suffixIcon: FlatButton(
-												child: _canObscure == true ? Text("SHOW", style: TextStyle(color: Colors.amber[200])) : Text("HIDE", style: TextStyle(color: Colors.amber[200])),
+												child: _canObscure == true ? Text("SHOW", style: TextStyle(color: Colors.amber[200])) : Text("HIDE", style:
+													TextStyle(color: Colors.amber[200])),
 												onPressed: () {
 													setState(() {
 														_canObscure = _canObscure ? false : true;

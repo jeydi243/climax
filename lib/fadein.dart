@@ -20,7 +20,7 @@ class FadeIn extends StatelessWidget {
 		]);
 
 		return ControlledAnimation(
-      curve: Curves.easeInCubic,
+			curve: Curves.ease,
 			delay: Duration(milliseconds: (300 * delay).round()),
 			duration: tween.duration,
 			tween: tween,
