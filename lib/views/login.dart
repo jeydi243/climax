@@ -1,8 +1,9 @@
 import 'dart:ui';
-import 'package:climax/views/home.dart';
-import 'package:climax/components/ticket.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:climax/views/home.dart';
+import 'package:climax/components/ticketone.dart';
+import 'package:flutter/gestures.dart';
+import 'package:pigment/pigment.dart';
 import 'package:climax/services/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/loading.dart';
@@ -24,8 +25,8 @@ class LoginPage extends StatefulWidget {
 	_LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State < LoginPage > {
-	final _formKey = GlobalKey < FormState > ();
+class _LoginState extends State <LoginPage> {
+	final _formKey = GlobalKey <FormState> ();
 	bool _isTrue = true;
 	bool _canObscure = false;
 	String fin = "#FAD961";
@@ -65,7 +66,6 @@ class _LoginState extends State < LoginPage > {
 		// }
 
 	}
-
 	Route _createRoute() {
 		return PageRouteBuilder(
 			opaque: true,
@@ -82,9 +82,6 @@ class _LoginState extends State < LoginPage > {
 				);
 			},
 		);
-	}
-	Color _hexToColor(String code) {
-		return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 	}
 
 	@override
@@ -195,7 +192,7 @@ class _LoginState extends State < LoginPage > {
 										fit: BoxFit.fill,
 										child: _isTrue ? new RaisedButton(
 											elevation: 12.0,
-											textColor: _hexToColor("#124A2C"),
+											textColor: Pigment.fromString("#124A2C"),
 											child: new Text("Connexion", style: TextStyle(fontSize: 17.0)),
 											shape: RoundedRectangleBorder(
 												borderRadius: new BorderRadius.circular(18.0),

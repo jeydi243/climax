@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:climax/backgroundvideo.dart';
-import 'package:climax/accueil.dart';
+import 'package:climax/views/accueil.dart';
 import 'views/login.dart';
 
 void main() => runApp(MyApp());
