@@ -1,8 +1,17 @@
 import 'package:fw_ticket/fw_ticket.dart';
 import 'package:flutter/material.dart';
 
-class tickettwo extends StatelessWidget {
-	// This widget is the root of your application.
+
+class TicketTwo extends StatefulWidget {
+	TicketTwo({
+		Key key
+	}): super(key: key);
+
+	@override
+	_TicketTwoState createState() => _TicketTwoState();
+}
+
+class _TicketTwoState extends State < TicketTwo > {
 	@override
 	Widget build(BuildContext context) {
 		return Container(
@@ -149,6 +158,5 @@ class tickettwo extends StatelessWidget {
 				],
 			),
 		);
-
 	}
 }
