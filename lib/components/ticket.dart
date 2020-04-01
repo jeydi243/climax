@@ -1,6 +1,5 @@
-import 'package:climax/components/barcode.dart';
 import 'package:flutter/material.dart';
-import 'package:pigment/pigment.dart';
+import 'package:climax/components/barcode.dart';
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
 
@@ -9,10 +8,11 @@ class Ticket extends StatefulWidget {
 	_TicketState createState() => _TicketState();
 }
 
-class _TicketState extends State <Ticket> {
+class _TicketState extends State < Ticket > {
 	@override
 	Widget build(BuildContext context) {
-		return  Center(
+		return Center(
+			child: Container(
 				child: FlutterTicketWidget(
 					width: 300.0,
 					height: 400.0,
@@ -39,7 +39,7 @@ class _TicketState extends State <Ticket> {
 													),
 												),
 											)
-											],
+										],
 									),
 									Padding(
 										padding: const EdgeInsets.only(top: 20.0),
@@ -52,7 +52,7 @@ class _TicketState extends State <Ticket> {
 											),
 									),
 									Padding(
-										padding: const EdgeInsets.only(top:5.0),
+										padding: const EdgeInsets.only(top: 5.0),
 											child: Column(
 												children: < Widget > [
 													ticketDetailsWidget(
@@ -75,12 +75,13 @@ class _TicketState extends State <Ticket> {
 										padding: const EdgeInsets.only(bottom: 15.0),
 											child: Barcode()
 									),
-									
+
 								],
 							),
 					),
 				),
-			);
+			),
+		);
 	}
 
 	Widget ticketDetailsWidget(String firstTitle, String firstDesc, String secondTitle, String secondDesc) {
