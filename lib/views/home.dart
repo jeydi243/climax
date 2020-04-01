@@ -16,10 +16,7 @@ class _HomeState extends State < Home > {
 	int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
 	Color fromHex(String hexString) {
-		final buffer = StringBuffer();
-		if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-		buffer.write(hexString.replaceFirst('#', ''));
-		return Color(int.parse(buffer.toString(), radix: 16));
+		return new Color(int.parse(hexString.substring(1, 7), radix: 16) + 0xFF000000);
 	}
 	@override
 	Widget build(BuildContext context) {

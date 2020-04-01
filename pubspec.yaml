@@ -10,6 +10,9 @@ dependencies:
     sdk: flutter
   animated_text_kit: ^2.0.0
   fw_ticket: ^0.1.1
+  barcode_flutter: ^1.1.2
+  pigment: ^1.0.3
+  ticket_card: ^0.2.0
   curved_navigation_bar: ^0.3.2
   cloud_firestore: ^0.13.0+1
   firebase_auth: ^0.15.4

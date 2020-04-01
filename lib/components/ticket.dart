@@ -1,4 +1,6 @@
+import 'package:climax/components/barcode.dart';
 import 'package:flutter/material.dart';
+import 'package:pigment/pigment.dart';
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
 
@@ -10,17 +12,15 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State <Ticket> {
 	@override
 	Widget build(BuildContext context) {
-		return Scaffold(
-			backgroundColor: Colors.black,
-			body: Center(
+		return  Center(
 				child: FlutterTicketWidget(
-					width: 350.0,
-					height: 500.0,
+					width: 300.0,
+					height: 400.0,
 					isCornerRounded: true,
 					child: Padding(
-						padding: const EdgeInsets.all(20.0),
+						padding: const EdgeInsets.all(5.0),
 							child: Column(
-								crossAxisAlignment: CrossAxisAlignment.start,
+								crossAxisAlignment: CrossAxisAlignment.center,
 								children: < Widget > [
 									Row(
 										mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,33 +38,8 @@ class _TicketState extends State <Ticket> {
 														style: TextStyle(color: Colors.green),
 													),
 												),
-											),
-											Row(
-												children: < Widget > [
-													Text(
-														'SLM',
-														style: TextStyle(
-															color: Colors.black, fontWeight: FontWeight.bold),
-													),
-													Padding(
-														padding: const EdgeInsets.only(left: 8.0),
-															child: Icon(
-																Icons.flight_takeoff,
-																color: Colors.pink,
-															),
-													),
-													Padding(
-														padding: const EdgeInsets.only(left: 8.0),
-															child: Text(
-																'BTL',
-																style: TextStyle(
-																	color: Colors.black,
-																	fontWeight: FontWeight.bold),
-															),
-													)
-												],
 											)
-										],
+											],
 									),
 									Padding(
 										padding: const EdgeInsets.only(top: 20.0),
@@ -77,7 +52,7 @@ class _TicketState extends State <Ticket> {
 											),
 									),
 									Padding(
-										padding: const EdgeInsets.only(top: 25.0),
+										padding: const EdgeInsets.only(top:5.0),
 											child: Column(
 												children: < Widget > [
 													ticketDetailsWidget(
@@ -95,34 +70,17 @@ class _TicketState extends State <Ticket> {
 												],
 											),
 									),
-
+									Spacer(),
 									Padding(
-										padding: const EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
-											child: Container(
-												width: 250.0,
-												height: 60.0,
-												decoration: BoxDecoration(
-													image: DecorationImage(
-														image: AssetImage('assets/barcode.png'),
-														fit: BoxFit.cover)),
-											),
+										padding: const EdgeInsets.only(bottom: 15.0),
+											child: Barcode()
 									),
-									Padding(
-										padding:
-										const EdgeInsets.only(top: 10.0, left: 75.0, right: 75.0),
-											child: Text(
-												'9824 0972 1742 1298',
-												style: TextStyle(
-													color: Colors.black,
-												),
-											),
-									)
+									
 								],
 							),
 					),
 				),
-			),
-		);
+			);
 	}
 
 	Widget ticketDetailsWidget(String firstTitle, String firstDesc, String secondTitle, String secondDesc) {
