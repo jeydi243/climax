@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
-import 'package:climax/components/ticketone.dart';
 import 'package:flutter/gestures.dart';
 import 'package:pigment/pigment.dart';
 import 'package:climax/services/auth.dart';
@@ -69,7 +68,7 @@ class _LoginState extends State <LoginPage> {
 	Route _createRoute() {
 		return PageRouteBuilder(
 			opaque: true,
-			pageBuilder: (context, animation, secondaryAnimation) => Ticket(),
+			pageBuilder: (context, animation, secondaryAnimation) => Home(),
 			//le monde est beau
 			transitionsBuilder: (context, animation, secondaryAnimation, child) {
 				var begin = Offset(0.0, 1.0);

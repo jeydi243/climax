@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_card/ticket_card.dart';
 
-class tickettree extends StatefulWidget {
-	tickettree({
+class TicketTree extends StatefulWidget {
+	TicketTree({
 		Key key
 	}): super(key: key);
 
@@ -10,7 +10,7 @@ class tickettree extends StatefulWidget {
 	_tickettreeState createState() => _tickettreeState();
 }
 
-class _tickettreeState extends State < tickettree > {
+class _tickettreeState extends State < TicketTree > {
 	@override
 	Widget build(BuildContext context) {
 		return Center(

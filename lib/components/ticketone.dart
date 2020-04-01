@@ -3,12 +3,12 @@ import 'package:climax/components/barcode.dart';
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
 
-class Ticket extends StatefulWidget {
+class TicketOne extends StatefulWidget {
 	@override
 	_TicketState createState() => _TicketState();
 }
 
-class _TicketState extends State < Ticket > {
+class _TicketState extends State < TicketOne > {
 	@override
 	Widget build(BuildContext context) {
 		return Center(
