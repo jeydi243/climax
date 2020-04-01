@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^2.0.0
+  fw_ticket: ^0.1.1
   curved_navigation_bar: ^0.3.2
   cloud_firestore: ^0.13.0+1
   firebase_auth: ^0.15.4

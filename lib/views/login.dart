@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:climax/views/home.dart';
+import 'package:climax/components/ticket.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/services/auth.dart';
@@ -68,7 +69,8 @@ class _LoginState extends State < LoginPage > {
 	Route _createRoute() {
 		return PageRouteBuilder(
 			opaque: true,
-			pageBuilder: (context, animation, secondaryAnimation) => Home(),
+			pageBuilder: (context, animation, secondaryAnimation) => Ticket(),
+			//le monde est beau
 			transitionsBuilder: (context, animation, secondaryAnimation, child) {
 				var begin = Offset(0.0, 1.0);
 				var end = Offset.zero;
