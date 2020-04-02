@@ -16,7 +16,6 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   cloud_firestore: ^0.13.0+1
   firebase_auth: ^0.15.4
-  flutter_facebook_login: ^1.2.0
   flutter_icons: any
   google_sign_in: ^4.2.0
   google_fonts: ^0.3.9
