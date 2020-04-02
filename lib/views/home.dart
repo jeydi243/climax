@@ -1,3 +1,6 @@
+import 'dart:ui' as ui;
+
+import 'package:climax/components/trend.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/components/ticketone.dart';
 import 'package:climax/components/tickettwo.dart';
@@ -5,6 +8,7 @@ import 'package:climax/components/tickettree.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:slimy_card/slimy_card.dart';
 import 'package:pigment/pigment.dart';
+
 
 class Home extends StatefulWidget {
 	Home({
@@ -37,9 +41,7 @@ class _HomeState extends State < Home > {
 					Icon(Icons.accessibility_new, size: 30, color: Pigment.fromString("200540")),
 				],
 				onTap: (index) {
-					setState(() {
-						_page = index;
-					});
+
 				},
 			),
 			body: SafeArea(
@@ -47,7 +49,9 @@ class _HomeState extends State < Home > {
 					color: Pigment.fromString("#141E51"),
 					child: Column(
 						children: < Widget > [
-							TicketTree(titre: "Le monde est beau !", madate: DateTime.now().toString(), ),
+							//Trend(),
+						
+							TicketTree(titre: "Le monde est beau !", madate: DateTime.now().toString()),
 						],
 					)
 					//TicketOne(),

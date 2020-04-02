@@ -14,33 +14,21 @@ class Trend extends StatefulWidget {
 class _TrendState extends State < Trend > {
 	@override
 	Widget build(BuildContext context) {
-		return MultiProvider(
-			providers: [
-				// StreamProvider.value(
-				// 	value: ,
-				// )
-			],
-			child: Container(
-				child: Column(
-					children: < Widget > [
-						Text("Trend"),
-						ListView.builder(
-							itemCount: 10,
-							itemBuilder: (context, index) {
-								return SlimyCard(
-									color: Colors.red,
-									width: 200,
-									topCardHeight: 400,
-									bottomCardHeight: 200,
-									borderRadius: 15,
-									topCardWidget: Text("Epa le monde est beau"),
-									bottomCardWidget: Text("Donne le moi !"),
-									slimeEnabled: true,
-								);
-							},
-						),
-					],
-				),
+		return Container(
+			height: 400,
+			child: Column(
+				children: <Widget> [
+					Text("Trend"),
+					ListView.builder(
+						scrollDirection: Axis.horizontal,
+						itemCount: 10,
+						itemBuilder: (_, index) {
+							return ListTile(
+								leading: Text("data"),
+							);
+						},
+					),
+				],
 			),
 		);
 	}
