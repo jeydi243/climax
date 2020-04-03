@@ -17,11 +17,11 @@ class _TabsState extends State < Tabs > {
 	@override
 	Widget build(BuildContext context) {
 		switch (widget.index) {
-			case 1:
+			case 0:
 				return One();
-			case 2:
+			case 1:
 				return Two();
-			case 3:
+			case 2:
 				return Three();
 			default:
 

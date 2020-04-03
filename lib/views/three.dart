@@ -1,18 +1,24 @@
+import 'package:climax/fadein.dart';
 import 'package:flutter/material.dart';
 
 
 class Three extends StatefulWidget {
-  Three({Key key}) : super(key: key);
+	Three({
+		Key key
+	}): super(key: key);
 
-  @override
-  _ThreeState createState() => _ThreeState();
+	@override
+	_ThreeState createState() => _ThreeState();
 }
 
-class _ThreeState extends State<Three> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-       child: Text('Three'),
-    );
-  }
+class _ThreeState extends State < Three > {
+	@override
+	Widget build(BuildContext context) {
+		return Container(
+			height: double.infinity,
+			width: double.infinity,
+			// color: Colors.yellowAccent,
+			child: FadeIn(.5,Text('Three',style: TextStyle(color: Colors.white))),
+		);
+	}
 }

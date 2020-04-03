@@ -12,10 +12,10 @@ class FadeIn extends StatelessWidget {
 	Widget build(BuildContext context) {
 		final tween = MultiTrackTween([
 			Track("opacity").add(
-				Duration(milliseconds: 1000), Tween(begin: 0.0, end: 1.0),
+				Duration(milliseconds: 500), Tween(begin: 0.0, end: 1.0),
 				curve: Curves.easeInCubic),
 			Track("translateY").add(
-				Duration(milliseconds: 1000), Tween(begin: 50.0, end: 0.0),
+				Duration(milliseconds: 500), Tween(begin: 20.0, end: 0.0),
 				curve: Curves.easeInCubic)
 		]);
 

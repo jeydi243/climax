@@ -1,5 +1,7 @@
-import 'dart:ui' as ui;
+import 'dart:ui'
+as ui;
 
+import 'package:climax/components/tabs.dart';
 import 'package:climax/components/trend.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/components/ticketone.dart';
@@ -20,7 +22,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State < Home > {
-	int _page = 0;
+	int _page = 1;
 	GlobalKey _bottomNavigationKey = GlobalKey();
 
 	@override
@@ -41,21 +43,15 @@ class _HomeState extends State < Home > {
 					Icon(Icons.accessibility_new, size: 30, color: Pigment.fromString("200540")),
 				],
 				onTap: (index) {
-
+					setState(() {
+						_page = index;
+					});
 				},
 			),
 			body: SafeArea(
 				child: Container(
 					color: Pigment.fromString("#141E51"),
-					child: Column(
-						children: < Widget > [
-							//Trend(),
-						
-							TicketTree(titre: "Le monde est beau !", madate: DateTime.now().toString()),
-						],
-					)
-					//TicketOne(),
-					//TicketTwo(),
+					child: Tabs(index: _page),
 				),
 			),
 		);
