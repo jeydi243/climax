@@ -1,3 +1,4 @@
+import 'package:climax/components/tickettree.dart';
 import 'package:climax/fadein.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,7 @@ class _ThreeState extends State < Three > {
 		return Container(
 			height: double.infinity,
 			width: double.infinity,
-			// color: Colors.yellowAccent,
-			child: FadeIn(.5,Text('Three',style: TextStyle(color: Colors.white))),
+			child: FadeIn(.5, TicketTree()),
 		);
 	}
 }

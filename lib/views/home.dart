@@ -35,7 +35,7 @@ class _HomeState extends State < Home > {
 				animationCurve: Curves.ease,
 				animationDuration: Duration(milliseconds: 200),
 				color: Pigment.fromString("#FDB096"),
-				height: 65,
+				height: 55,
 				index: 1,
 				items: < Widget > [
 					Icon(Icons.add, size: 30, color: Pigment.fromString("200540")),
@@ -50,8 +50,15 @@ class _HomeState extends State < Home > {
 			),
 			body: SafeArea(
 				child: Container(
+					height: double.infinity,
 					color: Pigment.fromString("#141E51"),
-					child: Tabs(index: _page),
+					child: ConstrainedBox(
+						constraints: BoxConstraints(
+							maxHeight: 200,
+							minWidth: 300
+						),
+						child: Tabs(index: _page)
+					),
 				),
 			),
 		);
