@@ -16,23 +16,16 @@ class Tabs extends StatefulWidget {
 class _TabsState extends State < Tabs > {
 	@override
 	Widget build(BuildContext context) {
-		return ConstrainedBox(
-			constraints: BoxConstraints(
-				maxHeight: 200,
-			),
-			child: returnB(context)
-		);
-	}
-	Widget returnB(BuildContext ctx) {
-		switch (widget.index) {
-			case 0:
-				return One();
-			case 1:
-				return Two();
-			case 2:
-				return Three();
-			default:
+		// switch (widget.index) {
+		// 	case 0:
+				 //return One();
+		// 	case 1:
+		 		return Two();
+		// 	case 2:
+		// 		return Three();
+		// 	default:
 
-		}
+		// }
 	}
+
 }
