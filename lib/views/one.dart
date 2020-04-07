@@ -15,13 +15,7 @@ class One extends StatefulWidget {
 class _OneState extends State < One > {
 	@override
 	Widget build(BuildContext context) {
-		var result = Provider.of < Map < dynamic,dynamic>> (context);
-		// var list = [];
-		// result.forEach((k, v) => {
-		// 	if (k != "page") {
-		// 		list.add(v)
-		// 	}
-		// });
+		Map result = Provider.of<Map<String,dynamic>>(context);
 
 		return Container(
 			height: 300,
@@ -29,6 +23,7 @@ class _OneState extends State < One > {
 			child: ListView.builder(
 				itemCount: result.length,
 				itemBuilder: (_, int index) {
+					
 					String key = result.keys.elementAt(index);
 					return new Row(
 						children: < Widget > [

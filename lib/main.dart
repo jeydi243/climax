@@ -1,3 +1,4 @@
+import 'package:climax/services/movie_services.dart';
 import 'package:climax/services/tmdb.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
 			providers: [
 				FutureProvider<Map<dynamic, dynamic>>(
 					create:(_)async => TMDBclass().getTrending(),
+					lazy: false,
+				),
+				FutureProvider(
+					create:(_) async => MovieServices().getLatestMovie(),
 					lazy: false,
 				)
 			],
