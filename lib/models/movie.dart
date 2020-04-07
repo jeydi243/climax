@@ -43,6 +43,4 @@ class Movie {
 	double vote_count = 3439;
 	var backdrop_path = "";
 
-	Movie.fromMap()
-
 }

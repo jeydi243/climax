@@ -26,6 +26,12 @@ class MovieServices {
 	Future<Map> getMovieSimilar(int movieId)async {
 		return await this.tmdb.v3.movies.getSimilar(movieId);
 	}
+	Future<Map> getMovieReviews(int movieId,int page)async {
+		return await this.tmdb.v3.movies.getReviews(movieId,page: page);
+	}
+	Future<Map> getLatestMovies(int movieId)async {
+		return await this.tmdb.v3.movies.getLatest(language: lang);
+	}
 	Future<Map> searchMulti(String lang, String query, int page, bool adult, String region)async {
 		return await tmdb.v3.search.queryMulti(query);
 	}
