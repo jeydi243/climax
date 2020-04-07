@@ -17,30 +17,32 @@ class SpokenLanguage {
 	String name = "English";
 }
 class Movie {
-	int id = 550;
-	bool adult = false;
-	String backdrop_path = "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg";
-	String belongs_to_collection;
-	int budget = 63000000;
-	List < Genre > genres = [];
+	String imdb_id = "";
+	String belongs_to_collection="";
 	String homepage = "";
-	String imdb_id = "tt0137523";
-	String original_language = "en";
-	String original_title = "Fight Club";
-	String overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on; with underground \"fight clubs\" forming in every town; until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.";
-	double popularity = 0.5;
+	String original_language = "";
+	String original_title = "";
+	String overview = "";
 	String poster_path = null;
-	List < ProductionCompanie> production_companies = [];
-	List < ProductionCountrie> production_countries = [];
-	String release_date = "1999-10-12";
-	double revenue = 100853753;
-	int runtime = 139;
-	List<SpokenLanguage> spoken_languages = [];
-	String status = "Released";
-	String tagline = "How much can you know about yourself if you've never been in a fight?";
-	String title = "Fight Club";
+	String release_date = "";
+	String title = "";
+	String status = "";
+	String tagline = "";
+	List < Genre > genres = [];
+	List < ProductionCompanie > production_companies = [];
+	List < ProductionCountrie > production_countries = [];
+	List < SpokenLanguage > spoken_languages = [];
 	bool video = false;
+	bool adult = false;
+	int budget = 63000000;
+	int id = 550;
+	int runtime = 139;
+	double revenue = 100853753;
+	double popularity = 0.5;
 	double vote_average = 7.8;
 	double vote_count = 3439;
+	var backdrop_path = "";
+
+	Movie.fromMap()
 
 }
