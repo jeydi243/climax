@@ -1,17 +1,20 @@
-import 'package:tmdb_api/tmdb_api.dart';
+import 'package:flutter/foundation.dart';
+import 'package:tmdb_dart/tmdb_dart.dart';
 
-class TMDBclass {
-	static ApiKeys keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo');
-	TMDB tmdb = TMDB(keys);
+class TMDBclass with ChangeNotifier{
+	TmdbService service;
+	static const String ApiKey = "f69d3de4926e09f3e28b56b471471aec";
 
-	TMDB get gettmdb{
-		return tmdb;
+	TMDBclass() {
+		try {
+			TmdbService service = TmdbService(ApiKey);
+			var epa = service.initConfiguration();
+		} catch (e) {
+			print(e);
+		}
 	}
-	Future < Map < dynamic, dynamic >> getTrending() async {
-		return await tmdb.v3.trending.getTrending(timeWindow: TimeWindow.week);
-	}
-	void tester() async {
-    
-	}
+
+
+	TmdbService get tmdb => this.service;
 
 }

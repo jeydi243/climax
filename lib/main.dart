@@ -1,4 +1,4 @@
-import 'package:climax/services/movie_services.dart';
+import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/tmdb.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return MultiProvider(
 			providers: [
-				FutureProvider<Map<dynamic, dynamic>>(
-					create:(_) => TMDBclass().getTrending(),
+				ChangeNotifierProvider<TMDBclass>(
+					create:(_) => TMDBclass(),
 					lazy: false,
 				),
-				ChangeNotifierProvider<MovieServices>(
-					create:(_) => MovieServices(),
+				ChangeNotifierProvider<MovieService>(
+					create:(_) => MovieService(),
 					lazy: false,
 				)
 			],

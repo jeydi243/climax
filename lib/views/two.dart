@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:climax/fadein.dart';
-import 'package:climax/services/movie_services.dart';
+import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:slimy_card/slimy_card.dart';
+import 'package:tmdb_dart/tmdb_dart.dart';
 
 
 class Two extends StatefulWidget {
@@ -20,7 +21,7 @@ class Two extends StatefulWidget {
 class _TwoState extends State < Two > {
 	@override
 	Widget build(BuildContext context) {
-		MovieServices result = Provider.of < MovieServices > (context, listen: false);
+		MovieService result = Provider.of < MovieService > (context, listen: false);
 
 		return Container(
 			height: 100,

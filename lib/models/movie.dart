@@ -20,7 +20,7 @@ class SpokenLanguage {
 	String name = "";
 	SpokenLanguage(this.iso_639_1,this.name);
 }
-class Movie {
+class Movi {
 	String imdb_id = "";
 	String belongs_to_collection = "";
 	String homepage = "";
@@ -47,60 +47,60 @@ class Movie {
 	double vote_count = 0;
 	var backdrop_path = "";
 
-	Movie({
-		this.adult,
-		this.backdrop_path,
-		this.vote_count,
-		this.vote_average,
-		this.popularity,
-		this.revenue,
-		this.runtime,
-		this.id,
-		this.budget,
-		this.video,
-		this.spoken_languages,
-		this.production_countries,
-		this.production_companies,
-		this.genres,
-		this.tagline,
-		this.status,
-		this.title,
-		this.release_date,
-		this.poster_path,
-		this.overview,
-		this.original_title,
-		this.homepage,
-		this.belongs_to_collection,
-		this.imdb_id,
-	});
+	// Movie({
+	// 	this.adult,
+	// 	this.backdrop_path,
+	// 	this.vote_count,
+	// 	this.vote_average,
+	// 	this.popularity,
+	// 	this.revenue,
+	// 	this.runtime,
+	// 	this.id,
+	// 	this.budget,
+	// 	this.video,
+	// 	this.spoken_languages,
+	// 	this.production_countries,
+	// 	this.production_companies,
+	// 	this.genres,
+	// 	this.tagline,
+	// 	this.status,
+	// 	this.title,
+	// 	this.release_date,
+	// 	this.poster_path,
+	// 	this.overview,
+	// 	this.original_title,
+	// 	this.homepage,
+	// 	this.belongs_to_collection,
+	// 	this.imdb_id,
+	// });
 
-	factory Movie.fromMap(Map map) {
-		return Movie(
-			adult: map['adult'],
-			backdrop_path: map['backdrop_path'],
-			vote_count: map['vote_count'],
-			vote_average: map['vote_average'],
-			popularity: map['popularity'],
-			revenue: map['revenue'],
-			runtime: map['runtime'],
-			id: map['id'],
-			budget: map['budget'],
-			video: map['video'],
-			spoken_languages: map['spoken_languages'],
-			production_countries: map['production_countries'],
-			production_companies: map['production_companies'],
-			genres: map['genres'],
-			tagline: map['tagline'],
-			status: map['status'],
-			title: map['title'],
-			release_date: map['release_date'],
-			poster_path: map['poster_path'],
-			overview: map['overview'],
-			original_title: map['original_title'],
-			homepage: map['homepage'],
-			belongs_to_collection: map['belongs_to_collection'],
-			imdb_id: map['imdb_id'],
+	// factory Movie.fromMap(Map map) {
+	// 	return Movie(
+	// 		adult: map['adult'],
+	// 		backdrop_path: map['backdrop_path'],
+	// 		vote_count: map['vote_count'],
+	// 		vote_average: map['vote_average'],
+	// 		popularity: map['popularity'],
+	// 		revenue: map['revenue'],
+	// 		runtime: map['runtime'],
+	// 		id: map['id'],
+	// 		budget: map['budget'],
+	// 		video: map['video'],
+	// 		spoken_languages: map['spoken_languages'],
+	// 		production_countries: map['production_countries'],
+	// 		production_companies: map['production_companies'],
+	// 		genres: map['genres'],
+	// 		tagline: map['tagline'],
+	// 		status: map['status'],
+	// 		title: map['title'],
+	// 		release_date: map['release_date'],
+	// 		poster_path: map['poster_path'],
+	// 		overview: map['overview'],
+	// 		original_title: map['original_title'],
+	// 		homepage: map['homepage'],
+	// 		belongs_to_collection: map['belongs_to_collection'],
+	// 		imdb_id: map['imdb_id'],
 			
-		);
-	}
+	// 	);
+	// }
 }
