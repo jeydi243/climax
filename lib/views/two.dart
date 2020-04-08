@@ -21,14 +21,14 @@ class Two extends StatefulWidget {
 class _TwoState extends State < Two > {
 	@override
 	Widget build(BuildContext context) {
-		MovieService result = Provider.of < MovieService > (context, listen: false);
+		MovieSer result = Provider.of <MovieSer> (context, listen: false);
 
 		return Container(
 			height: 100,
 			width: double.infinity,
 			margin: EdgeInsets.only(top: 8),
 			child: FutureBuilder(
-				future: result.getLatestMovie(),
+				future: result.getLatestMovie({    }),
 				builder: (_, snap) {
 					return ListView.builder(
 						itemCount: 1,

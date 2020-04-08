@@ -1,15 +1,18 @@
+import 'dart:core';
+
+
 import 'package:climax/services/tmdb.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tmdb_dart/tmdb_dart.dart';
 
-class MovieService with ChangeNotifier {
+class MovieSer with ChangeNotifier {
 	TmdbService _service;
 
-	MovieService() {
+	MovieSer() {
 		_service = TMDBclass().tmdb;
 	}
 
-	Future < List < MovieBase >> MovieSearch(String query) async {
+	Future <List< MovieBase >> MovieSearch(String query) async {
 		var pagedResult = await _service.movie.search(query);
 		List < MovieBase > mylist = [];
 
@@ -19,14 +22,15 @@ class MovieService with ChangeNotifier {
 		}
 		return mylist;
 	}
-	Future < List < MovieBase >> getAiringToday() async {
+	Future <List< MovieBase >> getAiringToday() async {
 		var pagedTvResult = await _service.tv.getAiringToday();
 		List < MovieBase > mylist = [];
 		for (var tv in pagedTvResult.results) {
 			print("${tv.name} - ${tv.voteAverage}");
 		}
+		return mylist;
 	}
-	Future List < MovieBase > Mo() async {
+	Future <List< MovieBase >> Mo() async {
 		var popular = await _service.movie.getPopular();
 
 		for (var movie in popular.results) {
@@ -82,7 +86,7 @@ class MovieService with ChangeNotifier {
 		return await _service.movie.getDetails(id);
 	}
 
-	Future < Map > getMovieCredits(int movieId) async {
+	Future <Movie> getMovieCredits(int movieId) async {
 		return await _service.movie.getDetails(id)
 	}
 	Future < ImageCollection > getMovieImages(int movieId, {
@@ -90,24 +94,25 @@ class MovieService with ChangeNotifier {
 	}) async {
 		return await _service.movie.getImages(movieId);
 	}
-	Future < List < Video >> getMovieVideos(int movieId, String lang) async {
+	Future<List<Video >> getMovieVideos(int movieId, String lang) async {
 		return await _service.movie.getVideos(movieId, language: lang);
 	}
-	Future < Map > getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
-		var movie = await _service.movie.getDetails(671,
+	List<MovieBase> getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
+		var movie = await _service.movie.getDetails(movieId,
 			appendSettings: AppendSettings(
-				includeRecommendations: true,
+				// includeRecommendations: true,
 				includeSimilarContent: true,
 			));
 
-		print("${movie.recommendations[0].title}");
-		print("${movie.similar[0].title}");
+		// print("${movie.recommendations[0].title}");
+		return movie.similar;
 	}
-	Future < Map > getMovieReviews(int movieId, int page) async {
-		return await _service.movie.getReviews(movieId, page: page);
+
+	Future<PagedResult<MovieBase>> getTopRated(int movieId, int page,MovieSearchSettings opt ) async {
+		return await _service.movie.getTopRated(page: page,settings: opt);
 	}
-	Future < Map > getLatestMovie() async {
-		return await _service.movie.getLatest(language: lang);
+	Future <Movie> getLatestMovie(QualitySettings opt,{String lang="en-US"}) async {
+		return await _service.movie.getLatest(language: lang,qualitySettings: opt);
 	}
 
 }
