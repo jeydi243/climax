@@ -64,8 +64,8 @@ class _HomeState extends State < Home > {
 							Text("Trend",
 								style: GoogleFonts.dancingScript(
 									color: Colors.amber,
-									fontWeight: FontWeight.w400,
-									fontSize: 17
+									fontWeight: FontWeight.w600,
+									fontSize: 20
 								),
 							),
 							//Tabs(index: _page),

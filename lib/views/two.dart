@@ -25,6 +25,7 @@ class _TwoState extends State < Two > {
 		return Container(
 			height: 100,
 			width: double.infinity,
+			margin: EdgeInsets.only(top: 8),
 			child: FutureBuilder(
 				future: result.getLatestMovie(),
 				builder: (_, snap) {
