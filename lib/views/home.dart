@@ -69,8 +69,8 @@ class _HomeState extends State < Home > {
 								),
 							),
 							//Tabs(index: _page),
-							//Two(),
-							One(),
+							Two(),
+							//One(),
 							// Text("data"),
 						],
 					)

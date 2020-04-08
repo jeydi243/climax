@@ -20,34 +20,36 @@ class Two extends StatefulWidget {
 class _TwoState extends State < Two > {
 	@override
 	Widget build(BuildContext context) {
-		Map result = Provider.of<Map>(context);
+		MovieServices result = Provider.of < MovieServices > (context, listen: false);
 
 		return Container(
-			height: 90,
+			height: 100,
 			width: double.infinity,
-			child: ListView.builder(
-				itemCount: result.length,
-				scrollDirection: Axis.horizontal,
-				shrinkWrap: true,
-				itemBuilder: (BuildContext ctxt, int index) {
-					String key = result.keys.elementAt(12);
+			child: FutureBuilder(
+				future: result.getLatestMovie(),
+				builder: (_, snap) {
+					return ListView.builder(
+						itemCount: 1,
+						scrollDirection: Axis.horizontal,
+						shrinkWrap: true,
+						itemBuilder: (BuildContext ctxt, int index) {
+							dynamic daata = snap.data.keys.elementAt(12);
+							return Container(
+								height: 100,
+								width: 90,
+								decoration: BoxDecoration(
+									borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+									color: UniqueColorGenerator.getColor(),
+									image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"),fit: BoxFit.fill)
+								),
+								// child: Text("${snap.data['poster_path']}"),
+								// Image.network("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg",fit: BoxFit.fill),
+							);
 
-					return Container(
-						height: 90,
-						width: 70,
-						margin: EdgeInsets.only(left: 5, right: 5),
-						decoration: BoxDecoration(
-							borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-							color: UniqueColorGenerator.getColor(),
-							// image: DecorationImage(image: NetworkImage("https://fluttercentral.com/Images/Logo.png"))
-						),
-						child: Text("$key"),
 
-						// child: Text("dat222222a"),
+						}
 					);
-
-
-				}
+				},
 			)
 		);
 	}

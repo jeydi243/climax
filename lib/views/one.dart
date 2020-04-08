@@ -21,14 +21,14 @@ class _OneState extends State < One > {
 			height: 300,
 			width: double.infinity,
 			child: ListView.builder(
-				itemCount: result.length,
+				itemCount: result?.length,
 				itemBuilder: (_, int index) {
 					
-					String key = result.keys.elementAt(index);
+					String key = result?.keys?.elementAt(index);
 					return new Row(
 						children: < Widget > [
 							new Text('$key : '),
-							new Text("${result[key]}")
+							// new Text("${result[key] ?? 0}")
 						],
 					);
 				},

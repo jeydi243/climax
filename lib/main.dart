@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
 		return MultiProvider(
 			providers: [
 				FutureProvider<Map<dynamic, dynamic>>(
-					create:(_)async => TMDBclass().getTrending(),
+					create:(_) => TMDBclass().getTrending(),
 					lazy: false,
 				),
-				FutureProvider(
-					create:(_) async => MovieServices().getLatestMovie(),
+				ChangeNotifierProvider<MovieServices>(
+					create:(_) => MovieServices(),
 					lazy: false,
 				)
 			],
