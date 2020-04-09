@@ -87,7 +87,7 @@ class MovieSer with ChangeNotifier {
 	}
 
 	Future <Movie> getMovieCredits(int movieId) async {
-		return await _service.movie.getDetails(id)
+		return await _service.movie.getDetails(movieId);
 	}
 	Future < ImageCollection > getMovieImages(int movieId, {
 		String qualite
@@ -97,7 +97,7 @@ class MovieSer with ChangeNotifier {
 	Future<List<Video >> getMovieVideos(int movieId, String lang) async {
 		return await _service.movie.getVideos(movieId, language: lang);
 	}
-	List<MovieBase> getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
+	Future<List<MovieBase>> getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
 		var movie = await _service.movie.getDetails(movieId,
 			appendSettings: AppendSettings(
 				// includeRecommendations: true,

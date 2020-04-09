@@ -14,7 +14,6 @@ class TMDBclass with ChangeNotifier{
 		}
 	}
 
-
 	TmdbService get tmdb => this.service;
 
 }
