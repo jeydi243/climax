@@ -7,12 +7,11 @@ import 'package:tmdb_dart/tmdb_dart.dart';
 
 class MovieSer with ChangeNotifier {
 	TmdbService _service;
-
 	MovieSer() {
 		_service = TMDBclass().tmdb;
 	}
 
-	Future <List< MovieBase >> MovieSearch(String query) async {
+	Future < List < MovieBase >> movieSearch(String query) async {
 		var pagedResult = await _service.movie.search(query);
 		List < MovieBase > mylist = [];
 
@@ -22,7 +21,7 @@ class MovieSer with ChangeNotifier {
 		}
 		return mylist;
 	}
-	Future <List< MovieBase >> getAiringToday() async {
+	Future < List < MovieBase >> getAiringToday() async {
 		var pagedTvResult = await _service.tv.getAiringToday();
 		List < MovieBase > mylist = [];
 		for (var tv in pagedTvResult.results) {
@@ -30,7 +29,57 @@ class MovieSer with ChangeNotifier {
 		}
 		return mylist;
 	}
-	Future <List< MovieBase >> Mo() async {
+	Future resilienceExample(TmdbService service) async {
+		// generate many requests
+		// number of requests is over the allowed threshold
+		// but thanks to integrated resilience, all the requests are completed successfully
+		var futures = Iterable.generate(100)
+			.map((x) => service.movie.search(x.toString()))
+			.toList();
+		await Future.wait(futures);
+	}
+	Future < Movie > getMovieDetails(int id) async {
+		return await _service.movie.getDetails(id);
+	}
+	Future < Movie > getMovieCredits(int movieId) async {
+		return await _service.movie.getDetails(movieId);
+	}
+	Future < List < ImageInfo >> getMovieImagesPosters(int movieId,{String qualite}) async {
+		var collect = await _service.movie.getImages(movieId);
+		List list = [];
+		for (var images in collect.posters) {
+			list.add(images);
+		}
+		return list;
+	}
+	Future < List < ImageInfo >> getMovieImagesBackdrops(int movieId,{String qualite}) async {
+		var collect = await _service.movie.getImages(movieId);
+		List list = [];
+		for (var images in collect.backdrops) {
+			list.add(images);
+		}
+		return list;
+	}
+	Future < List < Video >> getMovieVideos(int movieId, String lang) async {
+		return await _service.movie.getVideos(movieId, language: lang);
+	}
+	Future < List < MovieBase >> getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
+		var movie = await _service.movie.getDetails(movieId,
+			appendSettings: AppendSettings(
+				// includeRecommendations: true,
+				includeSimilarContent: true,
+			));
+
+		// print("${movie.recommendations[0].title}");
+		return movie.similar;
+	}
+	Future < PagedResult < MovieBase >> getTopRated(int movieId, int page, MovieSearchSettings opt) async {
+		return await _service.movie.getTopRated(page: page, settings: opt);
+	}
+	Future < Movie > getLatestMovie(QualitySettings opt, {String lang = "en-US"}) async {
+		return await _service.movie.getLatest(language: lang, qualitySettings: opt);
+	}
+	Future < List < MovieBase >> Mo() async {
 		var popular = await _service.movie.getPopular();
 
 		for (var movie in popular.results) {
@@ -71,48 +120,4 @@ class MovieSer with ChangeNotifier {
 		print("Countries: ${(await _service.getAllCountries()).length}");
 		print("MovieGenres: ${(await _service.getAllTvGenres()).length}");
 	}
-
-	// generate many requests
-	// number of requests is over the allowed threshold
-	// but thanks to integrated resilience, all the requests are completed successfully
-	Future resilienceExample(TmdbService service) async {
-		var futures = Iterable.generate(100)
-			.map((x) => service.movie.search(x.toString()))
-			.toList();
-		await Future.wait(futures);
-	}
-
-	Future < Movie > getMovieDetails(int id) async {
-		return await _service.movie.getDetails(id);
-	}
-
-	Future <Movie> getMovieCredits(int movieId) async {
-		return await _service.movie.getDetails(movieId);
-	}
-	Future < ImageCollection > getMovieImages(int movieId, {
-		String qualite
-	}) async {
-		return await _service.movie.getImages(movieId);
-	}
-	Future<List<Video >> getMovieVideos(int movieId, String lang) async {
-		return await _service.movie.getVideos(movieId, language: lang);
-	}
-	Future<List<MovieBase>> getMovieSimilar(int movieId, MovieDiscoverSettings opt) async {
-		var movie = await _service.movie.getDetails(movieId,
-			appendSettings: AppendSettings(
-				// includeRecommendations: true,
-				includeSimilarContent: true,
-			));
-
-		// print("${movie.recommendations[0].title}");
-		return movie.similar;
-	}
-
-	Future<PagedResult<MovieBase>> getTopRated(int movieId, int page,MovieSearchSettings opt ) async {
-		return await _service.movie.getTopRated(page: page,settings: opt);
-	}
-	Future <Movie> getLatestMovie(QualitySettings opt,{String lang="en-US"}) async {
-		return await _service.movie.getLatest(language: lang,qualitySettings: opt);
-	}
-
 }
