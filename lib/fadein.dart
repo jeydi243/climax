@@ -13,14 +13,14 @@ class FadeIn extends StatelessWidget {
 		final tween = MultiTrackTween([
 			Track("opacity").add(
 				Duration(milliseconds: 800), Tween(begin: 0.0, end: 1.0),
-				curve: Curves.bounceInOut),
+				curve: Curves.easeInBack),
 			Track("translateY").add(
 				Duration(milliseconds: 800), Tween(begin: 30.0, end: 0.0),
-				curve: Curves.bounceInOut)
+				curve: Curves.easeInBack)
 		]);
 
 		return ControlledAnimation(
-			curve: Curves.ease,
+			curve: Curves.easeInOut,
 			delay: Duration(milliseconds: (300 * delay).round()),
 			duration: tween.duration,
 			tween: tween,

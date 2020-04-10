@@ -34,7 +34,7 @@ class _HomeState extends State < Home > {
 
 			bottomNavigationBar: CurvedNavigationBar(
 				key: _bottomNavigationKey,
-				backgroundColor: Pigment.fromString("#141E51"),
+				backgroundColor: Pigment.fromString("#141E51"), //Background color of selected
 				buttonBackgroundColor: Pigment.fromString("#FFBA02"),
 				animationCurve: Curves.ease,
 				animationDuration: Duration(milliseconds: 200),
