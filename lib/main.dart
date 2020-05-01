@@ -1,10 +1,10 @@
 import 'package:climax/services/movie_service.dart';
+import 'package:climax/services/movie_service2.dart';
 import 'package:climax/services/tmdb.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:climax/backgroundvideo.dart';
 import 'package:climax/views/accueil.dart';
-import 'package:animated_splash/animated_splash.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';
 
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
 					lazy: false,
 					
 				),
-				ChangeNotifierProvider<MovieSer>(
-					create:(_) => MovieSer(),
+				ChangeNotifierProvider<MovieSer2>(
+					create:(_) => new MovieSer2(),
 					lazy: false,
 				)
 			],

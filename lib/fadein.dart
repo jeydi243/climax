@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations/multi_track_tween.dart';
+
 
 class FadeIn extends StatelessWidget {
 	final double delay;
@@ -13,10 +14,10 @@ class FadeIn extends StatelessWidget {
 		final tween = MultiTrackTween([
 			Track("opacity").add(
 				Duration(milliseconds: 800), Tween(begin: 0.0, end: 1.0),
-				curve: Curves.easeInBack),
+				curve: Curves.ease),
 			Track("translateY").add(
 				Duration(milliseconds: 800), Tween(begin: 30.0, end: 0.0),
-				curve: Curves.easeInBack)
+				curve: Curves.ease)
 		]);
 
 		return ControlledAnimation(

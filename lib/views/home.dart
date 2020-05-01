@@ -1,17 +1,9 @@
-import 'dart:ui'
-as ui;
-
-import 'package:climax/components/tabs.dart';
-import 'package:climax/components/trend.dart';
+import 'dart:ui' as ui;
 import 'package:climax/views/one.dart';
 import 'package:climax/views/two.dart';
 import 'package:flutter/material.dart';
-import 'package:climax/components/ticketone.dart';
-import 'package:climax/components/tickettwo.dart';
-import 'package:climax/components/tickettree.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:slimy_card/slimy_card.dart';
 import 'package:pigment/pigment.dart';
 
 
