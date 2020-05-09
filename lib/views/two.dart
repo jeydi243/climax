@@ -1,23 +1,24 @@
 import 'dart:math';
-import 'package:climax/services/movie_service2.dart';
+import 'package:climax/services/movie_service.dart';
+import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tmdb_api/tmdb_api.dart';
 
 
 class Two extends StatefulWidget {
 	Two({
 		Key key
-	}): super(key: key);
+	});
 
 	@override
 	_TwoState createState() => _TwoState();
 }
 
 class _TwoState extends State < Two > {
+
 	@override
 	Widget build(BuildContext context) {
-		MovieSer2 result = Provider.of<MovieSer2>(context);
+		MovieService result = Provider.of < MovieService > (context);
 
 		return Container(
 			height: 100,
@@ -28,22 +29,33 @@ class _TwoState extends State < Two > {
 				builder: (_, snap) {
 					if (snap.hasData) {
 						return ListView.builder(
-							itemCount: snap.data.length,
+							itemCount: snap.data['results'].length,
 							scrollDirection: Axis.horizontal,
+							physics: BouncingScrollPhysics(),
 							shrinkWrap: true,
 							itemBuilder: (BuildContext ctxt, int index) {
-								return Container(
-									height: 100,
-									width: 80,
-									margin: EdgeInsets.only(right: 8),
-									decoration: BoxDecoration(
-										borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-										// color: UniqueColorGenerator.getColor(),
-										image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index]["poster_path"])),fit: BoxFit.fill)
+								return Hero(
+									tag: snap.data["results"][index]['id'],
+									child: InkWell(
+										onTap: () {
+											Navigator.of(context).push(
+												MaterialPageRoute(builder: (fd) => MovieScreen(movie: {
+													"id": snap.data["results"][index]['id'],
+													"images": result.getImageUrl(snap.data["results"][index]["poster_path"])
+												}))
+											);
+										},
+										child: Container(
+											height: 100,
+											width: 80,
+											margin: EdgeInsets.only(right: 8),
+											decoration: BoxDecoration(
+												borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+												// color: UniqueColorGenerator.getColor(),
+												image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data["results"][index]["poster_path"])), fit: BoxFit.fill)
+											),
+										),
 									),
-									//child: 
-									//Text("${snap.data.title} eppppap"),
-									// Image.network("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg",fit: BoxFit.fill),
 								);
 							}
 						);
@@ -55,11 +67,11 @@ class _TwoState extends State < Two > {
 							decoration: BoxDecoration(
 								borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
 								color: UniqueColorGenerator.getColor(),
-								image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"),fit: BoxFit.fill)
+								image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
 							),
-	
+
 						);
-					}else{
+					} else {
 						print(snap.hasError);
 						return Text("error: ${snap.hasError}");
 					}

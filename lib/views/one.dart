@@ -1,5 +1,4 @@
-import 'package:climax/fadein.dart';
-import 'package:climax/services/movie_service2.dart';
+import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,29 +15,23 @@ class One extends StatefulWidget {
 class _OneState extends State < One > {
 	@override
 	Widget build(BuildContext context) {
-		MovieSer2 result = Provider.of < MovieSer2 > (context);
+		MovieService result = Provider.of < MovieService > (context);
 
 		return Container(
 			height: 300,
 			width: double.infinity,
 			child: FutureBuilder<List<Map<String,dynamic>>>(
-				future: result.getTrend(),
+				future: result.getTrend2(),
 				builder: (_, snap) {
 					if (snap.hasData) {
 						return ListView.builder(
 							itemCount: snap.data.length,
 							scrollDirection: Axis.horizontal,
 							itemBuilder: (_, index) {
-								// return Container(
-								// 	decoration: BoxDecoration(
-								// 		image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[1].toString())))
-								// 	),
-								// );
 								return Image.network(result.getImageUrl(snap.data[index]["backdrop_path"]));
 							},
 						);
 					} else {
-						// print(snap.data);
 						return Container(
 							child: Text('Le Future ne remet rien! ',
 								style: TextStyle(
