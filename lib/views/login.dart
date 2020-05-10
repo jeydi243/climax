@@ -207,11 +207,8 @@ class _LoginState extends State < LoginPage > {
                       Text("Vous etes nouveau ?",
                         style: TextStyle(color: Colors.white),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.ac_unit),
-                        onPressed: null
-                      ),
-                      new FlatButton(
+                    
+                      FlatButton(
                         textColor: Colors.amber,
                         child: Text("M'inscrire", style: TextStyle(color: Colors.amber), ),
                         onPressed: widget.move,

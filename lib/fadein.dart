@@ -16,8 +16,8 @@ class FadeIn extends StatelessWidget {
 				Duration(milliseconds: 800), Tween(begin: 0.0, end: 1.0),
 				curve: Curves.ease),
 			Track("translateY").add(
-				Duration(milliseconds: 800), Tween(begin: 30.0, end: 0.0),
-				curve: Curves.ease)
+				Duration(milliseconds: 2000), Tween(begin: 30.0, end: 0.0),
+				curve: Curves.bounceInOut)
 		]);
 
 		return ControlledAnimation(
