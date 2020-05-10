@@ -1,8 +1,3 @@
-class Genre {
-	int id = 0;
-	String name = "Drama";
-	Genre(this.id,this.name);
-}
 
 class ProductionCountrie {
 	String iso_3166_1 = "US";
