@@ -11,7 +11,6 @@ class Movie {
 	String _original_language = "";
 	String _original_title = "";
 	String _overview = "";
-	String _poster_path = null;
 	String _release_date = "";
 	String _title = "";
 	String _status = "";
@@ -27,7 +26,8 @@ class Movie {
 	double _popularity = 0.0;
 	double _vote_average = 0.0;
 	double _vote_count = 0;
-	List _backdrop_path = [""];
+	List _poster_path = [];
+	List _backdrop_path = [];
 
 	Movie({
 		adult,
