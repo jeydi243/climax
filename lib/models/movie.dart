@@ -53,7 +53,8 @@ class Movie {
 		original_title,
 		homepage,
 		belongs_to_collection,
-		imdb_id});
+		imdb_id}
+    );
 
 	factory Movie.fromMap(Map<String,dynamic> map) {
 		return Movie(
