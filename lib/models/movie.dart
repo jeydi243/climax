@@ -1,14 +1,6 @@
+import 'package:climax/Models/genre.dart';
+import 'package:climax/Models/companie.dart';
 
-class ProductionCountrie {
-	String iso_3166_1 = "US";
-	String name = "United States of America";
-	ProductionCountrie(this.iso_3166_1,this.name);
-}
-class SpokenLanguage {
-	String iso_639_1 = "";
-	String name = "";
-	SpokenLanguage(this.iso_639_1,this.name);
-}
 class Movie {
   int _budget = 0;
 	int _id = 0;
@@ -25,9 +17,9 @@ class Movie {
 	String _status = "";
 	String _tagline = "";
 	List <Genre> _genres = [];
-	List <ProductionCompanie> _production_companies = [];
-	List <ProductionCountrie> _production_countries = [];
-	List <SpokenLanguage> _spoken_languages = [];
+	List <Companie> _production_companies = [];
+	List <String> _production_countries = [];
+	List <String> _spoken_languages = [];
 	bool _video = false;
 	bool _adult = false;
 
@@ -35,33 +27,33 @@ class Movie {
 	double _popularity = 0.0;
 	double _vote_average = 0.0;
 	double _vote_count = 0;
-	List _backdrop_path = "";
+	List _backdrop_path = [""];
 
 	Movie({
-		this._adult,
-		this._backdrop_path,
-		this.vote_count,
-		this.vote_average,
-		this.popularity,
-		this._revenue,
-		this._runtime,
-		this._id,
-		this._budget,
-		this._video,
-		this._spoken_languages,
-		this._production_countries,
-		this._production_companies,
-		this._genres,
-		this._tagline,
-		this._status,
-		this._title,
-		this._release_date,
-		this._poster_path,
-		this._overview,
-		this._original_title,
-		this._homepage,
-		this.belongs_to_collection,
-		this.imdb_id});
+		adult,
+		backdrop_path,
+		vote_count,
+		vote_average,
+		popularity,
+		revenue,
+		runtime,
+		id,
+		budget,
+		video,
+		spoken_languages,
+		production_countries,
+		production_companies,
+		genres,
+		tagline,
+		status,
+		title,
+		release_date,
+		poster_path,
+		overview,
+		original_title,
+		homepage,
+		belongs_to_collection,
+		imdb_id});
 
 	factory Movie.fromMap(Map<String,dynamic> map) {
 		return Movie(
