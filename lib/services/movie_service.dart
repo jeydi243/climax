@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'package:climax/Models/movie.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
@@ -39,8 +40,10 @@ class MovieService with ChangeNotifier{
 		}
 		return list;
 	}
-	Future < Map<String,dynamic> > getMovieDetails(int id) async {
-		return await _service.v3.movies.getDetails(id);
+	Future <Movie> getMovieDetails(int id) async {
+    Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id));
+		// return await _service.v3.movies.getDetails(id);
+    return m;
 	}
 	Future < Map<String,dynamic> > getMovieCredits(int movieId) async {
 		return await _service.v3.movies.getCredits(movieId);

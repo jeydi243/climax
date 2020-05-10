@@ -18,7 +18,7 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieScreenState extends State < MovieScreen > {
-	
+
 
 	@override
 	Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class _MovieScreenState extends State < MovieScreen > {
 		return Scaffold(
 			body: CustomScrollView(
 				slivers: [
-          
 					SliverAppBar(
 						actions: < Widget > [
 							IconButton(
@@ -50,8 +49,11 @@ class _MovieScreenState extends State < MovieScreen > {
 						// pinned: true,
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
-							background: Hero(tag: widget.movie['id'],child: Image.network(widget.movie['images'] ??"https://via.placeholder.com/150", fit: BoxFit.cover, )),
-							
+							background: Hero(
+								tag: widget.movie['id'],
+								child: Image.network(widget.movie['images'] ?? "https://via.placeholder.com/150", fit : BoxFit.cover, )
+							),
+
 						),
 					),
 

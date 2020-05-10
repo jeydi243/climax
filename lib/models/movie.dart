@@ -3,13 +3,7 @@ class Genre {
 	String name = "Drama";
 	Genre(this.id,this.name);
 }
-class ProductionCompanie {
-	int id = 0;
-	String logo_path = "/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png";
-	String name = "Regency Enterprises";
-	String origin_country = "US";
-	ProductionCompanie(this.id,this.logo_path,this.name,this.origin_country);
-}
+
 class ProductionCountrie {
 	String iso_3166_1 = "US";
 	String name = "United States of America";
@@ -20,87 +14,87 @@ class SpokenLanguage {
 	String name = "";
 	SpokenLanguage(this.iso_639_1,this.name);
 }
-class Movi {
-	String imdb_id = "";
-	String belongs_to_collection = "";
-	String homepage = "";
-	String original_language = "";
-	String original_title = "";
-	String overview = "";
-	String poster_path = null;
-	String release_date = "";
-	String title = "";
-	String status = "";
-	String tagline = "";
-	List <Genre> genres = [];
-	List <ProductionCompanie> production_companies = [];
-	List <ProductionCountrie> production_countries = [];
-	List <SpokenLanguage> spoken_languages = [];
-	bool video = false;
-	bool adult = false;
-	int budget = 0;
-	int id = 0;
-	int runtime = 0;
-	double revenue = 0;
-	double popularity = 0.0;
-	double vote_average = 0.0;
-	double vote_count = 0;
-	var backdrop_path = "";
+class Movie {
+  int _budget = 0;
+	int _id = 0;
+	int _runtime = 0;
+	String _imdb_id = "";
+	String _belongs_to_collection = "";
+	String _homepage = "";
+	String _original_language = "";
+	String _original_title = "";
+	String _overview = "";
+	String _poster_path = null;
+	String _release_date = "";
+	String _title = "";
+	String _status = "";
+	String _tagline = "";
+	List <Genre> _genres = [];
+	List <ProductionCompanie> _production_companies = [];
+	List <ProductionCountrie> _production_countries = [];
+	List <SpokenLanguage> _spoken_languages = [];
+	bool _video = false;
+	bool _adult = false;
 
-	// Movie({
-	// 	this.adult,
-	// 	this.backdrop_path,
-	// 	this.vote_count,
-	// 	this.vote_average,
-	// 	this.popularity,
-	// 	this.revenue,
-	// 	this.runtime,
-	// 	this.id,
-	// 	this.budget,
-	// 	this.video,
-	// 	this.spoken_languages,
-	// 	this.production_countries,
-	// 	this.production_companies,
-	// 	this.genres,
-	// 	this.tagline,
-	// 	this.status,
-	// 	this.title,
-	// 	this.release_date,
-	// 	this.poster_path,
-	// 	this.overview,
-	// 	this.original_title,
-	// 	this.homepage,
-	// 	this.belongs_to_collection,
-	// 	this.imdb_id,
-	// });
+	double _revenue = 0;
+	double _popularity = 0.0;
+	double _vote_average = 0.0;
+	double _vote_count = 0;
+	List _backdrop_path = "";
 
-	// factory Movie.fromMap(Map map) {
-	// 	return Movie(
-	// 		adult: map['adult'],
-	// 		backdrop_path: map['backdrop_path'],
-	// 		vote_count: map['vote_count'],
-	// 		vote_average: map['vote_average'],
-	// 		popularity: map['popularity'],
-	// 		revenue: map['revenue'],
-	// 		runtime: map['runtime'],
-	// 		id: map['id'],
-	// 		budget: map['budget'],
-	// 		video: map['video'],
-	// 		spoken_languages: map['spoken_languages'],
-	// 		production_countries: map['production_countries'],
-	// 		production_companies: map['production_companies'],
-	// 		genres: map['genres'],
-	// 		tagline: map['tagline'],
-	// 		status: map['status'],
-	// 		title: map['title'],
-	// 		release_date: map['release_date'],
-	// 		poster_path: map['poster_path'],
-	// 		overview: map['overview'],
-	// 		original_title: map['original_title'],
-	// 		homepage: map['homepage'],
-	// 		belongs_to_collection: map['belongs_to_collection'],
-	// 		imdb_id: map['imdb_id'],
+	Movie({
+		this._adult,
+		this._backdrop_path,
+		this.vote_count,
+		this.vote_average,
+		this.popularity,
+		this._revenue,
+		this._runtime,
+		this._id,
+		this._budget,
+		this._video,
+		this._spoken_languages,
+		this._production_countries,
+		this._production_companies,
+		this._genres,
+		this._tagline,
+		this._status,
+		this._title,
+		this._release_date,
+		this._poster_path,
+		this._overview,
+		this._original_title,
+		this._homepage,
+		this.belongs_to_collection,
+		this.imdb_id});
+
+	factory Movie.fromMap(Map<String,dynamic> map) {
+		return Movie(
+			adult: map['adult'],
+			backdrop_path: map['backdrop_path'],
+			vote_count: map['vote_count'],
+			vote_average: map['vote_average'],
+			popularity: map['popularity'],
+			revenue: map['revenue'],
+			runtime: map['runtime'],
+			id: map['id'],
+			budget: map['budget'],
+			video: map['video'],
+			spoken_languages: map['spoken_languages'],
+			production_countries: map['production_countries'],
+			production_companies: map['production_companies'],
+			genres: map['genres'],
+			tagline: map['tagline'],
+			status: map['status'],
+			title: map['title'],
+			release_date: map['release_date'],
+			poster_path: map['poster_path'],
+			overview: map['overview'],
+			original_title: map['original_title'],
+			homepage: map['homepage'],
+			belongs_to_collection: map['belongs_to_collection'],
+			imdb_id: map['imdb_id'],
 			
-	// 	);
-	// }
+		);
+	}
 }
