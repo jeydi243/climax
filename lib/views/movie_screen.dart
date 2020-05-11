@@ -71,7 +71,6 @@ class _MovieScreenState extends State < MovieScreen > {
 								borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
 							),
 							child: Column(
-								// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 								children: < Widget > [
 									Column(
 										children: < Widget > [
@@ -110,7 +109,7 @@ class _MovieScreenState extends State < MovieScreen > {
 																)
 															),
 															child: Padding(
-																padding: EdgeInsets.only(left: 10.0, right: 10.0,top: 2.0,bottom: 2.0),
+																padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
 																child: Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
 																	color: Colors.blue,
 																	fontSize: 15,
@@ -124,26 +123,37 @@ class _MovieScreenState extends State < MovieScreen > {
 										],
 									),
 
-									Container(
-										height: 35,
-										child: Genre(genres: widget.movie.genres)),
+									Padding(
+										padding: EdgeInsets.only(bottom: 35.0),
+										child: Container(
+											height: 35,
+											child: Genre(genres: widget.movie.genres)),
+									),
 									Column(
 										mainAxisAlignment: MainAxisAlignment.start,
 										crossAxisAlignment: CrossAxisAlignment.center,
 										children: < Widget > [
-											Text('Description', style: GoogleFonts.courgette(
-													color: Colors.amber,
-													fontWeight: FontWeight.w900,
-													fontSize: 20
+											Padding(
+												padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+												child: Row(
+													children: < Widget > [
+														Text('Description', style: GoogleFonts.courgette(
+																color: Colors.amber,
+																fontWeight: FontWeight.w900,
+																fontSize: 20
+															),
+														),
+													],
 												),
-
 											),
-											Text("${widget.movie.overview}",
-												textAlign: TextAlign.justify,
-												style: TextStyle(
-													color: Colors.white
+											Padding(
+												padding: EdgeInsets.only(bottom: 10.0),
+												child: Text("${widget.movie.overview}",
+													textAlign: TextAlign.justify,
+													style: TextStyle(
+														color: Colors.white
+													),
 												),
-
 											),
 										],
 									),
@@ -172,7 +182,11 @@ class _MovieScreenState extends State < MovieScreen > {
 											Acteurs(movieId: widget.movie.id)
 										],
 									),
-
+									Row(
+										children: <Widget>[
+											
+										],
+									)
 								],
 							)
 						),

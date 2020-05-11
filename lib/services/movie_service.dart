@@ -170,4 +170,7 @@ class MovieService with ChangeNotifier {
 			print(e);
 		}
 	}
+	Future<List<Map<String,dynamic>>> getVideos(int movieId)async{
+		Map<String,dynamic> res = await _service.v3.movies.getVideos(movieId);
+	}
 }

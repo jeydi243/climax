@@ -1,5 +1,6 @@
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/tmdb.dart';
+import 'package:climax/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';

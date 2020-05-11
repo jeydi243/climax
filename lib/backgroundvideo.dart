@@ -42,8 +42,8 @@ class _BackgroundVideoState extends State < BackgroundVideo > {
 							child: FittedBox(
 								fit: BoxFit.cover,
 								child: SizedBox(
-									width: _controller.value.size ?.width ?? 0,
-									height : _controller.value.size ?.height ?? 0,
+									width: _controller.value.size?.width ?? 0,
+									height : _controller.value.size?.height ?? 0,
 									child : VideoPlayer(_controller),
 								),
 							),
