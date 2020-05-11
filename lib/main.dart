@@ -3,6 +3,7 @@ import 'package:climax/services/tmdb.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +15,6 @@ class MyApp extends StatelessWidget {
 				ChangeNotifierProvider < TMDBclass > (
 					create: (_) => TMDBclass(),
 					lazy: false,
-
 				),
 				ChangeNotifierProvider < MovieService > (
 					create: (_) => new MovieService(),
@@ -23,6 +23,17 @@ class MyApp extends StatelessWidget {
 			],
 
 			child: MaterialApp(
+				localizationsDelegates: [
+					GlobalMaterialLocalizations.delegate,
+					GlobalWidgetsLocalizations.delegate,
+					GlobalCupertinoLocalizations.delegate,
+				],
+				supportedLocales: [
+					const Locale('en'), // English
+					const Locale('fr'), // Hebrew
+					const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
+					
+				],
 				title: 'Flutter',
 				debugShowCheckedModeBanner: false,
 				home: Scaffold(

@@ -1,4 +1,5 @@
-import 'dart:ui' as ui;
+import 'dart:ui'
+as ui;
 import 'package:climax/views/one.dart';
 import 'package:climax/views/two.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ class _HomeState extends State < Home > {
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
-
 			bottomNavigationBar: CurvedNavigationBar(
 				key: _bottomNavigationKey,
 				backgroundColor: Pigment.fromString("#141E51"), //Background color of selected
@@ -68,7 +68,6 @@ class _HomeState extends State < Home > {
 					)
 				),
 			),
-
 		);
 	}
 }

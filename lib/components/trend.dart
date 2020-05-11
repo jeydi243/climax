@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:slimy_card/slimy_card.dart';
 
 class Trend extends StatefulWidget {
 	Trend({

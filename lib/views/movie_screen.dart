@@ -1,4 +1,6 @@
+import 'package:climax/Models/movie.dart';
 import 'package:climax/components/acteurs.dart';
+import 'package:climax/components/useful.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +13,7 @@ class MovieScreen extends StatefulWidget {
 		Key key,
 		@required this.movie
 	}): super(key: key);
-	final Map movie;
+	final Movie movie;
 
 	@override
 	_MovieScreenState createState() => _MovieScreenState();
@@ -49,14 +51,18 @@ class _MovieScreenState extends State < MovieScreen > {
 						// pinned: true,
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
-							background: Hero(
-								tag: widget.movie['id'],
-								child: Image.network(widget.movie['images'] ?? "https://via.placeholder.com/150", fit : BoxFit.cover, )
+							background: GestureDetector(
+								onVerticalDragEnd: (gf) {
+									Navigator.pop(context);
+								},
+								child: Hero(
+									tag: "${widget.movie.id}",
+									child: Image.network(result.getImageUrl(widget.movie.poster_path) ?? "https://via.placeholder.com/150", fit : BoxFit.cover, )
+								),
 							),
 
 						),
 					),
-
 					SliverToBoxAdapter(
 						child: Container(
 							height: 600,
@@ -73,6 +79,7 @@ class _MovieScreenState extends State < MovieScreen > {
 											Row(
 												mainAxisAlignment: MainAxisAlignment.start,
 												children: < Widget > [
+
 													Text("Alita battle angel",
 														style: GoogleFonts.courgette(
 															color: Colors.amber,
@@ -90,7 +97,7 @@ class _MovieScreenState extends State < MovieScreen > {
 													Icon(Icons.star, color: Colors.amber, ),
 													Icon(Icons.star, color: Colors.amber, ),
 													Icon(Icons.star, color: Colors.amber[100]),
-													Text("8.9", style: GoogleFonts.courgette(
+													Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
 														color: Colors.blue,
 														fontSize: 15,
 														fontWeight: FontWeight.w700
@@ -99,42 +106,10 @@ class _MovieScreenState extends State < MovieScreen > {
 											),
 										],
 									),
-
-									Row(
-										children: < Widget > [
-											Container(
-												margin: EdgeInsets.only(left: 10.0),
-												padding: EdgeInsets.all(5.0),
-												decoration: BoxDecoration(
-													color: Colors.amber,
-													boxShadow: [BoxShadow(color: Colors.amber, spreadRadius: 1.0, blurRadius: 5.0, )],
-													borderRadius: BorderRadius.all(Radius.circular(15.0)),
-													border: new Border.all(
-														color: Colors.green,
-														width: .5,
-														style: BorderStyle.none
-													),
-												), child: Text("Science-Fiction", style: TextStyle(
-													color: Colors.white
-												), )),
-											Container(
-												decoration: BoxDecoration(
-													border: new Border.all(
-														color: Colors.green,
-														width: .5,
-														style: BorderStyle.solid
-													),
-												), child: Text("Drame")),
-											Container(
-												decoration: BoxDecoration(
-													border: new Border.all(
-														color: Colors.green,
-														width: .5,
-														style: BorderStyle.solid
-													),
-												), child: Text("Action")),
-										],
-									),
+									
+									Container(
+										height: 35,
+										child: Genre(genres: widget.movie.genres)),
 									Column(
 										mainAxisAlignment: MainAxisAlignment.start,
 										crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,7 +121,7 @@ class _MovieScreenState extends State < MovieScreen > {
 												),
 
 											),
-											Text("Aliquip minim irure exercitation enim nulla. Cillum nostrud labore occaecat ea duis aute consequat id laborum cupidatat quis reprehenderit sunt. Esse consequat cupidatat tempor elit irure enim fugiat. Ex exercitation sunt amet incididunt esse laborum cillum qui.",
+											Text("${widget.movie.overview}",
 												textAlign: TextAlign.justify,
 												style: TextStyle(
 													color: Colors.white
@@ -177,7 +152,7 @@ class _MovieScreenState extends State < MovieScreen > {
 												],
 											),
 
-											Acteurs(movieId: widget.movie['id'])
+											Acteurs(movieId: widget.movie.id)
 										],
 									),
 

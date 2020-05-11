@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:climax/components/barcode.dart';
 import 'package:fw_ticket/fw_ticket.dart';
 
 

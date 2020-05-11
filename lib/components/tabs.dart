@@ -1,5 +1,4 @@
-import 'package:climax/views/one.dart';
-import 'package:climax/views/three.dart';
+
 import 'package:climax/views/two.dart';
 import 'package:flutter/material.dart';
 
