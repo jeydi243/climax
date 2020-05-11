@@ -35,25 +35,25 @@ class _TwoState extends State < Two > {
 							shrinkWrap: true,
 							itemBuilder: (BuildContext ctxt, int index) {
 								return Hero(
-									tag: "${snap.data[index].id}",
-									child: InkWell(
-										onTap: () {
-											Navigator.of(context).push(
-												MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
-											);
-										},
-										child: Container(
-											height: 100,
-											width: 80,
-											margin: EdgeInsets.only(right: 8),
-											decoration: BoxDecoration(
-												borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-												// color: UniqueColorGenerator.getColor(),
-												image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
-											),
-										),
-									),
-								);
+								  	tag: "${snap.data[index].id}",
+								  	child: InkWell(
+								  		onTap: () {
+								  			Navigator.of(context).push(
+								  				MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+								  			);
+								  		},
+								  		child: Container(
+								  			height: 100,
+								  			width: 80,
+								  			margin: EdgeInsets.only(right: 8),
+								  			decoration: BoxDecoration(
+								  				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+								  				// color: UniqueColorGenerator.getColor(),
+								  				image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
+								  			),
+								  		),
+								  	),
+								  );
 							}
 						);
 					} else if (snap.hasError) {

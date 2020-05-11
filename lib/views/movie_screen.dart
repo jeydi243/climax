@@ -1,6 +1,6 @@
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/acteurs.dart';
-import 'package:climax/components/useful.dart';
+import 'package:climax/components/genre.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +48,6 @@ class _MovieScreenState extends State < MovieScreen > {
 								}
 							)
 						],
-						// pinned: true,
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
 							background: GestureDetector(
@@ -72,7 +71,7 @@ class _MovieScreenState extends State < MovieScreen > {
 								borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
 							),
 							child: Column(
-								mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+								// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 								children: < Widget > [
 									Column(
 										children: < Widget > [
@@ -80,7 +79,7 @@ class _MovieScreenState extends State < MovieScreen > {
 												mainAxisAlignment: MainAxisAlignment.start,
 												children: < Widget > [
 
-													Text("Alita battle angel",
+													Text("${widget.movie.title}",
 														style: GoogleFonts.courgette(
 															color: Colors.amber,
 															fontWeight: FontWeight.bold,
@@ -97,16 +96,34 @@ class _MovieScreenState extends State < MovieScreen > {
 													Icon(Icons.star, color: Colors.amber, ),
 													Icon(Icons.star, color: Colors.amber, ),
 													Icon(Icons.star, color: Colors.amber[100]),
-													Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
-														color: Colors.blue,
-														fontSize: 15,
-														fontWeight: FontWeight.w700
-													), )
+													Padding(
+														padding: EdgeInsets.only(left: 10.0),
+														child: Container(
+															decoration: BoxDecoration(
+																color: Colors.amberAccent.withOpacity(0.3),
+																border: Border(
+																	left: BorderSide(
+																		color: Colors.amber,
+																		style: BorderStyle.solid,
+																		width: 2.0
+																	)
+																)
+															),
+															child: Padding(
+																padding: EdgeInsets.only(left: 10.0, right: 10.0,top: 2.0,bottom: 2.0),
+																child: Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
+																	color: Colors.blue,
+																	fontSize: 15,
+																	fontWeight: FontWeight.w700
+																), ),
+															),
+														),
+													)
 												],
 											),
 										],
 									),
-									
+
 									Container(
 										height: 35,
 										child: Genre(genres: widget.movie.genres)),
