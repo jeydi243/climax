@@ -7,13 +7,15 @@ import 'package:tmdb_api/tmdb_api.dart';
 class MovieService with ChangeNotifier {
 	TMDB _service;
 	ApiKeys _keys;
-	Locale locale;
+	Locale _locale;
+	String lang;
 
-	MovieService({this.locale}) {
+	MovieService({locale}) {
 		
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
 		_service = TMDB(_keys);
-		print("That is my locale: ${this.locale}");
+		print("That is my locale: $_locale");
+		lang = _locale.languageCode;
 	}
 	TMDB get service => _service;
 
@@ -74,15 +76,13 @@ class MovieService with ChangeNotifier {
 
 		return mylist;
 	}
-	Future < Map > getMovieVideos(int movieId, {
-		String lang = "en-US"
-	}) async {
+	Future < Map > getMovieVideos(int movieId) async {
 		return await _service.v3.movies.getVideos(movieId);
 	}
 	Future < List < Map >> getMovieSimilar(int movieId, {
 		int page = 1
 	}) async {
-		Map resulta = await _service.v3.movies.getSimilar(movieId, page: page);
+		Map resulta = await _service.v3.movies.getSimilar(movieId, page: page,language: lang);
 		List < Map > list = [];
 		for (var movie in resulta["results"]) {
 			list.add(movie);
@@ -93,23 +93,18 @@ class MovieService with ChangeNotifier {
 	Future < Map > getTopRated({
 		int page = 1
 	}) async {
-		return await _service.v3.movies.getTopRated(page: page);
+		return await _service.v3.movies.getTopRated(page: page,language: lang);
 	}
-	Stream < Map > getLatestMovie({
-		String lang = "en-US"
-	}) async *{
+	Stream < Map > getLatestMovie() async *{
 		while (1 == 1) {
 			yield await _service.v3.movies.getLatest(language: lang);
 		}
 	}
-	Future < List < Map >> getPopular({
-		int page = 1,
-		String lang = "en-US"
-	}) async {
+	Future < List < Map >> getPopular({int page = 1}) async {
 		List list = [];
 		var popular;
 		try {
-			popular = await _service.v3.movies.getPouplar(language: lang, page: page);
+			popular = await _service.v3.movies.getPouplar(language: this.lang, page: page);
 			for (var movie in popular["results"]) {
 				list.add(movie);
 			}
