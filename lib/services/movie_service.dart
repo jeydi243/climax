@@ -1,15 +1,19 @@
 import 'dart:core';
 import 'package:climax/Models/movie.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class MovieService with ChangeNotifier {
 	TMDB _service;
 	ApiKeys _keys;
+	Locale locale;
 
-	MovieService() {
+	MovieService({this.locale}) {
+		
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
 		_service = TMDB(_keys);
+		print("That is my locale: ${this.locale}");
 	}
 	TMDB get service => _service;
 

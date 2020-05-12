@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 					lazy: false,
 				),
 				ChangeNotifierProvider < MovieService > (
-					create: (_) => new MovieService(),
+					create: (_) => new MovieService(locale: Localizations.localeOf(context)),
 					lazy: false,
 				)
 			],
