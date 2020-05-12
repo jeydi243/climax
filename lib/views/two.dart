@@ -18,7 +18,7 @@ class _TwoState extends State < Two > {
 
 	@override
 	Widget build(BuildContext context) {
-		MovieService result = Provider.of < MovieService > (context);
+		MovieService result = Provider.of<MovieService>(context);
 
 		return Container(
 			height: 100,

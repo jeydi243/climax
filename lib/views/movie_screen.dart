@@ -37,14 +37,23 @@ class _MovieScreenState extends State < MovieScreen > {
 									size: 24.0, ),
 								onPressed: null
 							),
-							IconButton(
-								icon: Icon(
-									Icons.more_vert,
-									color: Colors.amber,
-									size: 24.0,
-								),
-								onPressed: () {
-
+							Builder(
+								builder: (contextx) {
+									return IconButton(
+										icon: Icon(
+											Icons.more_vert,
+											color: Colors.amber,
+											size: 24.0,
+										),
+										onPressed: () {
+											Scaffold.of(contextx).showSnackBar(
+												SnackBar(
+													elevation: 10.0,
+													content: Text("${result.language}"),
+												)
+											);
+										}
+									);
 								}
 							)
 						],
@@ -72,54 +81,52 @@ class _MovieScreenState extends State < MovieScreen > {
 							),
 							child: Column(
 								children: < Widget > [
-									Column(
-										children: < Widget > [
-											Row(
-												mainAxisAlignment: MainAxisAlignment.start,
-												children: < Widget > [
-
-													Text("${widget.movie.title}",
-														style: GoogleFonts.courgette(
-															color: Colors.amber,
-															fontWeight: FontWeight.bold,
-															fontSize: 25
-														),
+									Padding(
+									  	padding: EdgeInsets.only(bottom: 10.0),
+									  	child: Row(
+									  		mainAxisAlignment: MainAxisAlignment.start,
+									  		children: < Widget > [
+									  			Text("${widget.movie.title}",
+									  				style: GoogleFonts.courgette(
+									  					color: Colors.amber,
+									  					fontWeight: FontWeight.bold,
+									  					fontSize: 23
+									  				),
+									  			),
+									  		],
+									  	),
+									  ),
+									Row(
+										mainAxisAlignment: MainAxisAlignment.start,
+										children: [
+											Icon(Icons.star, color: Colors.amber, ),
+											Icon(Icons.star, color: Colors.amber, ),
+											Icon(Icons.star, color: Colors.amber, ),
+											Icon(Icons.star, color: Colors.amber, ),
+											Icon(Icons.star, color: Colors.amber[100]),
+											Padding(
+												padding: EdgeInsets.only(left: 10.0),
+												child: Container(
+													decoration: BoxDecoration(
+														color: Colors.amberAccent.withOpacity(0.3),
+														border: Border(
+															left: BorderSide(
+																color: Colors.amber,
+																style: BorderStyle.solid,
+																width: 2.0
+															)
+														)
 													),
-												],
-											),
-											Row(
-												mainAxisAlignment: MainAxisAlignment.start,
-												children: [
-													Icon(Icons.star, color: Colors.amber, ),
-													Icon(Icons.star, color: Colors.amber, ),
-													Icon(Icons.star, color: Colors.amber, ),
-													Icon(Icons.star, color: Colors.amber, ),
-													Icon(Icons.star, color: Colors.amber[100]),
-													Padding(
-														padding: EdgeInsets.only(left: 10.0),
-														child: Container(
-															decoration: BoxDecoration(
-																color: Colors.amberAccent.withOpacity(0.3),
-																border: Border(
-																	left: BorderSide(
-																		color: Colors.amber,
-																		style: BorderStyle.solid,
-																		width: 2.0
-																	)
-																)
-															),
-															child: Padding(
-																padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
-																child: Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
-																	color: Colors.blue,
-																	fontSize: 15,
-																	fontWeight: FontWeight.w700
-																), ),
-															),
-														),
-													)
-												],
-											),
+													child: Padding(
+														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
+														child: Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
+															color: Colors.blue,
+															fontSize: 15,
+															fontWeight: FontWeight.w700
+														), ),
+													),
+												),
+											)
 										],
 									),
 
@@ -138,11 +145,10 @@ class _MovieScreenState extends State < MovieScreen > {
 												child: Row(
 													children: < Widget > [
 														Text('Description', style: GoogleFonts.courgette(
-																color: Colors.amber,
-																fontWeight: FontWeight.w900,
-																fontSize: 20
-															),
-														),
+															color: Colors.amber,
+															fontWeight: FontWeight.w900,
+															fontSize: 20
+														), ),
 													],
 												),
 											),
@@ -183,8 +189,8 @@ class _MovieScreenState extends State < MovieScreen > {
 										],
 									),
 									Row(
-										children: <Widget>[
-											
+										children: < Widget > [
+
 										],
 									)
 								],

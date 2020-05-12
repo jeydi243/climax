@@ -1,6 +1,6 @@
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/tmdb.dart';
-import 'package:climax/translations.dart';
+import 'package:climax/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 					lazy: false,
 				),
 				ChangeNotifierProvider < MovieService > (
-					create: (_) => new MovieService(locale: Localizations.localeOf(context)),
+					create: (_) => new MovieService(),
 					lazy: false,
 				)
 			],
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 				localizationsDelegates: [
 					GlobalMaterialLocalizations.delegate,
 					GlobalWidgetsLocalizations.delegate,
-					const TranslationsDelegate(),
+					const DemoLocalizationsDelegate(),
 				],
 				supportedLocales: [
 					const Locale('en'), // English
