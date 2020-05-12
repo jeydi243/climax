@@ -1,5 +1,5 @@
 import 'package:climax/components/tickettree.dart';
-import 'package:climax/fadein.dart';
+import 'package:climax/animations/fadein.dart';
 import 'package:flutter/material.dart';
 
 

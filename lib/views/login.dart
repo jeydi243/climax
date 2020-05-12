@@ -8,8 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
 import 'package:pigment/pigment.dart';
-
-import '../fadein.dart';
+import 'package:climax/animations/fadein.dart';
 
 
 class LoginPage extends StatefulWidget {
