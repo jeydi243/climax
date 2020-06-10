@@ -1,3 +1,4 @@
+import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/tmdb.dart';
 import 'package:climax/localizations.dart';
@@ -20,21 +21,25 @@ class MyApp extends StatelessWidget {
 				ChangeNotifierProvider < MovieService > (
 					create: (_) => new MovieService(),
 					lazy: false,
+				),
+        Provider < Auth > (
+					create: (_) => new Auth(),
+					lazy: false,
 				)
 			],
 
 			child: MaterialApp(
-				localizationsDelegates: [
-					GlobalMaterialLocalizations.delegate,
-					GlobalWidgetsLocalizations.delegate,
-					const DemoLocalizationsDelegate(),
-				],
-				supportedLocales: [
-					const Locale('en'), // English
-					const Locale('fr'), // Hebrew
-					// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
+				// localizationsDelegates: [
+				// 	GlobalMaterialLocalizations.delegate,
+				// 	GlobalWidgetsLocalizations.delegate,
+				// 	const DemoLocalizationsDelegate(),
+				// ],
+				// supportedLocales: [
+				// 	const Locale('en'), // English
+				// 	const Locale('fr'), // Hebrew
+				// 	// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
 					
-				],
+				// ],
 				title: 'Flutter',
 				debugShowCheckedModeBanner: false,
 				home: Scaffold(

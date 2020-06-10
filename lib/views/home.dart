@@ -1,7 +1,5 @@
 import 'dart:math';
-import 'dart:ui'
-as ui;
-
+import 'dart:ui' as ui;
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
@@ -31,9 +29,10 @@ class _HomeState extends State < Home > {
 
 	@override
 	Widget build(BuildContext context) {
-		Auth auth = Provider.of(context);
+		Auth auth = Provider.of<Auth>(context);
 		MovieService movieservice = Provider.of<MovieService>(context);
 		return Scaffold(
+			backgroundColor: Pigment.fromString("#141E51"),
 			bottomNavigationBar: CurvedNavigationBar(
 				key: _bottomNavigationKey,
 				backgroundColor: Pigment.fromString("#141E51"), //Background color of selected
@@ -55,31 +54,9 @@ class _HomeState extends State < Home > {
 				},
 			),
 			body: SafeArea(
-				// child: Container(
-				// 	height: double.infinity,
-				// 	width: double.infinity,
-				// 	color: Pigment.fromString("#141E51"),
-				// 	padding: EdgeInsets.all(20),
-				// 	child: Column(
-				// 		crossAxisAlignment: CrossAxisAlignment.start,
-				// 		children: < Widget > [
-				// 			Text("Trend",
-				// 				style: GoogleFonts.dancingScript(
-				// 					color: Colors.amber,
-				// 					fontWeight: FontWeight.w600,
-				// 					fontSize: 20
-				// 				),
-				// 			),
-				// 			//Tabs(index: _page),
-				// 			Two(),
-				// 			//One(),
-				// 			// Text("data"),
-				// 		],
-				// 	)
-				// ),
 				child: Container(
 					height: MediaQuery.of(context).size.height,
-					width: MediaQuery.of(context).size.width,
+					width: double.infinity,
 					child: Padding(
 						padding: EdgeInsets.all(10.0),
 						child: Column(
