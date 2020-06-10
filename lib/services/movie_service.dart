@@ -10,8 +10,10 @@ class MovieService with ChangeNotifier {
 	Locale locale;
 	String _lang;
 
-	MovieService({this.locale}) {
-		
+	MovieService({
+		this.locale
+	}) {
+
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
 		_service = TMDB(_keys);
 		print("That is my locale: $locale");
@@ -48,7 +50,7 @@ class MovieService with ChangeNotifier {
 		return list;
 	}
 	Future < Movie > getMovieDetails(int id) async {
-		Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id,language: _lang));
+		Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id, language: _lang));
 		return m;
 	}
 	Future < Map < String, dynamic > > getMovieCredits(int movieId) async {
@@ -82,7 +84,7 @@ class MovieService with ChangeNotifier {
 	Future < List < Map >> getMovieSimilar(int movieId, {
 		int page = 1
 	}) async {
-		Map resulta = await _service.v3.movies.getSimilar(movieId, page: page,language: _lang);
+		Map resulta = await _service.v3.movies.getSimilar(movieId, page: page, language: _lang);
 		List < Map > list = [];
 		for (var movie in resulta["results"]) {
 			list.add(movie);
@@ -93,14 +95,16 @@ class MovieService with ChangeNotifier {
 	Future < Map > getTopRated({
 		int page = 1
 	}) async {
-		return await _service.v3.movies.getTopRated(page: page,language: _lang);
+		return await _service.v3.movies.getTopRated(page: page, language: _lang);
 	}
 	Stream < Map > getLatestMovie() async *{
 		while (1 == 1) {
 			yield await _service.v3.movies.getLatest(language: _lang);
 		}
 	}
-	Future < List < Map >> getPopular({int page = 1}) async {
+	Future < List < Map >> getPopular({
+		int page = 1
+	}) async {
 		List list = [];
 		var popular;
 		try {
@@ -154,14 +158,14 @@ class MovieService with ChangeNotifier {
 	}
 	Future < List < String > > getGenreById(List < int > genre_id) async {
 		List < String > list_name = new List();
-		Map<String,dynamic> res;
+		Map < String, dynamic > res;
 		try {
 			res = await _service.v3.geners.getMovieList();
 			for (int item in genre_id) {
-				for (Map<String,dynamic> genre in res["genres"]) {
-				  if(item == genre['id']){
-					  list_name.add(genre['name']);
-				  }
+				for (Map < String, dynamic > genre in res["genres"]) {
+					if (item == genre['id']) {
+						list_name.add(genre['name']);
+					}
 				}
 			}
 			return list_name;
@@ -169,7 +173,7 @@ class MovieService with ChangeNotifier {
 			print(e);
 		}
 	}
-	Future<List<Map<String,dynamic>>> getVideos(int movieId)async{
-		Map<String,dynamic> res = await _service.v3.movies.getVideos(movieId);
+	Future < List < Map < String, dynamic >>> getVideos(int movieId) async {
+		Map < String, dynamic > res = await _service.v3.movies.getVideos(movieId);
 	}
 }

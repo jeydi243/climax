@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 				supportedLocales: [
 					const Locale('en'), // English
 					const Locale('fr'), // Hebrew
-					const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
+					// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
 					
 				],
 				title: 'Flutter',

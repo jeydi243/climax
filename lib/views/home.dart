@@ -1,11 +1,14 @@
 import 'dart:ui'
 as ui;
-import 'package:climax/views/one.dart';
-import 'package:climax/views/two.dart';
+
+import 'package:climax/services/auth.dart';
+import 'package:climax/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
+import 'package:provider/provider.dart';
 
 
 class Home extends StatefulWidget {
@@ -23,6 +26,7 @@ class _HomeState extends State < Home > {
 
 	@override
 	Widget build(BuildContext context) {
+		Auth auth = Provider.of(context);
 		return Scaffold(
 			bottomNavigationBar: CurvedNavigationBar(
 				key: _bottomNavigationKey,
@@ -45,29 +49,105 @@ class _HomeState extends State < Home > {
 				},
 			),
 			body: SafeArea(
+				// child: Container(
+				// 	height: double.infinity,
+				// 	width: double.infinity,
+				// 	color: Pigment.fromString("#141E51"),
+				// 	padding: EdgeInsets.all(20),
+				// 	child: Column(
+				// 		crossAxisAlignment: CrossAxisAlignment.start,
+				// 		children: < Widget > [
+				// 			Text("Trend",
+				// 				style: GoogleFonts.dancingScript(
+				// 					color: Colors.amber,
+				// 					fontWeight: FontWeight.w600,
+				// 					fontSize: 20
+				// 				),
+				// 			),
+				// 			//Tabs(index: _page),
+				// 			Two(),
+				// 			//One(),
+				// 			// Text("data"),
+				// 		],
+				// 	)
+				// ),
 				child: Container(
-					height: double.infinity,
-					width: double.infinity,
-					color: Pigment.fromString("#141E51"),
-					padding: EdgeInsets.all(20),
-					child: Column(
-						crossAxisAlignment: CrossAxisAlignment.start,
-						children: < Widget > [
-							Text("Trend",
-								style: GoogleFonts.dancingScript(
-									color: Colors.amber,
-									fontWeight: FontWeight.w600,
-									fontSize: 20
+					height: MediaQuery.of(context).size.height,
+					width: MediaQuery.of(context).size.width,
+					child: Padding(
+						padding: EdgeInsets.all(10.0),
+						child: Column(
+							mainAxisAlignment: MainAxisAlignment.start,
+							children: < Widget > [
+								Row(
+									children: < Widget > [
+										Padding(
+											padding: EdgeInsets.only(
+												top: MediaQuery.of(context).padding.top,
+												left: 5,
+												bottom: 10
+											),
+											child:IconButton(
+													onPressed: () {
+
+													}, 
+													icon: Icon(FontAwesomeIcons.bars), color: Pigment.fromString("200540")),
+										),
+										Spacer(),
+										Padding(
+											padding: EdgeInsets.only(
+												// top: MediaQuery.of(context).padding.top,
+												right: 5,
+												bottom: 10
+											),
+											child: GestureDetector(
+												onTap: () async {
+													await auth.signOut().then((value) {
+														Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+													});
+												},
+												child: CircleAvatar(
+													backgroundColor: Colors.amber,
+													backgroundImage: NetworkImage("https://via.placeholder.com/150"),
+												),
+											),
+										)
+									],
 								),
-							),
-							//Tabs(index: _page),
-							Two(),
-							//One(),
-							// Text("data"),
-						],
-					)
+								Builder(
+									builder: (context) {
+										if (_page == 0) {
+											return Expanded(
+												child: One(context),
+											);
+										} else if (_page == 1) {
+											return Expanded(
+												child: Two(context),
+											);
+										} else {
+											return Expanded(
+												child: Three(context)
+											);
+										}
+									},
+								),
+							],
+						),
+					),
 				),
 			),
 		);
+	}
+
+	Widget One(BuildContext context){
+
+	}
+
+	Widget Two(BuildContext context){
+
+	}
+
+	Widget Three(BuildContext context){
+
 	}
 }
