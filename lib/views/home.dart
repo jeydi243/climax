@@ -31,7 +31,6 @@ class _HomeState extends State < Home > {
 	FocusNode fsn;
 	@override
 	void initState() {
-		// TODO: implement initState
 		super.initState();
 		fsn = FocusNode();
 	}
@@ -48,7 +47,7 @@ class _HomeState extends State < Home > {
 				backgroundColor: Pigment.fromString("#141E51"), //Background color of selected
 				buttonBackgroundColor: Pigment.fromString("#FFBA02"),
 				animationCurve: Curves.ease,
-				animationDuration: Duration(milliseconds: 200),
+				animationDuration: Duration(milliseconds: 500),
 				color: Pigment.fromString("#FDB096"),
 				height: 55,
 				index: 1,
