@@ -14,15 +14,11 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return MultiProvider(
 			providers: [
-				ChangeNotifierProvider < TMDBclass > (
-					create: (_) => TMDBclass(),
-					lazy: false,
-				),
 				Provider < MovieService > (
 					create: (_) => new MovieService(),
 					lazy: false,
 				),
-        Provider < Auth > (
+				Provider < Auth > (
 					create: (_) => new Auth(),
 					lazy: false,
 				)
@@ -38,7 +34,7 @@ class MyApp extends StatelessWidget {
 				// 	const Locale('en'), // English
 				// 	const Locale('fr'), // Hebrew
 				// 	// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
-					
+
 				// ],
 				title: 'Flutter',
 				debugShowCheckedModeBanner: false,

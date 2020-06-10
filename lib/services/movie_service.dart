@@ -7,17 +7,12 @@ import 'package:tmdb_api/tmdb_api.dart';
 class MovieService {
 	TMDB _service;
 	ApiKeys _keys;
-	Locale locale;
 	String _lang;
 
-	MovieService({
-		this.locale
-	}) {
-
+	MovieService() {
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
 		_service = TMDB(_keys);
-		print("That is my locale: $locale");
-		_lang = locale.languageCode;
+		_lang = "fr";
 	}
 	TMDB get service => _service;
 	String get language => _lang;
