@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 					create: (_) => TMDBclass(),
 					lazy: false,
 				),
-				ChangeNotifierProvider < MovieService > (
+				Provider < MovieService > (
 					create: (_) => new MovieService(),
 					lazy: false,
 				),

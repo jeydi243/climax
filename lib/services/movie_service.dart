@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
-class MovieService with ChangeNotifier {
+class MovieService {
 	TMDB _service;
 	ApiKeys _keys;
 	Locale locale;
