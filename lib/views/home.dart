@@ -124,15 +124,15 @@ class _HomeState extends State < Home > {
 									builder: (context) {
 										if (_page == 0) {
 											return Expanded(
-												child: One(context,movieservice),
+												child: one(context,movieservice),
 											);
 										} else if (_page == 1) {
 											return Expanded(
-												child: Two(context,movieservice),
+												child: two(context,movieservice),
 											);
 										} else {
 											return Expanded(
-												child: Three(context,movieservice)
+												child: three(context,movieservice)
 											);
 										}
 									},
@@ -145,7 +145,7 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget One(BuildContext context, MovieService result){
+	Widget one(BuildContext context, MovieService result){
 		return Container(
 			height: 300,
 			width: double.infinity,
@@ -174,7 +174,7 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget Two(BuildContext context,MovieService result){
+	Widget two(BuildContext context,MovieService result){
 		return Container(
 			height: 100,
 			width: double.infinity,
@@ -230,7 +230,7 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget Three(BuildContext context,MovieService result){
+	Widget three(BuildContext context,MovieService result){
 		return Container(
 			height: double.infinity,
 			width: double.infinity,
