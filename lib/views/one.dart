@@ -16,7 +16,6 @@ class _OneState extends State < One > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService result = Provider.of < MovieService > (context);
-
 		
 	}
 }
