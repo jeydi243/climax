@@ -182,87 +182,81 @@ class _HomeState extends State < Home > {
 	}
 
 	Widget two(BuildContext context, MovieService result) {
-		return Stack(
+		return Column(
 			children: [
-				Align(
-					alignment: Alignment(0, -1),
-					child: Row(
-						children: < Widget > [
-							Text("Trend", style: GoogleFonts.lobster(
-								color: Colors.amber,
-								fontSize: 20
-							), ),
-							Container(
-								height: 2,
-								color: Colors.amber,
-							)
-						],
-					),
+				Row(
+					children: < Widget > [
+						Text("Trend", style: GoogleFonts.lobster(
+							color: Colors.amber,
+							fontSize: 20
+						), ),
+						Container(
+							height: 2,
+							color: Colors.amber,
+						)
+					],
 				),
-				Align(
-					alignment: Alignment(0, -0.90),
-					child: Padding(
-						padding: const EdgeInsets.only(top: 8.0),
-							child: Row(
-								children: < Widget > [
-									FutureBuilder < List < Movie >> (
-										future: result.getTrend(),
-										builder: (_, snap) {
-											if (snap.hasData) {
-												return Expanded(
-													child: SizedBox(
-														height: 100,
-														child: ListView.builder(
-															itemCount: snap.data.length,
-															scrollDirection: Axis.horizontal,
-															physics: BouncingScrollPhysics(),
-															shrinkWrap: true,
-															itemBuilder: (BuildContext ctxt, int index) {
-																return Hero(
-																	tag: "${snap.data[index].id}",
-																	child: GestureDetector(
-																		onTap: () {
-																			Navigator.of(context).push(
-																				MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
-																			);
-																		},
-																		child: Container(
-																			height: 100,
-																			width: 80,
-																			margin: EdgeInsets.only(right: 8),
-																			decoration: BoxDecoration(
-																				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-																				// color: UniqueColorGenerator.getColor(),
-																				image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
-																			),
+				Padding(
+					padding: const EdgeInsets.only(top: 8.0),
+						child: Row(
+							children: < Widget > [
+								FutureBuilder < List < Movie >> (
+									future: result.getTrend(),
+									builder: (_, snap) {
+										if (snap.hasData) {
+											return Expanded(
+												child: SizedBox(
+													height: 100,
+													child: ListView.builder(
+														itemCount: snap.data.length,
+														scrollDirection: Axis.horizontal,
+														physics: BouncingScrollPhysics(),
+														shrinkWrap: true,
+														itemBuilder: (BuildContext ctxt, int index) {
+															return Hero(
+																tag: "${snap.data[index].id}",
+																child: GestureDetector(
+																	onTap: () {
+																		Navigator.of(context).push(
+																			MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+																		);
+																	},
+																	child: Container(
+																		height: 100,
+																		width: 80,
+																		margin: EdgeInsets.only(right: 8),
+																		decoration: BoxDecoration(
+																			borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+																			// color: UniqueColorGenerator.getColor(),
+																			image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
 																		),
 																	),
-																);
-															}
-														),
+																),
+															);
+														}
 													),
-												);
-											} else if (snap.hasError) {
-												print("Future error: ${snap.error}");
-												return Container(
-													height: 100,
-													width: 90,
-													decoration: BoxDecoration(
-														borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-														// color: UniqueColorGenerator.getColor(),
-														image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
-													),
+												),
+											);
+										} else if (snap.hasError) {
+											print("Future error: ${snap.error}");
+											return Container(
+												height: 100,
+												width: 90,
+												decoration: BoxDecoration(
+													borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+													// color: UniqueColorGenerator.getColor(),
+													image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
+												),
 
-												);
-											}
-											return Container(color: UniqueColorGenerator.getColor(), width: 90, height: 100, );
-										},
-									),
-								],
-							),
-					),
+											);
+										}
+										return Container(color: UniqueColorGenerator.getColor(), width: 90, height: 100, );
+									},
+								),
+							],
+						),
 				),
-				Align(alignment: Alignment(0, -0.50),child: PageV())
+				PageV()
 			]
 		);
 	}
