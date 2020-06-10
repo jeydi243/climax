@@ -190,14 +190,10 @@ class _HomeState extends State < Home > {
 							color: Colors.amber,
 							fontSize: 20
 						), ),
-						Container(
-							height: 2,
-							color: Colors.amber,
-						)
 					],
 				),
 				Padding(
-					padding: const EdgeInsets.only(top: 8.0),
+					padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
 						child: Row(
 							children: < Widget > [
 								FutureBuilder < List < Movie >> (
@@ -256,7 +252,28 @@ class _HomeState extends State < Home > {
 							],
 						),
 				),
-				PageV()
+				Row(
+					children: < Widget > [
+						Text("Populaires", style: GoogleFonts.lobster(
+							color: Colors.amber,
+							fontSize: 20
+						), ),
+						Spacer(),
+						FlatButton(
+							splashColor: Colors.amber,
+							shape: RoundedRectangleBorder(
+							borderRadius: BorderRadius.circular(10.0),
+							side: BorderSide(color: Colors.amber)
+						), onPressed: () {}, child: Text("Voir plus", style: GoogleFonts.lobster(
+							color: Colors.amber,
+							fontSize: 18
+						), ))
+					],
+				),
+				Padding(
+					padding: const EdgeInsets.all(8.0),
+						child: PageV(),
+				)
 			]
 		);
 	}
