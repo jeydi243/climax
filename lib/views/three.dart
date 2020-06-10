@@ -16,10 +16,6 @@ class _ThreeState extends State < Three > {
 
 	@override
 	Widget build(BuildContext context) {
-		return Container(
-			height: double.infinity,
-			width: double.infinity,
-			child: FadeIn(.5, TicketTree()),
-		);
+		
 	}
 }

@@ -1,7 +1,9 @@
 import 'dart:ui'
 as ui;
 
+import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
+import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -27,6 +29,7 @@ class _HomeState extends State < Home > {
 	@override
 	Widget build(BuildContext context) {
 		Auth auth = Provider.of(context);
+		MovieService movieservice = Provider.of<MovieService>(context);
 		return Scaffold(
 			bottomNavigationBar: CurvedNavigationBar(
 				key: _bottomNavigationKey,
@@ -139,7 +142,7 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget One(BuildContext context){
+	Widget One(BuildContext context, MovieService result){
 		return Container(
 			height: 300,
 			width: double.infinity,
@@ -225,6 +228,10 @@ class _HomeState extends State < Home > {
 	}
 
 	Widget Three(BuildContext context){
-
+		return Container(
+			height: double.infinity,
+			width: double.infinity,
+			child: TicketTree()
+		);
 	}
 }
