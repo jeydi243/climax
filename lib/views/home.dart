@@ -63,33 +63,27 @@ class _HomeState extends State < Home > {
 				},
 			),
 			body: SafeArea(
-				child: Container(
-					height: MediaQuery.of(context).size.height,
-					width: double.infinity,
-					child: Column(
-						mainAxisAlignment: MainAxisAlignment.start,
-						children: < Widget > [
-							Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-								children: < Widget > [
-									IconButton(
-										onPressed: () {
+				child: Padding(
+					padding: EdgeInsets.symmetric(horizontal: 10),
+					child: Container(
+						height: MediaQuery.of(context).size.height,
+						width: double.infinity,
+						child: Column(
+							mainAxisAlignment: MainAxisAlignment.start,
+							children: < Widget > [
+								Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+									children: < Widget > [
+										IconButton(
+											onPressed: () {
 
-										},
-										icon: Icon(FontAwesomeIcons.bars), color: Colors.amber),
-									Row(
-										children: < Widget > [
-											Text("Climax", style: GoogleFonts.lobster(
-												color: Colors.amber,
-												fontWeight: FontWeight.bold,
-												fontSize: 30
-											), )
-										],
-									),
-									Padding(
-										padding: EdgeInsets.only(
-											right: 5,
-										),
-										child: GestureDetector(
+											},
+											icon: Icon(FontAwesomeIcons.bars), color: Colors.amber),
+										Text("Climax", style: GoogleFonts.lobster(
+											color: Colors.amber,
+											fontWeight: FontWeight.bold,
+											fontSize: 30
+										), ),
+										GestureDetector(
 											onTap: () async {
 												await auth.signOut().then((value) {
 													Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
@@ -99,61 +93,58 @@ class _HomeState extends State < Home > {
 												backgroundColor: Colors.amber,
 												backgroundImage: NetworkImage("https://via.placeholder.com/150"),
 											),
-										),
-									)
-								],
-							),
-							Row(
-								children: < Widget > [
-									Expanded(
-										child: Padding(
-											padding: EdgeInsets.only(left: 15, right: 15),
-											child: ClipRRect(
-												borderRadius: BorderRadius.circular(25),
-												child: Container(
-													color: Colors.amber.withOpacity(0.2),
-													child: TextFormField(
-														cursorColor: Colors.amber,
-														scrollPhysics: BouncingScrollPhysics(),
-														
-														style: TextStyle(
-															color: Colors.amber[300],
-														
-														),
-														
-														decoration: InputDecoration(
-															border: null,
-															isDense: true,
-															contentPadding: EdgeInsets.all(8),
-															fillColor: Colors.amber[200],
-															focusColor: Colors.amber[200],
+										)
+									],
+								),
+								Row(
+									children: < Widget > [
+										Expanded(
+											child: Padding(
+												padding: EdgeInsets.only(left: 15, right: 15),
+												child: ClipRRect(
+													borderRadius: BorderRadius.circular(25),
+													child: Container(
+														color: Colors.white.withOpacity(0.2),
+														child: TextFormField(
+															cursorColor: Colors.amber,
+															style: TextStyle(
+																color: Colors.amber[300],
 
+															),
+
+															decoration: InputDecoration(
+																border: null,
+																isDense: true,
+																focusedBorder: InputBorder.none,
+																contentPadding: EdgeInsets.all(8),
+
+															),
 														),
 													),
 												),
 											),
-										),
-									)
-								],
-							),
-							Builder(
-								builder: (context) {
-									if (_page == 0) {
-										return Expanded(
-											child: one(context, movieservice),
-										);
-									} else if (_page == 1) {
-										return Expanded(
-											child: two(context, movieservice),
-										);
-									} else {
-										return Expanded(
-											child: three(context, movieservice)
-										);
-									}
-								},
-							),
-						],
+										)
+									],
+								),
+								Builder(
+									builder: (context) {
+										if (_page == 0) {
+											return Expanded(
+												child: one(context, movieservice),
+											);
+										} else if (_page == 1) {
+											return Expanded(
+												child: two(context, movieservice),
+											);
+										} else {
+											return Expanded(
+												child: three(context, movieservice)
+											);
+										}
+									},
+								),
+							],
+						),
 					),
 				),
 			),
@@ -192,62 +183,84 @@ class _HomeState extends State < Home > {
 	}
 
 	Widget two(BuildContext context, MovieService result) {
-		return Row(
-			children: < Widget > [
-				FutureBuilder < List < Movie >> (
-					future: result.getTrend(),
-					builder: (_, snap) {
-						if (snap.hasData) {
-							return Expanded(
-								child: SizedBox(
-									height: 100,
-									child: ListView.builder(
-										itemCount: snap.data.length,
-										scrollDirection: Axis.horizontal,
-										physics: BouncingScrollPhysics(),
-										shrinkWrap: true,
-										itemBuilder: (BuildContext ctxt, int index) {
-											return Hero(
-												tag: "${snap.data[index].id}",
-												child: GestureDetector(
-													onTap: () {
-														Navigator.of(context).push(
-															MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
-														);
-													},
-													child: Container(
+		return Stack(
+			children: [
+				Align(
+					alignment: Alignment(0, -1),
+					child: Row(
+						children: < Widget > [
+							Text("Trend", style: GoogleFonts.lobster(
+								color: Colors.amber,
+								fontSize: 20
+							), ),
+							Divider(color: Colors.amber, height: 2, )
+						],
+					),
+				),
+				Align(
+					alignment: Alignment(0, -0.90),
+					child: Padding(
+						padding: const EdgeInsets.only(top: 8.0),
+							child: Row(
+								children: < Widget > [
+									FutureBuilder < List < Movie >> (
+										future: result.getTrend(),
+										builder: (_, snap) {
+											if (snap.hasData) {
+												return Expanded(
+													child: SizedBox(
 														height: 100,
-														width: 80,
-														margin: EdgeInsets.only(right: 8),
-														decoration: BoxDecoration(
-															borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-															// color: UniqueColorGenerator.getColor(),
-															image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
+														child: ListView.builder(
+															itemCount: snap.data.length,
+															scrollDirection: Axis.horizontal,
+															physics: BouncingScrollPhysics(),
+															shrinkWrap: true,
+															itemBuilder: (BuildContext ctxt, int index) {
+																return Hero(
+																	tag: "${snap.data[index].id}",
+																	child: GestureDetector(
+																		onTap: () {
+																			Navigator.of(context).push(
+																				MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+																			);
+																		},
+																		child: Container(
+																			height: 100,
+																			width: 80,
+																			margin: EdgeInsets.only(right: 8),
+																			decoration: BoxDecoration(
+																				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+																				// color: UniqueColorGenerator.getColor(),
+																				image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
+																			),
+																		),
+																	),
+																);
+															}
 														),
 													),
-												),
-											);
-										}
-									),
-								),
-							);
-						} else if (snap.hasError) {
-							print("Future error: ${snap.error}");
-							return Container(
-								height: 100,
-								width: 90,
-								decoration: BoxDecoration(
-									borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-									// color: UniqueColorGenerator.getColor(),
-									image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
-								),
+												);
+											} else if (snap.hasError) {
+												print("Future error: ${snap.error}");
+												return Container(
+													height: 100,
+													width: 90,
+													decoration: BoxDecoration(
+														borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+														// color: UniqueColorGenerator.getColor(),
+														image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
+													),
 
-							);
-						}
-						return Container(color: UniqueColorGenerator.getColor(), width: 50, height: 50, );
-					},
+												);
+											}
+											return Container(color: UniqueColorGenerator.getColor(), width: 90, height: 100, );
+										},
+									),
+								],
+							),
+					),
 				),
-			],
+			]
 		);
 	}
 
