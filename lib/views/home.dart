@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui'
 as ui;
 import 'package:climax/Models/movie.dart';
+import 'package:climax/components/pageV.dart';
 import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
@@ -64,7 +65,7 @@ class _HomeState extends State < Home > {
 			),
 			body: SafeArea(
 				child: Padding(
-					padding: EdgeInsets.symmetric(horizontal: 10),
+					padding: EdgeInsets.symmetric(horizontal: 12),
 					child: Container(
 						height: MediaQuery.of(context).size.height,
 						width: double.infinity,
@@ -99,26 +100,24 @@ class _HomeState extends State < Home > {
 								Row(
 									children: < Widget > [
 										Expanded(
-											child: Padding(
-												padding: EdgeInsets.only(left: 15, right: 15),
-												child: ClipRRect(
-													borderRadius: BorderRadius.circular(25),
-													child: Container(
-														color: Colors.white.withOpacity(0.2),
-														child: TextFormField(
-															cursorColor: Colors.amber,
-															style: TextStyle(
-																color: Colors.amber[300],
+											child: ClipRRect(
+												borderRadius: BorderRadius.circular(25),
+												child: Container(
+													color: Colors.white.withOpacity(0.2),
+													child: TextFormField(
+														cursorColor: Colors.amber,
+														style: TextStyle(
+															color: Colors.amber[300],
 
-															),
+														),
 
-															decoration: InputDecoration(
-																border: null,
-																isDense: true,
-																focusedBorder: InputBorder.none,
-																contentPadding: EdgeInsets.all(8),
+														decoration: InputDecoration(
+															border: null,
+															hintText: ("Le monde est beau"),
+															isDense: true,
+															focusedBorder: InputBorder.none,
+															contentPadding: EdgeInsets.all(8),
 
-															),
 														),
 													),
 												),
@@ -193,7 +192,10 @@ class _HomeState extends State < Home > {
 								color: Colors.amber,
 								fontSize: 20
 							), ),
-							Divider(color: Colors.amber, height: 2, )
+							Container(
+								height: 2,
+								color: Colors.amber,
+							)
 						],
 					),
 				),
@@ -260,6 +262,7 @@ class _HomeState extends State < Home > {
 							),
 					),
 				),
+				Align(alignment: Alignment(0, -0.50),child: PageV())
 			]
 		);
 	}
