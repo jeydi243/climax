@@ -140,7 +140,32 @@ class _HomeState extends State < Home > {
 	}
 
 	Widget One(BuildContext context){
-
+		return Container(
+			height: 300,
+			width: double.infinity,
+			child: FutureBuilder<List<Map<String,dynamic>>>(
+				future: result.getTrend2(),
+				builder: (_, snap) {
+					if (snap.hasData) {
+						return ListView.builder(
+							itemCount: snap.data.length,
+							scrollDirection: Axis.horizontal,
+							itemBuilder: (_, index) {
+								return Image.network(result.getImageUrl(snap.data[index]["backdrop_path"]));
+							},
+						);
+					} else {
+						return Container(
+							child: Text('Le Future ne remet rien! ',
+								style: TextStyle(
+									color: Colors.white
+								),
+							),
+						);
+					}
+				},
+			)
+		);
 	}
 
 	Widget Two(BuildContext context){
