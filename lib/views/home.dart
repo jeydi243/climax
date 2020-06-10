@@ -1,5 +1,6 @@
 import 'dart:math';
-import 'dart:ui' as ui;
+import 'dart:ui'
+as ui;
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
@@ -26,11 +27,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State < Home > {
 	int _page = 1;
 	GlobalKey _bottomNavigationKey = GlobalKey();
-
+	FocusNode fsn;
+	@override
+	void initState() {
+		// TODO: implement initState
+		super.initState();
+		fsn = FocusNode();
+	}
 	@override
 	Widget build(BuildContext context) {
-		Auth auth = Provider.of<Auth>(context);
-		MovieService movieservice = Provider.of<MovieService>(context);
+		Auth auth = Provider.of < Auth > (context);
+		MovieService movieservice = Provider.of < MovieService > (context);
+
+
 		return Scaffold(
 			backgroundColor: Pigment.fromString("#141E51"),
 			bottomNavigationBar: CurvedNavigationBar(
@@ -57,157 +66,192 @@ class _HomeState extends State < Home > {
 				child: Container(
 					height: MediaQuery.of(context).size.height,
 					width: double.infinity,
-					child: Padding(
-						padding: EdgeInsets.all(10.0),
-						child: Column(
-							mainAxisAlignment: MainAxisAlignment.start,
-							children: < Widget > [
-								Row(
-									children: < Widget > [
-										Padding(
-											padding: EdgeInsets.only(
-												top: MediaQuery.of(context).padding.top,
-												left: 5,
-												bottom: 10
-											),
-											child:IconButton(
-													onPressed: () {
+					child: Column(
+						mainAxisAlignment: MainAxisAlignment.start,
+						children: < Widget > [
+							Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+								children: < Widget > [
+									IconButton(
+										onPressed: () {
 
-													}, 
-													icon: Icon(FontAwesomeIcons.bars), color: Pigment.fromString("200540")),
+										},
+										icon: Icon(FontAwesomeIcons.bars), color: Colors.amber),
+									Row(
+										children: < Widget > [
+											Text("Climax", style: GoogleFonts.lobster(
+												color: Colors.amber,
+												fontWeight: FontWeight.bold,
+												fontSize: 30
+											), )
+										],
+									),
+									Padding(
+										padding: EdgeInsets.only(
+											right: 5,
 										),
-										Spacer(),
-										Padding(
-											padding: EdgeInsets.only(
-												// top: MediaQuery.of(context).padding.top,
-												right: 5,
-												bottom: 10
+										child: GestureDetector(
+											onTap: () async {
+												await auth.signOut().then((value) {
+													Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+												});
+											},
+											child: CircleAvatar(
+												backgroundColor: Colors.amber,
+												backgroundImage: NetworkImage("https://via.placeholder.com/150"),
 											),
-											child: GestureDetector(
-												onTap: () async {
-													await auth.signOut().then((value) {
-														Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
-													});
-												},
-												child: CircleAvatar(
-													backgroundColor: Colors.amber,
-													backgroundImage: NetworkImage("https://via.placeholder.com/150"),
+										),
+									)
+								],
+							),
+							Row(
+								children: < Widget > [
+									Expanded(
+										child: Padding(
+											padding: EdgeInsets.only(left: 15, right: 15),
+											child: ClipRRect(
+												borderRadius: BorderRadius.circular(25),
+												child: Container(
+													color: Colors.amber.withOpacity(0.2),
+													child: TextFormField(
+														cursorColor: Colors.amber,
+														scrollPhysics: BouncingScrollPhysics(),
+														
+														style: TextStyle(
+															color: Colors.amber[300],
+														
+														),
+														
+														decoration: InputDecoration(
+															border: null,
+															isDense: true,
+															contentPadding: EdgeInsets.all(8),
+															fillColor: Colors.amber[200],
+															focusColor: Colors.amber[200],
+
+														),
+													),
 												),
 											),
-										)
-									],
-								),
-								Builder(
-									builder: (context) {
-										if (_page == 0) {
-											return Expanded(
-												child: one(context,movieservice),
-											);
-										} else if (_page == 1) {
-											return Expanded(
-												child: two(context,movieservice),
-											);
-										} else {
-											return Expanded(
-												child: three(context,movieservice)
-											);
-										}
-									},
-								),
-							],
-						),
+										),
+									)
+								],
+							),
+							Builder(
+								builder: (context) {
+									if (_page == 0) {
+										return Expanded(
+											child: one(context, movieservice),
+										);
+									} else if (_page == 1) {
+										return Expanded(
+											child: two(context, movieservice),
+										);
+									} else {
+										return Expanded(
+											child: three(context, movieservice)
+										);
+									}
+								},
+							),
+						],
 					),
 				),
 			),
 		);
 	}
 
-	Widget one(BuildContext context, MovieService result){
-		return Container(
-			height: 300,
-			width: double.infinity,
-			child: FutureBuilder<List<Map<String,dynamic>>>(
-				future: result.getTrend2(),
-				builder: (_, snap) {
-					if (snap.hasData) {
-						return ListView.builder(
-							itemCount: snap.data.length,
-							scrollDirection: Axis.horizontal,
-							itemBuilder: (_, index) {
-								return Image.network(result.getImageUrl(snap.data[index]["backdrop_path"]));
-							},
-						);
-					} else {
-						return Container(
-							child: Text('Le Future ne remet rien! ',
-								style: TextStyle(
-									color: Colors.white
+	Widget one(BuildContext context, MovieService result) {
+		return Row(
+			children: < Widget > [
+				FutureBuilder < List < Map < String, dynamic >>> (
+					future: result.getTrend2(),
+					builder: (_, snap) {
+						if (snap.hasData) {
+							return Expanded(
+								child: ListView.builder(
+									itemCount: snap.data.length,
+									scrollDirection: Axis.horizontal,
+									itemBuilder: (_, index) {
+										return Image.network(result.getImageUrl(snap.data[index]["backdrop_path"]));
+									},
 								),
-							),
-						);
-					}
-				},
-			)
-		);
-	}
-
-	Widget two(BuildContext context,MovieService result){
-		return Container(
-			height: 100,
-			width: double.infinity,
-			margin: EdgeInsets.only(top: 8),
-			child: FutureBuilder < List < Movie >> (
-				future: result.getTrend(),
-				builder: (_, snap) {
-					if (snap.hasData) {
-						return ListView.builder(
-							itemCount: snap.data.length,
-							scrollDirection: Axis.horizontal,
-							physics: BouncingScrollPhysics(),
-							shrinkWrap: true,
-							itemBuilder: (BuildContext ctxt, int index) {
-								return Hero(
-									tag: "${snap.data[index].id}",
-									child: InkWell(
-										onTap: () {
-											Navigator.of(context).push(
-												MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
-											);
-										},
-										child: Container(
-											height: 100,
-											width: 80,
-											margin: EdgeInsets.only(right: 8),
-											decoration: BoxDecoration(
-												borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-												// color: UniqueColorGenerator.getColor(),
-												image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
-											),
-										),
+							);
+						} else {
+							return Container(
+								child: Text('Le Future ne remet rien! ',
+									style: TextStyle(
+										color: Colors.white
 									),
-								);
-							}
-						);
-					} else if (snap.hasError) {
-						print("Future error: ${snap.error}");
-						return Container(
-							height: 100,
-							width: 90,
-							decoration: BoxDecoration(
-								borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-								// color: UniqueColorGenerator.getColor(),
-								image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
-							),
-
-						);
-					}
-					return Container(color: UniqueColorGenerator.getColor(), width: 50, height: 50, );
-				},
-			)
+								),
+							);
+						}
+					},
+				),
+			],
 		);
 	}
 
-	Widget three(BuildContext context,MovieService result){
+	Widget two(BuildContext context, MovieService result) {
+		return Row(
+			children: < Widget > [
+				FutureBuilder < List < Movie >> (
+					future: result.getTrend(),
+					builder: (_, snap) {
+						if (snap.hasData) {
+							return Expanded(
+								child: SizedBox(
+									height: 100,
+									child: ListView.builder(
+										itemCount: snap.data.length,
+										scrollDirection: Axis.horizontal,
+										physics: BouncingScrollPhysics(),
+										shrinkWrap: true,
+										itemBuilder: (BuildContext ctxt, int index) {
+											return Hero(
+												tag: "${snap.data[index].id}",
+												child: GestureDetector(
+													onTap: () {
+														Navigator.of(context).push(
+															MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+														);
+													},
+													child: Container(
+														height: 100,
+														width: 80,
+														margin: EdgeInsets.only(right: 8),
+														decoration: BoxDecoration(
+															borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+															// color: UniqueColorGenerator.getColor(),
+															image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
+														),
+													),
+												),
+											);
+										}
+									),
+								),
+							);
+						} else if (snap.hasError) {
+							print("Future error: ${snap.error}");
+							return Container(
+								height: 100,
+								width: 90,
+								decoration: BoxDecoration(
+									borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+									// color: UniqueColorGenerator.getColor(),
+									image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
+								),
+
+							);
+						}
+						return Container(color: UniqueColorGenerator.getColor(), width: 50, height: 50, );
+					},
+				),
+			],
+		);
+	}
+
+	Widget three(BuildContext context, MovieService result) {
 		return Container(
 			height: double.infinity,
 			width: double.infinity,

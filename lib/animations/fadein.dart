@@ -21,7 +21,7 @@ class FadeIn extends StatelessWidget {
 		]);
 
 		return ControlledAnimation(
-			curve: Curves.easeInOut,
+			curve: Curves.easeInBack,
 			delay: Duration(milliseconds: (300 * delay).round()),
 			duration: tween.duration,
 			tween: tween,

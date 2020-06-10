@@ -12,7 +12,7 @@ class MovieService {
 	MovieService() {
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
 		_service = TMDB(_keys);
-		_lang = "fr";
+		_lang = "fr-FR";
 	}
 	TMDB get service => _service;
 	String get language => _lang;
@@ -117,20 +117,18 @@ class MovieService {
 		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGHEST);
 	}
 	Future < List < Map < String, dynamic > >> getTrend2() async {
-
-		List < Map < String, dynamic >> list = [];
-		Map res;
+		List < Map < String, dynamic >> listtrend = [];
 		try {
-			res = await _service.v3.trending.getTrending(mediaType: MediaType.movie, timeWindow: TimeWindow.week);
-
-			for (var result in res["results"]) {
-				list.add(result);
-			}
-			// print("La longueur de la liste: ${list.length}");
-			return list;
+			await _service.v3.trending.getTrending(mediaType: MediaType.movie, timeWindow: TimeWindow.week).then((res) {
+				for (var result in res["results"]) {
+					listtrend.add(result);
+				}
+			}).catchError((onError) {
+				print(onError);
+			});
+			return listtrend;
 		} catch (e) {
-			print("erreur: $e");
-			return list;
+			return listtrend;
 		}
 
 	}
