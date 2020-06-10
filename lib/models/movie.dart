@@ -23,7 +23,7 @@ class Movie {
 	bool _adult = false;
 	double _revenue;
 	double _popularity;
-	double _vote_average;
+	dynamic _vote_average;
 	String _poster_path;
 	String _backdrop_path;
 
@@ -49,7 +49,7 @@ class Movie {
 
 	double get revenue => _revenue;
 	double get popularity => _popularity;
-	double get vote_average => _vote_average;
+	dynamic get vote_average => _vote_average;
 	int get vote_count => _vote_count;
 	String get poster_path => _poster_path;
 	String get backdrop_path => _backdrop_path;

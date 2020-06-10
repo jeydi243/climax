@@ -77,7 +77,7 @@ class _HomeState extends State < Home > {
 											onPressed: () {
 
 											},
-											icon: Icon(FontAwesomeIcons.bars), color: Colors.amber),
+											icon: Icon(FontAwesomeIcons.bars,), color: Colors.amber),
 										Text("Climax", style: GoogleFonts.lobster(
 											color: Colors.amber,
 											fontWeight: FontWeight.bold,
@@ -96,33 +96,36 @@ class _HomeState extends State < Home > {
 										)
 									],
 								),
-								Row(
-									children: < Widget > [
-										Expanded(
-											child: ClipRRect(
-												borderRadius: BorderRadius.circular(25),
-												child: Container(
-													color: Colors.white.withOpacity(0.2),
-													child: TextFormField(
-														cursorColor: Colors.amber,
-														style: TextStyle(
-															color: Colors.amber[300],
+								Padding(
+								  padding: const EdgeInsets.all(8.0),
+								  child: Row(
+								  	children: < Widget > [
+								  		Expanded(
+								  			child: ClipRRect(
+								  				borderRadius: BorderRadius.circular(25),
+								  				child: Container(
+								  					color: Colors.white.withOpacity(0.2),
+								  					child: TextFormField(
+								  						cursorColor: Colors.amber,
+								  						style: TextStyle(
+								  							color: Colors.amber[300],
 
-														),
+								  						),
 
-														decoration: InputDecoration(
-															border: null,
-															hintText: ("Le monde est beau"),
-															isDense: true,
-															focusedBorder: InputBorder.none,
-															contentPadding: EdgeInsets.all(8),
+								  						decoration: InputDecoration(
+								  							border: null,
+								  							hintText: ("Le monde est beau"),
+								  							isDense: true,
+								  							focusedBorder: InputBorder.none,
+								  							contentPadding: EdgeInsets.all(8),
 
-														),
-													),
-												),
-											),
-										)
-									],
+								  						),
+								  					),
+								  				),
+								  			),
+								  		)
+								  	],
+								  ),
 								),
 								Builder(
 									builder: (context) {
@@ -181,7 +184,8 @@ class _HomeState extends State < Home > {
 	}
 
 	Widget two(BuildContext context, MovieService result) {
-		return Column(
+		return ListView(
+			physics: BouncingScrollPhysics(),
 			children: [
 				Row(
 					children: < Widget > [
@@ -270,8 +274,19 @@ class _HomeState extends State < Home > {
 					],
 				),
 				Padding(
-					padding: const EdgeInsets.all(8.0),
-						child: PageV(),
+					padding: const EdgeInsets.only(bottom: 15.0),
+						child: Column(
+						  children: <Widget>[
+						    PageV(),
+							Padding(
+							  padding: const EdgeInsets.all(8.0),
+							  child: Text("Le texte",style: GoogleFonts.lobster(
+								  fontSize: 20,
+								  color: Colors.amber
+							  ),),
+							)
+						  ],
+						),
 				)
 			]
 		);

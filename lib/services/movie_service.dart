@@ -97,24 +97,28 @@ class MovieService {
 			yield await _service.v3.movies.getLatest(language: _lang);
 		}
 	}
-	Future < List < Map >> getPopular({
+	Future < List < Movie >> getPopular({
 		int page = 1
 	}) async {
-		List list = [];
-		var popular;
+		List<Movie> movies = [];
 		try {
-			popular = await _service.v3.movies.getPouplar(language: _lang, page: page);
-			for (var movie in popular["results"]) {
-				list.add(movie);
-			}
+			await _service.v3.movies.getPouplar(language: _lang, page: page)
+				.then((populars) {
+					for (Map< String, dynamic > movie in populars["results"]) {
+						Movie e = Movie.fromMap(movie);
+						movies.add(e);
+					}
+				}).catchError((onError,stac){
+					print(stac);
+				});
+			return movies;
 		} catch (e) {
 			print(e);
+			return movies;
 		}
-		return popular.results;
-
 	}
 	String getImageUrl(String path) {
-		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGHEST);
+		return _service.images.getUrl(path, size: ImageSizes.BACKDROP_SIZE_MEDIUM);
 	}
 	Future < List < Map < String, dynamic > >> getTrend2() async {
 		List < Map < String, dynamic >> listtrend = [];
