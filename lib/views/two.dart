@@ -19,14 +19,5 @@ class _TwoState extends State < Two > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService result = Provider.of < MovieService > (context);
-
-		
-	}
-}
-
-class UniqueColorGenerator {
-	static Random random = new Random();
-	static Color getColor() {
-		return Color.fromARGB(255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
 	}
 }

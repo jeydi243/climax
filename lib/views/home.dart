@@ -1,10 +1,13 @@
+import 'dart:math';
 import 'dart:ui'
 as ui;
 
+import 'package:climax/Models/movie.dart';
 import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/login.dart';
+import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -121,15 +124,15 @@ class _HomeState extends State < Home > {
 									builder: (context) {
 										if (_page == 0) {
 											return Expanded(
-												child: One(context),
+												child: One(context,movieservice),
 											);
 										} else if (_page == 1) {
 											return Expanded(
-												child: Two(context),
+												child: Two(context,movieservice),
 											);
 										} else {
 											return Expanded(
-												child: Three(context)
+												child: Three(context,movieservice)
 											);
 										}
 									},
@@ -171,7 +174,7 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget Two(BuildContext context){
+	Widget Two(BuildContext context,MovieService result){
 		return Container(
 			height: 100,
 			width: double.infinity,
@@ -227,11 +230,18 @@ class _HomeState extends State < Home > {
 		);
 	}
 
-	Widget Three(BuildContext context){
+	Widget Three(BuildContext context,MovieService result){
 		return Container(
 			height: double.infinity,
 			width: double.infinity,
 			child: TicketTree()
 		);
+	}
+}
+
+class UniqueColorGenerator {
+	static Random random = new Random();
+	static Color getColor() {
+		return Color.fromARGB(255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
 	}
 }
