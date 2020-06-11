@@ -1,7 +1,6 @@
 import 'dart:core';
 import 'package:climax/Models/movie.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class MovieService {
@@ -68,7 +67,7 @@ class MovieService {
 				}
 			}
 		} catch (e) {
-
+			
 		}
 
 		return mylist;
@@ -118,7 +117,7 @@ class MovieService {
 		}
 	}
 	String getImageUrl(String path) {
-		return _service.images.getUrl(path, size: ImageSizes.BACKDROP_SIZE_MEDIUM);
+		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGHEST);
 	}
 	Future < List < Map < String, dynamic > >> getTrend2() async {
 		List < Map < String, dynamic >> listtrend = [];

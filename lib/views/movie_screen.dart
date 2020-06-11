@@ -28,8 +28,10 @@ class _MovieScreenState extends State < MovieScreen > {
 
 		return Scaffold(
 			body: CustomScrollView(
+				shrinkWrap: true,
 				slivers: [
 					SliverAppBar(
+						floating: false,
 						actions: < Widget > [
 							IconButton(
 								icon: Icon(Icons.favorite,
@@ -59,13 +61,33 @@ class _MovieScreenState extends State < MovieScreen > {
 						],
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
+
 							background: GestureDetector(
 								onVerticalDragEnd: (gf) {
 									Navigator.pop(context);
 								},
-								child: Hero(
-									tag: "${widget.movie.id}",
-									child: Image.network(result.getImageUrl(widget.movie.poster_path) ?? "https://via.placeholder.com/150", fit : BoxFit.cover, )
+								child: Stack(
+									children: [
+										Hero(
+											tag: "${widget.movie.id}",
+											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.poster_path) ?? "https://via.placeholder.com/150", fit : BoxFit.cover, ))
+										),
+										Align(
+											alignment: Alignment(0, 1),
+											child: Container(
+												width: double.infinity,
+												height: 50,
+												decoration: BoxDecoration(
+													gradient: LinearGradient(
+														begin: Alignment(0, 1),
+														end: Alignment(0, -1),
+														colors: [Pigment.fromString("#141E51"), Pigment.fromString("#141E51").withOpacity(0.2), Colors.transparent])
+												),
+											),
+										),
+
+
+									]
 								),
 							),
 
@@ -77,25 +99,25 @@ class _MovieScreenState extends State < MovieScreen > {
 							padding: EdgeInsets.all(15.0),
 							decoration: BoxDecoration(
 								color: Pigment.fromString("#141E51"),
-								borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
+								// borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
 							),
 							child: Column(
 								children: < Widget > [
 									Padding(
-									  	padding: EdgeInsets.only(bottom: 10.0),
-									  	child: Row(
-									  		mainAxisAlignment: MainAxisAlignment.start,
-									  		children: < Widget > [
-									  			Text("${widget.movie.title}",
-									  				style: GoogleFonts.courgette(
-									  					color: Colors.amber,
-									  					fontWeight: FontWeight.bold,
-									  					fontSize: 23
-									  				),
-									  			),
-									  		],
-									  	),
-									  ),
+										padding: EdgeInsets.only(bottom: 10.0),
+										child: Row(
+											mainAxisAlignment: MainAxisAlignment.start,
+											children: < Widget > [
+												Text("${widget.movie.title}",
+													style: GoogleFonts.courgette(
+														color: Colors.amber,
+														fontWeight: FontWeight.bold,
+														fontSize: 23
+													),
+												),
+											],
+										),
+									),
 									Row(
 										mainAxisAlignment: MainAxisAlignment.start,
 										children: [

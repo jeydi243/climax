@@ -14,6 +14,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 
 
 class Home extends StatefulWidget {
@@ -77,7 +78,7 @@ class _HomeState extends State < Home > {
 											onPressed: () {
 
 											},
-											icon: Icon(FontAwesomeIcons.bars,), color: Colors.amber),
+											icon: Icon(FontAwesomeIcons.bars, ), color: Colors.amber),
 										Text("Climax", style: GoogleFonts.lobster(
 											color: Colors.amber,
 											fontWeight: FontWeight.bold,
@@ -97,35 +98,36 @@ class _HomeState extends State < Home > {
 									],
 								),
 								Padding(
-								  padding: const EdgeInsets.all(8.0),
-								  child: Row(
-								  	children: < Widget > [
-								  		Expanded(
-								  			child: ClipRRect(
-								  				borderRadius: BorderRadius.circular(25),
-								  				child: Container(
-								  					color: Colors.white.withOpacity(0.2),
-								  					child: TextFormField(
-								  						cursorColor: Colors.amber,
-								  						style: TextStyle(
-								  							color: Colors.amber[300],
+									padding: const EdgeInsets.all(8.0),
+										child: Row(
+											children: < Widget > [
+												Expanded(
+													child: ClipRRect(
+														borderRadius: BorderRadius.circular(25),
+														child: Container(
+															color: Colors.white.withOpacity(0.2),
+															child: TextFormField(
+																cursorColor: Colors.amber,
+																style: TextStyle(
+																	color: Colors.amber[300],
 
-								  						),
+																),
 
-								  						decoration: InputDecoration(
-								  							border: null,
-								  							hintText: ("Le monde est beau"),
-								  							isDense: true,
-								  							focusedBorder: InputBorder.none,
-								  							contentPadding: EdgeInsets.all(8),
+																decoration: InputDecoration(
+																	border: null,
+																	prefix: Icon(FontAwesomeIcons.search, size: 17),
+																	hintText: ("Rechercher un film ou une serie"),
+																	isDense: true,
+																	focusedBorder: InputBorder.none,
+																	contentPadding: EdgeInsets.all(8),
 
-								  						),
-								  					),
-								  				),
-								  			),
-								  		)
-								  	],
-								  ),
+																),
+															),
+														),
+													),
+												)
+											],
+										),
 								),
 								Builder(
 									builder: (context) {
@@ -237,7 +239,6 @@ class _HomeState extends State < Home > {
 												),
 											);
 										} else if (snap.hasError) {
-											print("Future error: ${snap.error}");
 											return Container(
 												height: 100,
 												width: 90,
@@ -249,7 +250,31 @@ class _HomeState extends State < Home > {
 
 											);
 										}
-										return Container(color: UniqueColorGenerator.getColor(), width: 90, height: 100, );
+										return Expanded(
+											child: SizedBox(
+												height: 90,
+												child: ListView.builder(
+													scrollDirection: Axis.horizontal,
+													itemCount: 10,
+													itemBuilder: (_, index) {
+														return Padding(
+														  padding: const EdgeInsets.all(8.0),
+														  child: SkeletonAnimation(
+														  	
+														  	child: Container(
+														  		height: 90,
+														  		width: 100,
+														  		decoration: BoxDecoration(
+														  			// borderRadius: BorderRadius.circular(10.0),
+														  			color: Colors.white.withOpacity(0.3)),
+														  	),
+														  ),
+														);
+													},
+												),
+											),
+										);
+
 									},
 								),
 							],
@@ -263,29 +288,29 @@ class _HomeState extends State < Home > {
 						), ),
 						Spacer(),
 						FlatButton(
-							splashColor: Colors.amber,
+							splashColor: Colors.amber.withOpacity(0.3),
 							shape: RoundedRectangleBorder(
-							borderRadius: BorderRadius.circular(10.0),
-							side: BorderSide(color: Colors.amber)
-						), onPressed: () {}, child: Text("Voir plus", style: GoogleFonts.lobster(
-							color: Colors.amber,
-							fontSize: 18
-						), ))
+								borderRadius: BorderRadius.circular(10.0),
+								side: BorderSide(color: Colors.amber)
+							), onPressed: () {}, child: Text("Voir plus", style: GoogleFonts.lobster(
+								color: Colors.amber,
+								fontSize: 18
+							), ))
 					],
 				),
 				Padding(
 					padding: const EdgeInsets.only(bottom: 15.0),
 						child: Column(
-						  children: <Widget>[
-						    PageV(),
-							Padding(
-							  padding: const EdgeInsets.all(8.0),
-							  child: Text("Le texte",style: GoogleFonts.lobster(
-								  fontSize: 20,
-								  color: Colors.amber
-							  ),),
-							)
-						  ],
+							children: < Widget > [
+								PageV(),
+								Padding(
+									padding: const EdgeInsets.all(8.0),
+										child: Text("Le texte", style: GoogleFonts.lobster(
+											fontSize: 20,
+											color: Colors.amber
+										), ),
+								)
+							],
 						),
 				)
 			]

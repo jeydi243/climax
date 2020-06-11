@@ -1,4 +1,5 @@
 import 'package:climax/services/movie_service.dart';
+import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:math';
@@ -48,7 +49,7 @@ class _PageVState extends State < PageV > {
 	Widget build(BuildContext context) {
 		MovieService mv = Provider.of < MovieService > (context);
 		return SizedBox(
-			height: 400,
+			height: 350,
 			child: Row(
 				children: < Widget > [
 					Expanded(
@@ -78,8 +79,9 @@ class _PageVState extends State < PageV > {
 																height: double.infinity,
 																child: GestureDetector(
 																	onTap: () {
-																		valeurBlur = _list.keys.elementAt(index);
-																		// Navigator.push(context, MaterialPageRoute(builder: (context) => CarsHome(name: _list[_list.keys.elementAt(index)], title: valeurBlur, )));
+																		Navigator.of(context).push(
+																			MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+																		);
 																	},
 																	child: Image.network(mv.getImageUrl(snap.data[index].poster_path), fit:BoxFit.cover),
 																),
