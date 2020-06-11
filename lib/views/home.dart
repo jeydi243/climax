@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui'
 as ui;
+import 'package:transparent_image/transparent_image.dart';
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/pageV.dart';
 import 'package:climax/components/tickettree.dart';
@@ -225,11 +226,12 @@ class _HomeState extends State < Home > {
 																	child: Container(
 																		height: 100,
 																		width: 80,
-																		margin: EdgeInsets.only(right: 8),
-																		decoration: BoxDecoration(
-																			borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-																			// color: UniqueColorGenerator.getColor(),
-																			image: DecorationImage(image: NetworkImage(result.getImageUrl(snap.data[index].poster_path)), fit: BoxFit.fill)
+																		child: ClipRRect(
+																			borderRadius: BorderRadius.circular(10.0),
+																			child: FadeInImage.memoryNetwork(
+																				placeholder: kTransparentImage,
+																				image: result.getImageUrl(snap.data[index].poster_path),
+																			),
 																		),
 																	),
 																),
@@ -252,7 +254,7 @@ class _HomeState extends State < Home > {
 										}
 										return Expanded(
 											child: SizedBox(
-												height: 90,
+												height: 100,
 												child: ListView.builder(
 													scrollDirection: Axis.horizontal,
 													itemCount: 10,
@@ -260,9 +262,8 @@ class _HomeState extends State < Home > {
 														return Padding(
 														  padding: const EdgeInsets.all(8.0),
 														  child: SkeletonAnimation(
-														  	
 														  	child: Container(
-														  		height: 90,
+														  		height: 100,
 														  		width: 100,
 														  		decoration: BoxDecoration(
 														  			// borderRadius: BorderRadius.circular(10.0),
