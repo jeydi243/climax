@@ -191,11 +191,22 @@ class _HomeState extends State < Home > {
 			physics: BouncingScrollPhysics(),
 			children: [
 				Row(
+					mainAxisAlignment: MainAxisAlignment.spaceBetween,
 					children: < Widget > [
 						Text("Tendance", style: GoogleFonts.lobster(
-							color: Colors.amber,
-							fontSize: 20
-						), ),
+								color: Colors.amber,
+								fontSize: 20
+							),
+						),
+						FlatButton(
+							splashColor: Colors.amber.withOpacity(0.3),
+							shape: RoundedRectangleBorder(
+								borderRadius: BorderRadius.circular(10.0),
+								side: BorderSide(color: Colors.amber)
+							), onPressed: () {}, child: Text("Voir plus", style: GoogleFonts.lobster(
+								color: Colors.amber,
+								fontSize: 18
+							), ))
 					],
 				),
 				Padding(
@@ -224,19 +235,19 @@ class _HomeState extends State < Home > {
 																		);
 																	},
 																	child: Padding(
-																	  padding: const EdgeInsets.all(3.0),
-																	  child: Container(
-																	  	height: 100,
-																	  	width: 80,
-																	  	child: ClipRRect(
-																	  		borderRadius: BorderRadius.circular(10.0),
-																	  		child: FadeInImage.memoryNetwork(
-																	  			placeholder: kTransparentImage,
-																	  			fit: BoxFit.cover,
-																	  			image: result.getImageUrl(snap.data[index].poster_path),
-																	  		),
-																	  	),
-																	  ),
+																		padding: const EdgeInsets.all(3.0),
+																			child: Container(
+																				height: 100,
+																				width: 80,
+																				child: ClipRRect(
+																					borderRadius: BorderRadius.circular(10.0),
+																					child: FadeInImage.memoryNetwork(
+																						placeholder: kTransparentImage,
+																						fit: BoxFit.cover,
+																						image: result.getImageUrl(snap.data[index].poster_path),
+																					),
+																				),
+																			),
 																	),
 																),
 															);
@@ -264,16 +275,16 @@ class _HomeState extends State < Home > {
 													itemCount: 10,
 													itemBuilder: (_, index) {
 														return Padding(
-														  padding: const EdgeInsets.all(8.0),
-														  child: SkeletonAnimation(
-														  	child: Container(
-														  		height: 100,
-														  		width: 100,
-														  		decoration: BoxDecoration(
-														  			// borderRadius: BorderRadius.circular(10.0),
-														  			color: Colors.white.withOpacity(0.3)),
-														  	),
-														  ),
+															padding: const EdgeInsets.all(8.0),
+																child: SkeletonAnimation(
+																	child: Container(
+																		height: 100,
+																		width: 100,
+																		decoration: BoxDecoration(
+																			// borderRadius: BorderRadius.circular(10.0),
+																			color: Colors.white.withOpacity(0.3)),
+																	),
+																),
 														);
 													},
 												),
