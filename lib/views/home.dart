@@ -192,7 +192,7 @@ class _HomeState extends State < Home > {
 			children: [
 				Row(
 					children: < Widget > [
-						Text("Trend", style: GoogleFonts.lobster(
+						Text("Tendance", style: GoogleFonts.lobster(
 							color: Colors.amber,
 							fontSize: 20
 						), ),
@@ -223,16 +223,20 @@ class _HomeState extends State < Home > {
 																			MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
 																		);
 																	},
-																	child: Container(
-																		height: 100,
-																		width: 80,
-																		child: ClipRRect(
-																			borderRadius: BorderRadius.circular(10.0),
-																			child: FadeInImage.memoryNetwork(
-																				placeholder: kTransparentImage,
-																				image: result.getImageUrl(snap.data[index].poster_path),
-																			),
-																		),
+																	child: Padding(
+																	  padding: const EdgeInsets.all(3.0),
+																	  child: Container(
+																	  	height: 100,
+																	  	width: 80,
+																	  	child: ClipRRect(
+																	  		borderRadius: BorderRadius.circular(10.0),
+																	  		child: FadeInImage.memoryNetwork(
+																	  			placeholder: kTransparentImage,
+																	  			fit: BoxFit.cover,
+																	  			image: result.getImageUrl(snap.data[index].poster_path),
+																	  		),
+																	  	),
+																	  ),
 																	),
 																),
 															);
