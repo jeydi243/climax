@@ -42,7 +42,7 @@ class _ActeursState extends State < Acteurs > {
 										padding: const EdgeInsets.all(8.0),
 											child: Container(
 												height: 100,
-												width: 100,
+												width: 90,
 											  child: ClipRRect(
 											  	//backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
 											  	child: FadeInImage.memoryNetwork(fit: BoxFit.cover, placeholder: kTransparentImage, image: result.getImageUrl(snap.data['cast'][index]["profile_path"])),
@@ -54,7 +54,7 @@ class _ActeursState extends State < Acteurs > {
 							}
 						);
 					}
-					return Image.network(result.getImageUrl("https://via.placeholder.com/150"));
+					return Image.network("https://via.placeholder.com/150");
 				},
 			)
 		);

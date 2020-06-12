@@ -22,6 +22,14 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State < MovieScreen > {
 
+	@override
+	void initState()  {
+		super.initState();
+		fufu();
+	}
+	Future<void> fufu() async{
+		MovieService result = Provider.of < MovieService > (context);
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -68,7 +76,7 @@ class _MovieScreenState extends State < MovieScreen > {
 									children: [
 										Hero(
 											tag: "${widget.movie.id}",
-											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.poster_path) ?? "https://via.placeholder.com/150", fit : BoxFit.cover, ))
+											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.poster_path), fit: BoxFit.cover, ))
 										),
 										Align(
 											alignment: Alignment(0, 1),
@@ -93,13 +101,14 @@ class _MovieScreenState extends State < MovieScreen > {
 					),
 					SliverToBoxAdapter(
 						child: Container(
-							height: double.infinity,
+							height: 800,
 							padding: EdgeInsets.all(10.0),
 							decoration: BoxDecoration(
 								color: Pigment.fromString("#141E51"),
 								// borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
 							),
 							child: Column(
+
 								children: < Widget > [
 									Padding(
 										padding: EdgeInsets.only(bottom: 10.0),
@@ -269,11 +278,12 @@ class _MovieScreenState extends State < MovieScreen > {
 																			width: 90,
 																			decoration: BoxDecoration(
 																				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-																				// color: UniqueColorGenerator.getColor(),
 																				image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
 																			),
 
 																		);
+																	} else {
+																		return Container();
 																	}
 																},
 															),

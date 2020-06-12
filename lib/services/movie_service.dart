@@ -117,7 +117,7 @@ class MovieService {
 		}
 	}
 	String getImageUrl(String path) {
-		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGHEST);
+		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUM);
 	}
 	Future < List < Map < String, dynamic > >> getTrend2() async {
 		List < Map < String, dynamic >> listtrend = [];
