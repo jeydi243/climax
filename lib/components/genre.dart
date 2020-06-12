@@ -7,7 +7,7 @@ class Genre extends StatefulWidget {
 	Genre({
 		Key key,@required this.genres
 	}): super(key: key);
-	List<int> genres;
+	final List<int> genres;
 	@override
 	_GenreState createState() => _GenreState();
 }

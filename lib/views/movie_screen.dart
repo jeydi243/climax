@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 
 class MovieScreen extends StatefulWidget {
@@ -92,8 +93,8 @@ class _MovieScreenState extends State < MovieScreen > {
 					),
 					SliverToBoxAdapter(
 						child: Container(
-							height: 600,
-							padding: EdgeInsets.all(15.0),
+							height: double.infinity,
+							padding: EdgeInsets.all(10.0),
 							decoration: BoxDecoration(
 								color: Pigment.fromString("#141E51"),
 								// borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
@@ -208,14 +209,77 @@ class _MovieScreenState extends State < MovieScreen > {
 									Row(
 										children: < Widget > [
 											Row(
-												children: <Widget>[
+												children: < Widget > [
 													Text('Similaires', style: GoogleFonts.courgette(
 														color: Colors.amber,
 														fontWeight: FontWeight.w900,
 														fontSize: 20
 													), ),
 												],
-											)
+											),
+											Padding(
+												padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+													child: Row(
+														children: < Widget > [
+															FutureBuilder < List < Movie >> (
+																future: result.getTrend(),
+																builder: (_, snap) {
+																	if (snap.hasData) {
+																		return Expanded(
+																			child: SizedBox(
+																				height: 100,
+																				child: ListView.builder(
+																					itemCount: snap.data.length,
+																					scrollDirection: Axis.horizontal,
+																					physics: BouncingScrollPhysics(),
+																					shrinkWrap: true,
+																					itemBuilder: (BuildContext ctxt, int index) {
+																						return Hero(
+																							tag: "${snap.data[index].id}",
+																							child: GestureDetector(
+																								onTap: () {
+																									Navigator.of(context).push(
+																										MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
+																									);
+																								},
+																								child: Padding(
+																									padding: const EdgeInsets.all(3.0),
+																										child: Container(
+																											height: 100,
+																											width: 80,
+																											child: ClipRRect(
+																												borderRadius: BorderRadius.circular(10.0),
+																												child: FadeInImage.memoryNetwork(
+																													placeholder: kTransparentImage,
+																													fit: BoxFit.cover,
+																													image: result.getImageUrl(snap.data[index].poster_path),
+																												),
+																											),
+																										),
+																								),
+																							),
+																						);
+																					}
+																				),
+																			),
+																		);
+																	} else if (snap.hasError) {
+																		return Container(
+																			height: 100,
+																			width: 90,
+																			decoration: BoxDecoration(
+																				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+																				// color: UniqueColorGenerator.getColor(),
+																				image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
+																			),
+
+																		);
+																	}
+																},
+															),
+														],
+													),
+											),
 										],
 									)
 								],

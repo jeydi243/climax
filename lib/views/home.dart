@@ -130,23 +130,7 @@ class _HomeState extends State < Home > {
 											],
 										),
 								),
-								Builder(
-									builder: (context) {
-										if (_page == 0) {
-											return Expanded(
-												child: one(context, movieservice),
-											);
-										} else if (_page == 1) {
-											return Expanded(
-												child: two(context, movieservice),
-											);
-										} else {
-											return Expanded(
-												child: three(context, movieservice)
-											);
-										}
-									},
-								),
+								Bybuilder(context,movieservice)
 							],
 						),
 					),
@@ -194,16 +178,17 @@ class _HomeState extends State < Home > {
 					mainAxisAlignment: MainAxisAlignment.spaceBetween,
 					children: < Widget > [
 						Text("Tendance", style: GoogleFonts.lobster(
-								color: Colors.amber,
-								fontSize: 20
-							),
-						),
+							color: Colors.amber,
+							fontSize: 20
+						), ),
 						FlatButton(
 							splashColor: Colors.amber.withOpacity(0.3),
 							shape: RoundedRectangleBorder(
 								borderRadius: BorderRadius.circular(10.0),
 								side: BorderSide(color: Colors.amber)
-							), onPressed: () {}, child: Text("Voir plus", style: GoogleFonts.lobster(
+							),
+							onPressed: null,
+							child: Text("Voir plus", style: GoogleFonts.lobster(
 								color: Colors.amber,
 								fontSize: 18
 							), ))
@@ -339,6 +324,21 @@ class _HomeState extends State < Home > {
 			width: double.infinity,
 			child: TicketTree()
 		);
+	}
+	Widget Bybuilder(BuildContext context, MovieService mvs){
+		if (_page == 0) {
+			return Expanded(
+				child: one(context, mvs),
+			);
+		} else if (_page == 1) {
+			return Expanded(
+				child: two(context, mvs),
+			);
+		} else {
+			return Expanded(
+				child: three(context, mvs)
+			);
+		}
 	}
 }
 
