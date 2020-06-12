@@ -2,6 +2,7 @@ import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/ActeurDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 
 class Acteurs extends StatefulWidget {
@@ -18,12 +19,12 @@ class Acteurs extends StatefulWidget {
 class _ActeursState extends State < Acteurs > {
 	@override
 	Widget build(BuildContext context) {
-		MovieService result = Provider.of<MovieService> (context);
+		MovieService result = Provider.of < MovieService > (context);
 
 		return Container(
-			height: 70.0,
+			height: 100.0,
 			width: double.maxFinite,
-			child: FutureBuilder<Map<String,dynamic>>(
+			child: FutureBuilder < Map < String, dynamic >> (
 				future: result.getMovieCredits(widget.movieId),
 				builder: (_, snap) {
 					if (snap.hasData) {
@@ -37,10 +38,17 @@ class _ActeursState extends State < Acteurs > {
 									onTap: () {
 										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(movieId: widget.movieId)));
 									},
-									child: CircleAvatar(
-										backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
-										// backgroundImage: NetworkImage("https://via.placeholder.com/150"),
-										radius: 35.0,
+									child: Padding(
+										padding: const EdgeInsets.all(8.0),
+											child: Container(
+												height: 100,
+												width: 100,
+											  child: ClipRRect(
+											  	//backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
+											  	child: FadeInImage.memoryNetwork(fit: BoxFit.cover, placeholder: kTransparentImage, image: result.getImageUrl(snap.data['cast'][index]["profile_path"])),
+											  	borderRadius: BorderRadius.circular(10.0),
+											  ),
+											),
 									)
 								);
 							}

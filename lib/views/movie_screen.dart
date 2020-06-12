@@ -28,10 +28,8 @@ class _MovieScreenState extends State < MovieScreen > {
 
 		return Scaffold(
 			body: CustomScrollView(
-				shrinkWrap: true,
 				slivers: [
 					SliverAppBar(
-						floating: false,
 						actions: < Widget > [
 							IconButton(
 								icon: Icon(Icons.favorite,
@@ -61,7 +59,6 @@ class _MovieScreenState extends State < MovieScreen > {
 						],
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
-
 							background: GestureDetector(
 								onVerticalDragEnd: (gf) {
 									Navigator.pop(context);
@@ -151,7 +148,6 @@ class _MovieScreenState extends State < MovieScreen > {
 											)
 										],
 									),
-
 									Padding(
 										padding: EdgeInsets.only(bottom: 35.0),
 										child: Container(
@@ -185,7 +181,6 @@ class _MovieScreenState extends State < MovieScreen > {
 											),
 										],
 									),
-
 									Column(
 										children: < Widget > [
 											Row(
@@ -212,7 +207,15 @@ class _MovieScreenState extends State < MovieScreen > {
 									),
 									Row(
 										children: < Widget > [
-
+											Row(
+												children: <Widget>[
+													Text('Similaires', style: GoogleFonts.courgette(
+														color: Colors.amber,
+														fontWeight: FontWeight.w900,
+														fontSize: 20
+													), ),
+												],
+											)
 										],
 									)
 								],
