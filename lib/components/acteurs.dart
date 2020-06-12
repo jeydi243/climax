@@ -1,4 +1,5 @@
 import 'package:climax/services/movie_service.dart';
+import 'package:climax/views/ActeurDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,9 +33,9 @@ class _ActeursState extends State < Acteurs > {
 							physics: BouncingScrollPhysics(),
 							shrinkWrap: true,
 							itemBuilder: (BuildContext ctxt, int index) {
-								return InkWell(
+								return GestureDetector(
 									onTap: () {
-										// Navigator.of(context).pushNamed("actor_details");
+										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(movieId: widget.movieId)));
 									},
 									child: CircleAvatar(
 										backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
