@@ -1,5 +1,5 @@
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/views/ActeurDetails.dart';
+import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -33,7 +33,7 @@ class _ActeursState extends State < Acteurs > {
 							itemBuilder: (BuildContext ctxt, int index) {
 								return GestureDetector(
 									onTap: () {
-										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(movieId: widget.movieId)));
+										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(personId: )));
 									},
 									child: Padding(
 										padding: const EdgeInsets.all(5.0),

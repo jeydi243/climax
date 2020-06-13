@@ -1,6 +1,6 @@
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/services/tmdb.dart';
+import 'package:climax/services/people_service.dart';
 import 'package:climax/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
 				),
 				Provider < Auth > (
 					create: (_) => new Auth(),
+					lazy: false,
+				),
+				Provider < PeopleService > (
+					create: (_) => new PeopleService("fr-FR"),
 					lazy: false,
 				)
 			],

@@ -25,11 +25,11 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State < MovieScreen > {
 
 	@override
-	void initState()  {
+	void initState() {
 		super.initState();
 		fufu();
 	}
-	Future<void> fufu() async{
+	Future < void > fufu() async {
 		MovieService result = Provider.of < MovieService > (context);
 	}
 
@@ -49,32 +49,24 @@ class _MovieScreenState extends State < MovieScreen > {
 									size: 24.0, ),
 								onPressed: null
 							),
-							Builder(
-								builder: (contextx) {
-									return IconButton(
-										icon: Icon(
-											Icons.more_vert,
-											color: Colors.amber,
-											size: 24.0,
-										),
-										onPressed: () {
-											Scaffold.of(contextx).showSnackBar(
-												SnackBar(
-													elevation: 10.0,
-													content: Text("${result.language}"),
-												)
-											);
-										}
-									);
+							IconButton(
+								icon: Icon(
+									Icons.more_vert,
+									color: Colors.amber,
+									size: 24.0,
+								),
+								onPressed: () {
+
 								}
 							)
+
 						],
 						expandedHeight: 250.0,
 						flexibleSpace: FlexibleSpaceBar(
 							background: GestureDetector(
-								onVerticalDragEnd: (gf) {
-									Navigator.pop(context);
-								},
+								// onVerticalDragEnd: (gf) {
+								// 	Navigator.pop(context);
+								// },
 								child: Stack(
 									children: [
 										Hero(
@@ -231,7 +223,7 @@ class _MovieScreenState extends State < MovieScreen > {
 														future: result.getTrend(),
 														builder: (_, snap) {
 															if (snap.hasData) {
- 																return CustomshoMovieList(moviesList: snap.data);
+																return CustomshoMovieList(moviesList: snap.data);
 															} else if (snap.hasError) {
 																return SkeletonAnimation(child: null);
 															} else {
