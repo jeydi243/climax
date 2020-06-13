@@ -1,4 +1,5 @@
 import 'package:climax/Models/movie.dart';
+import 'package:climax/components/CustomshortMovieList.dart';
 import 'package:climax/components/acteurs.dart';
 import 'package:climax/components/genre.dart';
 import 'package:climax/services/movie_service.dart';
@@ -39,6 +40,7 @@ class _MovieScreenState extends State < MovieScreen > {
 			body: CustomScrollView(
 				slivers: [
 					SliverAppBar(
+						backgroundColor: Pigment.fromString("#141E51"),
 						actions: < Widget > [
 							IconButton(
 								icon: Icon(Icons.favorite,
@@ -103,12 +105,8 @@ class _MovieScreenState extends State < MovieScreen > {
 						child: Container(
 							height: 800,
 							padding: EdgeInsets.all(10.0),
-							decoration: BoxDecoration(
-								color: Pigment.fromString("#141E51"),
-								// borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))
-							),
+							color: Pigment.fromString("#141E51"),
 							child: Column(
-
 								children: < Widget > [
 									Padding(
 										padding: EdgeInsets.only(bottom: 10.0),
@@ -215,7 +213,7 @@ class _MovieScreenState extends State < MovieScreen > {
 											Acteurs(movieId: widget.movie.id)
 										],
 									),
-									Row(
+									Column(
 										children: < Widget > [
 											Row(
 												children: < Widget > [
@@ -228,66 +226,25 @@ class _MovieScreenState extends State < MovieScreen > {
 											),
 											Padding(
 												padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-													child: Row(
-														children: < Widget > [
-															FutureBuilder < List < Movie >> (
-																future: result.getTrend(),
-																builder: (_, snap) {
-																	if (snap.hasData) {
-																		return Expanded(
-																			child: SizedBox(
-																				height: 100,
-																				child: ListView.builder(
-																					itemCount: snap.data.length,
-																					scrollDirection: Axis.horizontal,
-																					physics: BouncingScrollPhysics(),
-																					shrinkWrap: true,
-																					itemBuilder: (BuildContext ctxt, int index) {
-																						return Hero(
-																							tag: "${snap.data[index].id}",
-																							child: GestureDetector(
-																								onTap: () {
-																									Navigator.of(context).push(
-																										MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
-																									);
-																								},
-																								child: Padding(
-																									padding: const EdgeInsets.all(3.0),
-																										child: Container(
-																											height: 100,
-																											width: 80,
-																											child: ClipRRect(
-																												borderRadius: BorderRadius.circular(10.0),
-																												child: FadeInImage.memoryNetwork(
-																													placeholder: kTransparentImage,
-																													fit: BoxFit.cover,
-																													image: result.getImageUrl(snap.data[index].poster_path),
-																												),
-																											),
-																										),
-																								),
-																							),
-																						);
-																					}
-																				),
-																			),
-																		);
-																	} else if (snap.hasError) {
-																		return Container(
-																			height: 100,
-																			width: 90,
-																			decoration: BoxDecoration(
-																				borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-																				image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
-																			),
+													child: FutureBuilder < List < Movie >> (
+														future: result.getTrend(),
+														builder: (_, snap) {
+															if (snap.hasData) {
+ 																		return CustomshoMovieList(moviesList: snap.data);
+															} else if (snap.hasError) {
+																return Container(
+																	height: 100,
+																	width: 90,
+																	decoration: BoxDecoration(
+																		borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+																		image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
+																	),
 
-																		);
-																	} else {
-																		return Container();
-																	}
-																},
-															),
-														],
+																);
+															} else {
+																return Container();
+															}
+														},
 													),
 											),
 										],

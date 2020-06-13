@@ -43,11 +43,11 @@ class _ActeursState extends State < Acteurs > {
 											child: Container(
 												height: 100,
 												width: 90,
-											  child: ClipRRect(
-											  	//backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
-											  	child: FadeInImage.memoryNetwork(fit: BoxFit.cover, placeholder: kTransparentImage, image: result.getImageUrl(snap.data['cast'][index]["profile_path"])),
-											  	borderRadius: BorderRadius.circular(10.0),
-											  ),
+												child: ClipRRect(
+													//backgroundImage: NetworkImage(result.getImageUrl(snap.data['cast'][index]["profile_path"] ?? "https://via.placeholder.com/300")),
+													child: FadeInImage.memoryNetwork(fit: BoxFit.cover, placeholder: kTransparentImage, image: result.getImageUrl(snap.data['cast'][index]["profile_path"])),
+													borderRadius: BorderRadius.circular(10.0),
+												),
 											),
 									)
 								);

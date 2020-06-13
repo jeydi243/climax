@@ -130,7 +130,7 @@ class _HomeState extends State < Home > {
 											],
 										),
 								),
-								Bybuilder(context,movieservice)
+								bybuilder(context,movieservice)
 							],
 						),
 					),
@@ -325,7 +325,8 @@ class _HomeState extends State < Home > {
 			child: TicketTree()
 		);
 	}
-	Widget Bybuilder(BuildContext context, MovieService mvs){
+	
+	Widget bybuilder(BuildContext context, MovieService mvs){
 		if (_page == 0) {
 			return Expanded(
 				child: one(context, mvs),
