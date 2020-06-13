@@ -47,8 +47,18 @@ class MovieService {
 		Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id, language: _lang));
 		return m;
 	}
-	Future < Map < String, dynamic > > getMovieCredits(int movieId) async {
-		return await _service.v3.movies.getCredits(movieId);
+	Future < List<Map < String, dynamic >>> getMovieCredits(int movieId,String typeOfcast) async {
+    List <Map< String, dynamic >> casting = [];
+		return await _service.v3.movies.getCredits(movieId)
+    .then((value) {
+      for (Map<String,dynamic> item in value[typeOfcast]) {
+         casting.add(item);
+      }
+      return casting;
+    }).catchError((onError,stack){
+      print(stack);
+    });
+
 	}
 	Future < List < String >> getMovieImages(int movieId, String type) async { //just retrieve backdrops or posters Images file path ex: /ksecdigo2f.jpg
 		List < String > mylist = [];

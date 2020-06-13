@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
+import 'package:skeleton_text/skeleton_text.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 
@@ -230,17 +231,9 @@ class _MovieScreenState extends State < MovieScreen > {
 														future: result.getTrend(),
 														builder: (_, snap) {
 															if (snap.hasData) {
- 																		return CustomshoMovieList(moviesList: snap.data);
+ 																return CustomshoMovieList(moviesList: snap.data);
 															} else if (snap.hasError) {
-																return Container(
-																	height: 100,
-																	width: 90,
-																	decoration: BoxDecoration(
-																		borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
-																		image: DecorationImage(image: NetworkImage("https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), fit: BoxFit.fill)
-																	),
-
-																);
+																return SkeletonAnimation(child: null);
 															} else {
 																return Container();
 															}
