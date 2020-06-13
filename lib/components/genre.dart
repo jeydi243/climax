@@ -50,7 +50,7 @@ class _GenreState extends State < Genre > {
 							},
 						);
 					} else if (snap.hasError) {
-						print("Error: ${snap.error}");
+						return Text("${snap.error}");
 					} else {
 						return Container();
 					}

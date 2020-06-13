@@ -9,7 +9,7 @@ class ActeurDetails extends StatefulWidget {
 		Key key,
 		@required this.personId
 	}): super(key: key);
-	final String personId;
+	final int personId;
 	@override
 	_ActeurDetailsState createState() => _ActeurDetailsState();
 }

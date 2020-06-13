@@ -33,7 +33,7 @@ class _ActeursState extends State < Acteurs > {
 							itemBuilder: (BuildContext ctxt, int index) {
 								return GestureDetector(
 									onTap: () {
-										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(personId: )));
+										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(personId: 15)));
 									},
 									child: Padding(
 										padding: const EdgeInsets.all(5.0),

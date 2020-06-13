@@ -1,5 +1,5 @@
 class Genre {
-	int id = 0;
-	String name = "Drama";
+	int id;
+	String name;
 	Genre(this.id,this.name);
 }

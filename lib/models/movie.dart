@@ -4,55 +4,54 @@ class Movie {
 	int _budget;
 	int _id;
 	int _runtime;
-	int _vote_count;
-	String _imdb_id;
-	String _belongs_to_collection;
-	String _homepage;
-	String _original_language;
-	String _original_title;
+	int _voteCount;
+	String _imdbId;
+	String _belongsToCollection;
+	String _homePage;
+	String _originalLanguage;
+	String _originalTitle;
 	String _overview;
-	String _release_date;
+	String _releaseDate;
 	String _title;
 	String _status;
 	String _tagline;
 	List < int > _genres = <int>[];
-	List < Companie > _production_companies = <Companie>[] ;
-	List < String > _production_countries = <String>[];
-	List < String > _spoken_languages= <String>[];
+	List < Companie > _productionCompanies = <Companie>[] ;
+	List < String > _productionCountries = <String>[];
+	List < String > _spokenLanguages= <String>[];
 	bool _video = false;
 	bool _adult = false;
 	double _revenue;
 	double _popularity;
-	dynamic _vote_average;
-	String _poster_path;
-	String _backdrop_path;
+	dynamic _voteAverage;
+	String _posterPath;
+	String _backdropPath;
 
 	int get budget => _budget;
 	int get id => _id;
 	int get runtime => _runtime;
-	String get imdb_id => _imdb_id;
-	String get belongs_to_collection => _belongs_to_collection;
-	String get homepage => _homepage;
-	String get original_language => _original_language;
-	String get original_title => _original_title;
+	String get imdbId => _imdbId;
+	String get belongsToCollection => _belongsToCollection;
+	String get originalLanguage => _originalLanguage;
+	String get originalTitle => _originalTitle;
 	String get overview => _overview;
-	String get release_date => _release_date;
+	String get releaseDate => _releaseDate;
 	String get title => _title;
 	String get status => _status;
 	String get tagline => _tagline;
 	List < int > get genres => _genres;
-	List < Companie > get production_companies => _production_companies;
-	List < String > get production_countries => _production_countries;
-	List < String > get spoken_languages => _spoken_languages;
+	List < Companie > get productionCompanies => _productionCompanies;
+	List < String > get productionCountries => _productionCountries;
+	List < String > get spokenLanguages => _spokenLanguages;
 	bool get video => _video;
 	bool get adult => _adult;
 
 	double get revenue => _revenue;
 	double get popularity => _popularity;
-	dynamic get vote_average => _vote_average;
-	int get vote_count => _vote_count;
-	String get poster_path => _poster_path;
-	String get backdrop_path => _backdrop_path;
+	dynamic get voteAverage => _voteAverage;
+	int get voteCount => _voteCount;
+	String get posterPath => _posterPath;
+	String get backdropPath => _backdropPath;
 
 	@override
 	String toString() {
@@ -61,56 +60,56 @@ class Movie {
 
 	Movie({
 		adult,
-		backdrop_path,
-		vote_count,
-		vote_average,
+		backdropPath,
+		voteCount,
+		voteAverage,
 		popularity,
 		revenue,
 		runtime,
 		id,
 		budget,
 		video,
-		spoken_languages,
-		production_countries,
-		production_companies,
+		spokenLanguages,
+		productionCountries,
+		productionCompanies,
 		genres,
 		tagline,
 		status,
 		title,
-		release_date,
-		poster_path,
+		releaseDate,
+		posterPath,
 		overview,
-		original_title,
+		originalTitle,
 		homepage,
-		belongs_to_collection,
-		imdb_id
+		belongsToCollection,
+		imdbId
 	});
 
 	Movie.fromMap(Map <String, dynamic> map) {
 		this._adult = map['adult'];
-		this._backdrop_path = map['backdrop_path'];
-		this._vote_count = map['vote_count'];
-		this._vote_average = map['vote_average'];
+		this._backdropPath = map['backdrop_path'];
+		this._voteCount = map['vote_count'];
+		this._voteAverage = map['vote_average'];
 		this._popularity = map['popularity'];
 		this._revenue = map['revenue'];
 		this._runtime = map['runtime'];
 		this._id = map['id'];
 		this._budget = map['budget'];
 		this._video = map['video'];
-		this._spoken_languages = map['spoken_languages'];
-		this._production_countries = map['production_countries'];
-		this._production_companies = map['production_companies'];
+		this._spokenLanguages = map['spoken_languages'];
+		this._productionCountries = map['production_countries'];
+		this._productionCompanies = map['production_companies'];
 		// for(Map<String,dynamic> fr in map['genres']) { };
 		this._genres = [...map['genre_ids']];
 		this._tagline = map['tagline'];
 		this._status = map['status'];
 		this._title = map['title'];
-		this._release_date = map['release_date'];
-		this._poster_path = map['poster_path'];
+		this._releaseDate = map['release_date'];
+		this._posterPath = map['poster_path'];
 		this._overview = map['overview'];
-		this._original_title = map['original_title'];
-		this._homepage = map['homepage'];
-		this._belongs_to_collection = map['belongs_to_collection'];
-		this._imdb_id = map['imdb_id'];
+		this._originalTitle = map['original_title'];
+		this._homePage = map['homepage'];
+		this._belongsToCollection = map['belongs_to_collection'];
+		this._imdbId = map['imdb_id'];
 	}
 }

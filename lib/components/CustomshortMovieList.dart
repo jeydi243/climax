@@ -41,7 +41,7 @@ class _CustomshoMovieListState extends State < CustomshoMovieList > {
 								  				child: FadeInImage.memoryNetwork(
 													fadeInCurve: Curves.easeInOutCirc,													  
 								  					fit: BoxFit.cover,
-								  					image: service.getImageUrl(widget.moviesList[index].poster_path),
+								  					image: service.getImageUrl(widget.moviesList[index].posterPath),
 								  					placeholder: kTransparentImage,
 								  				),
 								  			),

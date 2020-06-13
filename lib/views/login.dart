@@ -134,7 +134,6 @@ class _LoginState extends State < LoginPage > {
 											filled: true,
 											prefixIcon: Icon(Icons.email, color: Colors.amber),
 											hintText: "Email ou Nom",
-											hasFloatingPlaceholder: true,
 											labelText: "Email",
 											labelStyle: GoogleFonts.bubblegumSans(textStyle: TextStyle(
 												color: Colors.amber,

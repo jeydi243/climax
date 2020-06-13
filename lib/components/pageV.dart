@@ -18,17 +18,9 @@ class PageV extends StatefulWidget {
 
 class _PageVState extends State < PageV > {
 	PageController _controller;
-	String _name;
 	double myFraction = 0.8;
 	double pageOffset = 0;
 	String valeurBlur = "";
-	Map < String,
-	String > _list = {
-		"Rexton": "assets/eber.jpg",
-		"Audi": "assets/deux.jpg",
-		"Nissan Bus": "assets/roberto.jpg",
-		"Nissan camionette": "assets/un.jpg"
-	};
 
 	@override
 	void initState() {
@@ -63,7 +55,6 @@ class _PageVState extends State < PageV > {
 										itemCount: snap.data.length,
 										itemBuilder: (context, index) {
 											double scale = max(myFraction, (1 - (pageOffset - index).abs()) + myFraction);
-											_name = _list[index];
 											return Container(
 												height: 80.0,
 												padding: EdgeInsets.only(
@@ -90,7 +81,6 @@ class _PageVState extends State < PageV > {
 														]
 													),
 												),
-												// child: Image.asset(_list[index]),
 											);
 										}
 									);

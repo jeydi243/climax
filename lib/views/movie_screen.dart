@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
 import 'package:skeleton_text/skeleton_text.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 
 class MovieScreen extends StatefulWidget {
@@ -27,10 +26,6 @@ class _MovieScreenState extends State < MovieScreen > {
 	@override
 	void initState() {
 		super.initState();
-		fufu();
-	}
-	Future < void > fufu() async {
-		MovieService result = Provider.of < MovieService > (context);
 	}
 
 	@override
@@ -71,7 +66,7 @@ class _MovieScreenState extends State < MovieScreen > {
 									children: [
 										Hero(
 											tag: "${widget.movie.id}",
-											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.poster_path), fit: BoxFit.cover, ))
+											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.posterPath), fit: BoxFit.cover, ))
 										),
 										Align(
 											alignment: Alignment(0, 1),
@@ -139,7 +134,7 @@ class _MovieScreenState extends State < MovieScreen > {
 													),
 													child: Padding(
 														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
-														child: Text("${widget.movie.vote_average}", style: GoogleFonts.courgette(
+														child: Text("${widget.movie.voteAverage}", style: GoogleFonts.courgette(
 															color: Colors.blue,
 															fontSize: 15,
 															fontWeight: FontWeight.w700

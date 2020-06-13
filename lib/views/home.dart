@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui'
-as ui;
 import 'package:transparent_image/transparent_image.dart';
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/pageV.dart';
@@ -229,7 +227,7 @@ class _HomeState extends State < Home > {
 																					child: FadeInImage.memoryNetwork(
 																						placeholder: kTransparentImage,
 																						fit: BoxFit.cover,
-																						image: result.getImageUrl(snap.data[index].poster_path),
+																						image: result.getImageUrl(snap.data[index].posterPath),
 																					),
 																				),
 																			),
