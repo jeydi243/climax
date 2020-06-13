@@ -1,6 +1,5 @@
 import 'dart:core';
 import 'package:climax/Models/movie.dart';
-import 'package:flutter/foundation.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class MovieService {
@@ -13,8 +12,6 @@ class MovieService {
 		_service = TMDB(_keys);
 		_lang = "fr-FR";
 	}
-	TMDB get service => _service;
-	String get language => _lang;
 
 	Future < List < Map >> searchMulti(String query) async { //Search Movies,Tv and People in one request
 		List < Map > mylist = [];

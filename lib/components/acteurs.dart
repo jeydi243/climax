@@ -44,7 +44,7 @@ class _ActeursState extends State < Acteurs > {
 													child: FadeInImage.memoryNetwork(
 														fit: BoxFit.cover, 
 														placeholder: kTransparentImage, 
-														image: snap.data[index]["profile_path"]!= null ? result.getImageUrl(snap.data[index]["profile_path"]): "https://via.placeholder.com/150"
+														image: snap.data[index]["profile_path"]!= null ? result.getImageUrl(snap.data[index]["profile_path"]): "https://via.placeholder.com/150.gif"
 														),
 													borderRadius: BorderRadius.circular(10.0),
 												),
