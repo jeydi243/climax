@@ -26,7 +26,6 @@ class _ActeursState extends State < Acteurs > {
 				future: result.getMovieCredits(widget.movieId,"cast"),
 				builder: (_, snap) {
 					if (snap.hasData) {
-						print(snap.data);
 						return ListView.builder(
 							itemCount: snap.data.length,
 							scrollDirection: Axis.horizontal,
@@ -42,7 +41,11 @@ class _ActeursState extends State < Acteurs > {
 												height: 100,
 												width: 90,
 												child: ClipRRect(
-													child: FadeInImage.memoryNetwork(fit: BoxFit.cover, placeholder: kTransparentImage, image: result.getImageUrl(snap.data[index]["profile_path"])),
+													child: FadeInImage.memoryNetwork(
+														fit: BoxFit.cover, 
+														placeholder: kTransparentImage, 
+														image: snap.data[index]["profile_path"]!= null ? result.getImageUrl(snap.data[index]["profile_path"]): "https://via.placeholder.com/150"
+														),
 													borderRadius: BorderRadius.circular(10.0),
 												),
 											),
