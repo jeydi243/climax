@@ -1,5 +1,9 @@
 import 'package:tmdb_api/tmdb_api.dart';
 
+enum Isize {
+	PSM,
+}
+
 class TMBDService {
 	TMDB _service;
 	ApiKeys _keys;
@@ -42,7 +46,67 @@ class TMBDService {
 			return list_name;
 		});
 	}
-	String getImageUrl(String path) {
-		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUM);
+
+	String getImageUrl(String path, {
+		String size
+	}) {
+
+		switch (size) {
+			case "PSM":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUM);
+				break;
+			case "PSH":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGH);
+				break;
+			case "PSHH":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_HIGHEST);
+				break;
+			case "PSL":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_LOW);
+				break;
+			case "PSLL":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_LOWEST);
+				break;
+			case "PSM+":
+				return _service.images
+					.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUMPLUS);
+				break;
+			case "BSH":
+				return _service.images
+					.getUrl(path, size: ImageSizes.BACKDROP_SIZE_HIGHEST);
+				break;
+			case "BSM":
+				return _service.images
+					.getUrl(path, size: ImageSizes.BACKDROP_SIZE_MEDIUM);
+				break;
+			case "BSL":
+				return _service.images
+					.getUrl(path, size: ImageSizes.BACKDROP_SIZE_LOWEST);
+				break;
+			case "PrSH":
+				return _service.images
+					.getUrl(path, size: ImageSizes.PROFILE_SIZE_HIGHEST);
+				break;
+			case "PrSL":
+				return _service.images
+					.getUrl(path, size: ImageSizes.PROFILE_SIZE_LOWEST);
+				break;
+			case "PrSM":
+				return _service.images
+					.getUrl(path, size: ImageSizes.PROFILE_SIZE_LOWEST);
+				break;
+			case "Or":
+				return _service.images
+					.getUrl(path, size:  ImageSizes.ORIGINAL);
+				break;
+			default:
+				return _service.images.getUrl(path, size: ImageSizes.STILL_SIZE_HIGHEST);
+		}
+
 	}
 }
