@@ -1,3 +1,4 @@
+import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class _PageVState extends State < PageV > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService mv = Provider.of < MovieService > (context);
+    TMBDService tmm = Provider.of<TMBDService>(context);
 		return SizedBox(
 			height: 350,
 			child: Row(
@@ -74,7 +76,7 @@ class _PageVState extends State < PageV > {
 																			MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
 																		);
 																	},
-																	child: Image.network(mv.getImageUrl(snap.data[index].poster_path), fit:BoxFit.cover),
+																	child: Image.network(tmm.getImageUrl(snap.data[index].posterPath), fit:BoxFit.cover),
 																),
 															),
 

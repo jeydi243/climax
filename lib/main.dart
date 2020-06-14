@@ -1,11 +1,10 @@
+import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/services/people_service.dart';
-import 'package:climax/localizations.dart';
+import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +13,10 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return MultiProvider(
 			providers: [
+				Provider < TMBDService > (
+					create: (_) => new TMBDService(),
+					lazy: false,
+				),
 				Provider < MovieService > (
 					create: (_) => new MovieService(),
 					lazy: false,
@@ -22,8 +25,8 @@ class MyApp extends StatelessWidget {
 					create: (_) => new Auth(),
 					lazy: false,
 				),
-				Provider < PeopleService > (
-					create: (_) => new PeopleService("fr-FR"),
+				Provider < PersonService > (
+					create: (_) => new PersonService("fr-FR"),
 					lazy: false,
 				)
 			],

@@ -2,11 +2,11 @@ import 'dart:core';
 import 'package:climax/services/TMBDService.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
-class PeopleService {
+class PersonService {
 	TMDB _service;
   String _lang;
   
-	PeopleService(String language) {
+	PersonService(String language) {
 		_service = TMBDService().service;
     _lang = language;
 	}

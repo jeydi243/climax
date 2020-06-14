@@ -11,7 +11,7 @@ class TMBDService {
 	}
 
 	TMDB get service => _service;
-	Future <String> getGenreNameOfMovie(int genre_id) async {
+	Future < String > getGenreNameOfMovie(int genre_id) async {
 		List < String > list_name = [];
 
 		return await _service.v3.geners.getMovieList().then((res) {
@@ -42,5 +42,7 @@ class TMBDService {
 			return list_name;
 		});
 	}
-
+	String getImageUrl(String path) {
+		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUM);
+	}
 }

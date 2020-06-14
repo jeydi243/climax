@@ -2,6 +2,7 @@ import 'package:climax/Models/movie.dart';
 import 'package:climax/components/CustomshortMovieList.dart';
 import 'package:climax/components/acteurs.dart';
 import 'package:climax/components/genre.dart';
+import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +32,7 @@ class _MovieScreenState extends State < MovieScreen > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService result = Provider.of < MovieService > (context);
-
+		TMBDService tmm = Provider.of<TMBDService>(context);
 		return Scaffold(
 			body: CustomScrollView(
 				slivers: [
@@ -66,7 +67,7 @@ class _MovieScreenState extends State < MovieScreen > {
 									children: [
 										Hero(
 											tag: "${widget.movie.id}",
-											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(result.getImageUrl(widget.movie.posterPath), fit: BoxFit.cover, ))
+											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(tmm.getImageUrl(widget.movie.posterPath), fit: BoxFit.cover, ))
 										),
 										Align(
 											alignment: Alignment(0, 1),

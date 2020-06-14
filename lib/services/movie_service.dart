@@ -44,17 +44,17 @@ class MovieService {
 		Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id, language: _lang));
 		return m;
 	}
-	Future < List<Map < String, dynamic >>> getMovieCredits(int movieId,String typeOfcast) async {
-    List <Map< String, dynamic >> casting = [];
+	Future < List < Map < String, dynamic >>> getMovieCredits(int movieId, String typeOfcast) async {
+		List < Map < String, dynamic >> casting = [];
 		return await _service.v3.movies.getCredits(movieId)
-    .then((value) {
-      for (Map<String,dynamic> item in value[typeOfcast]) {
-         casting.add(item);
-      }
-      return casting;
-    }).catchError((onError,stack){
-      print(stack);
-    });
+			.then((value) {
+				for (Map < String, dynamic > item in value[typeOfcast]) {
+					casting.add(item);
+				}
+				return casting;
+			}).catchError((onError, stack) {
+				print(stack);
+			});
 
 	}
 	Future < List < String >> getMovieImages(int movieId, String type) async { //just retrieve backdrops or posters Images file path ex: /ksecdigo2f.jpg
@@ -74,7 +74,7 @@ class MovieService {
 				}
 			}
 		} catch (e) {
-			
+
 		}
 
 		return mylist;
@@ -106,15 +106,15 @@ class MovieService {
 	Future < List < Movie >> getPopular({
 		int page = 1
 	}) async {
-		List<Movie> movies = [];
+		List < Movie > movies = [];
 		try {
 			await _service.v3.movies.getPouplar(language: _lang, page: page)
 				.then((populars) {
-					for (Map< String, dynamic > movie in populars["results"]) {
+					for (Map < String, dynamic > movie in populars["results"]) {
 						Movie e = Movie.fromMap(movie);
 						movies.add(e);
 					}
-				}).catchError((onError,stac){
+				}).catchError((onError, stac) {
 					print(stac);
 				});
 			return movies;
@@ -123,9 +123,7 @@ class MovieService {
 			return movies;
 		}
 	}
-	String getImageUrl(String path) {
-		return _service.images.getUrl(path, size: ImageSizes.POSTER_SIZE_MEDIUM);
-	}
+	
 	Future < List < Map < String, dynamic > >> getTrend2() async {
 		List < Map < String, dynamic >> listtrend = [];
 		try {

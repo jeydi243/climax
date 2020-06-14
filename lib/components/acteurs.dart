@@ -1,3 +1,4 @@
+import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class _ActeursState extends State < Acteurs > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService result = Provider.of < MovieService > (context);
-
+		TMBDService tmm = Provider.of<TMBDService>(context);
 		return Container(
 			height: 100,
 			child: FutureBuilder < List<Map < String, dynamic >>> (
 				future: result.getMovieCredits(widget.movieId,"cast"),
 				builder: (_, snap) {
+					
 					if (snap.hasData) {
 						return ListView.builder(
 							itemCount: snap.data.length,
@@ -33,7 +35,7 @@ class _ActeursState extends State < Acteurs > {
 							itemBuilder: (BuildContext ctxt, int index) {
 								return GestureDetector(
 									onTap: () {
-										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(personId: 15)));
+										Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActeurDetails(personId: snap.data[index]['id'])));
 									},
 									child: Padding(
 										padding: const EdgeInsets.all(5.0),
@@ -44,7 +46,7 @@ class _ActeursState extends State < Acteurs > {
 													child: FadeInImage.memoryNetwork(
 														fit: BoxFit.cover, 
 														placeholder: kTransparentImage, 
-														image: snap.data[index]["profile_path"]!= null ? result.getImageUrl(snap.data[index]["profile_path"]): "https://via.placeholder.com/150.gif"
+														image: snap.data[index]["profile_path"]!= null ? tmm.getImageUrl(snap.data[index]["profile_path"]): "https://via.placeholder.com/150.gif"
 														),
 													borderRadius: BorderRadius.circular(10.0),
 												),
