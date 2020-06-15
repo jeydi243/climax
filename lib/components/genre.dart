@@ -18,7 +18,6 @@ class _GenreState extends State < Genre > {
 	MovieService result = Provider.of < MovieService >(context);
 
 		return Container(
-			// height: 50,
 			width: double.infinity,
 			margin: EdgeInsets.only(top: 8),
 			child: FutureBuilder < List < String >> (
@@ -31,7 +30,7 @@ class _GenreState extends State < Genre > {
 							scrollDirection: Axis.horizontal,
 							itemBuilder: (_, int index) {
 								return Container(
-									margin: EdgeInsets.only(left: 10.0),
+									margin: EdgeInsets.only(right: 8.0),
 									padding: EdgeInsets.all(5.0),
 									decoration: BoxDecoration(
 										color: Colors.amber,

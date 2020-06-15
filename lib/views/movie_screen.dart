@@ -115,10 +115,10 @@ class _MovieScreenState extends State < MovieScreen > {
 									Row(
 										mainAxisAlignment: MainAxisAlignment.start,
 										children: [
-											Icon(Icons.star, color: Colors.amber, ),
-											Icon(Icons.star, color: Colors.amber, ),
-											Icon(Icons.star, color: Colors.amber, ),
-											Icon(Icons.star, color: Colors.amber, ),
+											Icon(Icons.star, color: Colors.amber ),
+											Icon(Icons.star, color: Colors.amber),
+											Icon(Icons.star, color: Colors.amber),
+											Icon(Icons.star, color: Colors.amber),
 											Icon(Icons.star, color: Colors.amber[100]),
 											Padding(
 												padding: EdgeInsets.only(left: 10.0),
@@ -142,15 +142,53 @@ class _MovieScreenState extends State < MovieScreen > {
 														), ),
 													),
 												),
-											)
+											),
+											Container(
+													decoration: BoxDecoration(
+														color: Colors.amberAccent.withOpacity(0.3),
+														border: Border(
+															left: BorderSide(
+																color: Colors.amber,
+																style: BorderStyle.solid,
+																width: 2.0
+															)
+														)
+													),
+													child: Padding(
+														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
+														child: Text("${widget.movie.voteCount}", style: GoogleFonts.courgette(
+															color: Colors.blue,
+															fontSize: 15,
+															fontWeight: FontWeight.w700
+														), ),
+													),
+												),
+												Container(
+													decoration: BoxDecoration(
+														color: Colors.amberAccent.withOpacity(0.3),
+														border: Border(
+															left: BorderSide(
+																color: Colors.amber,
+																style: BorderStyle.solid,
+																width: 2.0
+															)
+														)
+													),
+													child: Padding(
+														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
+														child: Text("${widget.movie.runtime}", style: GoogleFonts.courgette(
+															color: Colors.blue,
+															fontSize: 15,
+															fontWeight: FontWeight.w700
+														), ),
+													),
+												),
+											
 										],
 									),
-									Padding(
-										padding: EdgeInsets.only(bottom: 35.0),
-										child: Container(
-											height: 35,
-											child: Genre(genres: widget.movie.genres)),
-									),
+									Container(
+										height: 35,
+										child: Genre(genres: widget.movie.genres)),
 									Column(
 										mainAxisAlignment: MainAxisAlignment.start,
 										crossAxisAlignment: CrossAxisAlignment.center,

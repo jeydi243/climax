@@ -10,7 +10,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  animated_text_kit: ^2.0.0
   fw_ticket: ^0.1.1
   chewie: any
   barcode_flutter: ^1.1.2
@@ -34,6 +33,7 @@ dependencies:
   skeleton_text:
   transparent_image: ^1.0.0
   font_awesome_flutter: ^8.8.1
+  animated_text_kit: ^2.2.0
 
 
 dev_dependencies:
