@@ -2,7 +2,7 @@ import 'package:climax/Models/genre.dart';
 import 'package:climax/services/TMBDService.dart';
 
 class Person {
-	String birthday;
+	String _birthday;
 	String _knownForDepartment;
 	String _deathday;
 	int _id;
@@ -16,6 +16,22 @@ class Person {
 	bool _adult;
 	String _imdId;
 	String _homepage;
+
+
+  String get birthday => _birthday;
+	String get knownForDepartment => _knownForDepartment;
+	String get deathday => _deathday;
+	int    get id =>_id;
+	String get name => _name;
+	List < String > get alsoKnownAs => _alsoKnownAs;
+	String get gender => _gender; //instead of having int we want name of genre
+	String get biography =>_biography;
+	double get popularity =>_popularity;
+	String get placeOfBirth =>_placeOfBirth;
+	String get profilePath =>_profilePath;
+	bool   get adult =>_adult;
+	String get imdId =>_imdId;
+	String get homepage =>_homepage;
 
 	Person._({
 		id,
@@ -34,16 +50,15 @@ class Person {
 		homepage
 	});
 
-	static Future<Person> Personed(Map < dynamic, dynamic > map)async {
-		TMBDService service = new TMBDService();
-		String genres = await service.getGenreNameOfMovie(map['gender']);
-		return new Person._(
+	static Person Personed(Map < dynamic, dynamic > map) {
+
+		return Person._(
 			adult: map['adult'],
 			alsoKnownAs: map['also_known_as'],
 			biography: map['biography'],
 			birthday: map['birthday'],
 			deathday: map['deathday'],
-			gender: genres,
+			gender: map['genres'],
 			homepage: map['homepage'],
 			id: map['id'],
 			imdId: map['imdb_id'],

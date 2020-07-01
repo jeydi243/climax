@@ -10,270 +10,269 @@ import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
-
 class MovieScreen extends StatefulWidget {
-	MovieScreen({
-		Key key,
-		@required this.movie
-	}): super(key: key);
-	final Movie movie;
+  MovieScreen({Key key, @required this.movie}) : super(key: key);
+  final Movie movie;
 
-	@override
-	_MovieScreenState createState() => _MovieScreenState();
+  @override
+  _MovieScreenState createState() => _MovieScreenState();
 }
 
-class _MovieScreenState extends State < MovieScreen > {
+class _MovieScreenState extends State<MovieScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
-	@override
-	void initState() {
-		super.initState();
-	}
-
-	@override
-	Widget build(BuildContext context) {
-		MovieService result = Provider.of < MovieService > (context);
-		TMBDService tmm = Provider.of<TMBDService>(context);
-		return Scaffold(
-			body: CustomScrollView(
-				slivers: [
-					SliverAppBar(
-						backgroundColor: Pigment.fromString("#141E51"),
-						actions: < Widget > [
-							IconButton(
-								icon: Icon(Icons.favorite,
-									color: Colors.amber,
-									size: 24.0, ),
-								onPressed: null
-							),
-							IconButton(
-								icon: Icon(
-									Icons.more_vert,
-									color: Colors.amber,
-									size: 24.0,
-								),
-								onPressed: () {
-
-								}
-							)
-
-						],
-						expandedHeight: 250.0,
-						flexibleSpace: FlexibleSpaceBar(
-							background: GestureDetector(
-								// onVerticalDragEnd: (gf) {
-								// 	Navigator.pop(context);
-								// },
-								child: Stack(
-									children: [
-										Hero(
-											tag: "${widget.movie.id}",
-											child: SizedBox(width: double.infinity, height: double.infinity, child: Image.network(tmm.getImageUrl(widget.movie.posterPath), fit: BoxFit.cover, ))
-										),
-										Align(
-											alignment: Alignment(0, 1),
-											child: Container(
-												width: double.infinity,
-												height: 50,
-												decoration: BoxDecoration(
-													gradient: LinearGradient(
-														begin: Alignment(0, 1),
-														end: Alignment(0, -1),
-														colors: [Pigment.fromString("#141E51"), Pigment.fromString("#141E51").withOpacity(0.2), Colors.transparent])
-												),
-											),
-										),
-
-
-									]
-								),
-							),
-
-						),
-					),
-					SliverToBoxAdapter(
-						child: Container(
-							height: 800,
-							padding: EdgeInsets.all(10.0),
-							color: Pigment.fromString("#141E51"),
-							child: Column(
-								children: < Widget > [
-									Padding(
-										padding: EdgeInsets.only(bottom: 10.0),
-										child: Row(
-											mainAxisAlignment: MainAxisAlignment.start,
-											children: < Widget > [
-												Text("${widget.movie.title}",
-													style: GoogleFonts.courgette(
-														color: Colors.amber,
-														fontWeight: FontWeight.bold,
-														fontSize: 23
-													),
-												),
-											],
-										),
-									),
-									Row(
-										mainAxisAlignment: MainAxisAlignment.start,
-										children: [
-											Icon(Icons.star, color: Colors.amber ),
-											Icon(Icons.star, color: Colors.amber),
-											Icon(Icons.star, color: Colors.amber),
-											Icon(Icons.star, color: Colors.amber),
-											Icon(Icons.star, color: Colors.amber[100]),
-											Padding(
-												padding: EdgeInsets.only(left: 10.0),
-												child: Container(
-													decoration: BoxDecoration(
-														color: Colors.amberAccent.withOpacity(0.3),
-														border: Border(
-															left: BorderSide(
-																color: Colors.amber,
-																style: BorderStyle.solid,
-																width: 2.0
-															)
-														)
-													),
-													child: Padding(
-														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
-														child: Text("${widget.movie.voteAverage}", style: GoogleFonts.courgette(
-															color: Colors.blue,
-															fontSize: 15,
-															fontWeight: FontWeight.w700
-														), ),
-													),
-												),
-											),
-											Container(
-													decoration: BoxDecoration(
-														color: Colors.amberAccent.withOpacity(0.3),
-														border: Border(
-															left: BorderSide(
-																color: Colors.amber,
-																style: BorderStyle.solid,
-																width: 2.0
-															)
-														)
-													),
-													child: Padding(
-														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
-														child: Text("${widget.movie.voteCount}", style: GoogleFonts.courgette(
-															color: Colors.blue,
-															fontSize: 15,
-															fontWeight: FontWeight.w700
-														), ),
-													),
-												),
-												Container(
-													decoration: BoxDecoration(
-														color: Colors.amberAccent.withOpacity(0.3),
-														border: Border(
-															left: BorderSide(
-																color: Colors.amber,
-																style: BorderStyle.solid,
-																width: 2.0
-															)
-														)
-													),
-													child: Padding(
-														padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
-														child: Text("${widget.movie.runtime}", style: GoogleFonts.courgette(
-															color: Colors.blue,
-															fontSize: 15,
-															fontWeight: FontWeight.w700
-														), ),
-													),
-												),
-											
-										],
-									),
-									Container(
-										height: 35,
-										child: Genre(genres: widget.movie.genres)),
-									Column(
-										mainAxisAlignment: MainAxisAlignment.start,
-										crossAxisAlignment: CrossAxisAlignment.center,
-										children: < Widget > [
-											Padding(
-												padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-												child: Row(
-													children: < Widget > [
-														Text('Description', style: GoogleFonts.courgette(
-															color: Colors.amber,
-															fontWeight: FontWeight.w900,
-															fontSize: 20
-														), ),
-													],
-												),
-											),
-											Padding(
-												padding: EdgeInsets.only(bottom: 10.0),
-												child: Text("${widget.movie.overview}",
-													textAlign: TextAlign.justify,
-													style: TextStyle(
-														color: Colors.white
-													),
-												),
-											),
-										],
-									),
-									Column(
-										children: < Widget > [
-											Row(
-												children: < Widget > [
-													Text('Acteurs', style: GoogleFonts.courgette(
-														color: Colors.amber,
-														fontWeight: FontWeight.w900,
-														fontSize: 20
-													), ),
-													Spacer(),
-													FlatButton(
-														onPressed: () {
-
-														},
-														child: Text('Plus', style: TextStyle(
-															color: Colors.amber
-														), ),
-													)
-												],
-											),
-
-											Acteurs(movieId: widget.movie.id)
-										],
-									),
-									Column(
-										children: < Widget > [
-											Row(
-												children: < Widget > [
-													Text('Similaires', style: GoogleFonts.courgette(
-														color: Colors.amber,
-														fontWeight: FontWeight.w900,
-														fontSize: 20
-													), ),
-												],
-											),
-											Padding(
-												padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-													child: FutureBuilder < List < Movie >> (
-														future: result.getTrend(),
-														builder: (_, snap) {
-															if (snap.hasData) {
-																return CustomshoMovieList(moviesList: snap.data);
-															} else if (snap.hasError) {
-																return SkeletonAnimation(child: null);
-															} else {
-																return Container();
-															}
-														},
-													),
-											),
-										],
-									)
-								],
-							)
-						),
-					),
-				],
-			),
-		);
-	}
+  @override
+  Widget build(BuildContext context) {
+    MovieService result = Provider.of<MovieService>(context);
+    TMBDService tmm = Provider.of<TMBDService>(context);
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Pigment.fromString("#141E51"),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Colors.amber,
+                    size: 24.0,
+                  ),
+                  onPressed: null),
+              IconButton(
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: Colors.amber,
+                    size: 24.0,
+                  ),
+                  onPressed: () {})
+            ],
+            expandedHeight: 250.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: GestureDetector(
+                // onVerticalDragEnd: (gf) {
+                // 	Navigator.pop(context);
+                // },
+                child: Stack(children: [
+                  Hero(
+                      tag: "${widget.movie.id}",
+                      child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Image.network(
+                            tmm.getImageUrl(widget.movie.posterPath),
+                            fit: BoxFit.cover,
+                          ))),
+                  Align(
+                    alignment: Alignment(0, 1),
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment(0, 1),
+                              end: Alignment(0, -1),
+                              colors: [
+                            Pigment.fromString("#141E51"),
+                            Pigment.fromString("#141E51").withOpacity(0.2),
+                            Colors.transparent
+                          ])),
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+                height: 800,
+                padding: EdgeInsets.all(10.0),
+                color: Pigment.fromString("#141E51"),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "${widget.movie.title}",
+                            style: GoogleFonts.courgette(
+                                color: Colors.amber,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 23),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.star, color: Colors.amber),
+                        Icon(Icons.star, color: Colors.amber),
+                        Icon(Icons.star, color: Colors.amber),
+                        Icon(Icons.star, color: Colors.amber),
+                        Icon(Icons.star, color: Colors.amber[100]),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.amberAccent.withOpacity(0.3),
+                                border: Border(
+                                    left: BorderSide(
+                                        color: Colors.amber,
+                                        style: BorderStyle.solid,
+                                        width: 2.0))),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 10.0,
+                                  right: 10.0,
+                                  top: 2.0,
+                                  bottom: 2.0),
+                              child: Text(
+                                "${widget.movie.voteAverage}",
+                                style: GoogleFonts.courgette(
+                                    color: Colors.blue,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.amberAccent.withOpacity(0.3),
+                              border: Border(
+                                  left: BorderSide(
+                                      color: Colors.amber,
+                                      style: BorderStyle.solid,
+                                      width: 2.0))),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
+                            child: Text(
+                              "${widget.movie.voteCount}",
+                              style: GoogleFonts.courgette(
+                                  color: Colors.blue,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.amberAccent.withOpacity(0.3),
+                              border: Border(
+                                  left: BorderSide(
+                                      color: Colors.amber,
+                                      style: BorderStyle.solid,
+                                      width: 2.0))),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
+                            child: Text(
+                              "${widget.movie.runtime}",
+                              style: GoogleFonts.courgette(
+                                  color: Colors.blue,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        height: 35, child: Genre(genres: widget.movie.genres)),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Description',
+                                style: GoogleFonts.courgette(
+                                    color: Colors.amber,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: Text(
+                            "${widget.movie.overview}",
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'Acteurs',
+                              style: GoogleFonts.courgette(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20),
+                            ),
+                            Spacer(),
+                            FlatButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Plus',
+                                style: TextStyle(color: Colors.amber),
+                              ),
+                            )
+                          ],
+                        ),
+                        Acteurs(movieId: widget.movie.id)
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'Similaires',
+                              style: GoogleFonts.courgette(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: FutureBuilder<List<Movie>>(
+                            future: result.getTrend(),
+                            builder: (_, snap) {
+                              if (snap.hasData) {
+                                return CustomshoMovieList(
+                                    moviesList: snap.data);
+                              } else if (snap.hasError) {
+                                return SkeletonAnimation(child: null);
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )),
+          ),
+        ],
+      ),
+    );
+  }
 }

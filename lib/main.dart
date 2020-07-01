@@ -4,68 +4,69 @@ import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'views/login.dart';
 
 void main() => runApp(MyApp());
 
+
 class MyApp extends StatelessWidget {
-	@override
-	Widget build(BuildContext context) {
-		return MultiProvider(
-			providers: [
-				Provider < TMBDService > (
-					create: (_) => new TMBDService(),
-					lazy: false,
-				),
-				Provider < MovieService > (
-					create: (_) => new MovieService(),
-					lazy: false,
-				),
-				Provider < Auth > (
-					create: (_) => new Auth(),
-					lazy: false,
-				),
-				Provider < PersonService > (
-					create: (_) => new PersonService("fr-FR"),
-					lazy: false,
-				)
-			],
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<TMBDService>(
+          create: (_) => new TMBDService(),
+          lazy: false,
+        ),
+        Provider<MovieService>(
+          create: (_) => new MovieService(),
+          lazy: false,
+        ),
+        Provider<Auth>(
+          create: (_) => new Auth(),
+          lazy: false,
+        ),
+        Provider<PersonService>(
+          create: (_) => new PersonService("fr-FR"),
+          lazy: false,
+        )
+      ],
+      child: MaterialApp(
+        // localizationsDelegates: [
+        // 	GlobalMaterialLocalizations.delegate,
+        // 	GlobalWidgetsLocalizations.delegate,
+        // 	const DemoLocalizationsDelegate(),
+        // ],
+        // supportedLocales: [
+        // 	const Locale('en'), // English
+        // 	const Locale('fr'), // Hebrew
+        // 	// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"),
 
-			child: MaterialApp(
-				// localizationsDelegates: [
-				// 	GlobalMaterialLocalizations.delegate,
-				// 	GlobalWidgetsLocalizations.delegate,
-				// 	const DemoLocalizationsDelegate(),
-				// ],
-				// supportedLocales: [
-				// 	const Locale('en'), // English
-				// 	const Locale('fr'), // Hebrew
-				// 	// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"), 
-
-				// ],
-				title: 'Flutter',
-				debugShowCheckedModeBanner: false,
-				home: Scaffold(
-					body: SafeArea(
-						child: Container(
-							height: double.infinity,
-							child: Stack(
-								alignment: AlignmentDirectional.center,
-								fit: StackFit.loose,
-								children: < Widget > [
-									SizedBox.expand(
-										child: FittedBox(
-											fit: BoxFit.cover,
-											child: Image.asset("assets/roberto.jpg"),
-										),
-									),
-									LoginPage(),
-								],
-							),
-						),
-					),
-				),
-			),
-		);
-	}
+        // ],
+        title: 'Flutter',
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: SafeArea(
+            child: Container(
+              height: double.infinity,
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                fit: StackFit.loose,
+                children: <Widget>[
+                  SizedBox.expand(
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Image.asset("assets/roberto.jpg"),
+                    ),
+                  ),
+                  LoginPage(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

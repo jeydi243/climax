@@ -2,10 +2,9 @@ import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:math';
-
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 
 class PageV extends StatefulWidget {
@@ -76,7 +75,12 @@ class _PageVState extends State < PageV > {
 																			MaterialPageRoute(builder: (fd) => MovieScreen(movie: snap.data[index]))
 																		);
 																	},
-																	child: Image.network(tmm.getImageUrl(snap.data[index].posterPath), fit:BoxFit.cover),
+																	child: FadeInImage.memoryNetwork(
+																		fit: BoxFit.cover,
+																		image: tmm.getImageUrl(snap.data[index].posterPath),
+																		placeholder: kTransparentImage,
+																	)
+																	// child: Image.network(tmm.getImageUrl(snap.data[index].posterPath), fit:BoxFit.cover),
 																),
 															),
 
