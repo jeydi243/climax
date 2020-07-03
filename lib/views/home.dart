@@ -184,16 +184,21 @@ class _HomeState extends State < Home > {
 						"Tendance",
 						style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
 					),
-					FlatButton(
-						splashColor: Colors.amber.withOpacity(0.3),
-						shape: RoundedRectangleBorder(
-							borderRadius: BorderRadius.circular(10.0),
-							side: BorderSide(color: Colors.amber)),
-						onPressed: null,
-						child: Text(
-							"Voir plus",
-							style: GoogleFonts.lobster(color: Colors.amber, fontSize: 18),
-						))
+					SizedBox(
+						height: 25,
+										  child: FlatButton(
+
+					  	
+					  	splashColor: Colors.amber.withOpacity(0.3),
+					  	shape: RoundedRectangleBorder(
+					  		borderRadius: BorderRadius.circular(20.0),
+					  		side: BorderSide(color: Colors.amber)),
+					  	onPressed: (){},
+					  	child: Text(
+					  		"Voir plus",
+					  		style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
+					  	)),
+					)
 				],
 			),
 			Padding(
@@ -298,12 +303,12 @@ class _HomeState extends State < Home > {
 					FlatButton(
 						splashColor: Colors.amber.withOpacity(0.3),
 						shape: RoundedRectangleBorder(
-							borderRadius: BorderRadius.circular(10.0),
+							borderRadius: BorderRadius.circular(20.0),
 							side: BorderSide(color: Colors.amber)),
 						onPressed: () {},
 						child: Text(
 							"Voir plus",
-							style: GoogleFonts.lobster(color: Colors.amber, fontSize: 18),
+							style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
 						))
 				],
 			),

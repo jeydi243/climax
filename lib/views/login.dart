@@ -36,11 +36,8 @@ class _LoginState extends State < LoginPage > {
 		final form = _formKey.currentState;
 		if (form.validate()) {
 			form.save();
-			print("le formulaire est pret");
-			print('$_emailOrNom et $_password');
 			return true;
 		} else {
-			print("Erreur dans le formulaire");
 			return false;
 		}
 	}

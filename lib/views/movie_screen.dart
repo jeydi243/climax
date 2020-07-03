@@ -226,6 +226,7 @@ class _MovieScreenState extends State<MovieScreen> {
                             ),
                             Spacer(),
                             FlatButton(
+                              splashColor: Colors.amber.withOpacity(.2),
                               onPressed: () {},
                               child: Text(
                                 'Plus',
