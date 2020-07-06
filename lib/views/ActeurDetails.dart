@@ -11,10 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ActeurDetails extends StatefulWidget {
-  ActeurDetails({Key key, @required this.personId}) : super(key: key);
-
-  final int personId;
-  Person person;
+  ActeurDetails({Key key}) : super(key: key);
   @override
   _ActeurDetailsState createState() => _ActeurDetailsState();
 }
@@ -30,7 +27,8 @@ class _ActeurDetailsState extends State<ActeurDetails> {
     PersonService personservice = Provider.of<PersonService>(context);
     MovieService movieservice = Provider.of<MovieService>(context);
     TMBDService tmm = Provider.of<TMBDService>(context);
-    print('Epa path ${widget.person.profilePath}');
+
+
     return GetBuilder<MovieController>(
         init: MovieController(),
         builder: (controller) => Scaffold(
@@ -43,8 +41,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                     child: FadeInImage.memoryNetwork(
                         fit: BoxFit.cover,
                         placeholder: kTransparentImage,
-                        image: tmm.getImageUrl(widget.person.profilePath,
-                                size: "PrSM") ??
+                        image: 
                             "https://via.placeholder.com/150"),
                   ),
                   Align(

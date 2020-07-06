@@ -6,6 +6,7 @@ import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
@@ -229,7 +230,7 @@ class _MovieScreenState extends State<MovieScreen> {
                             FlatButton(
                               splashColor: Colors.amber.withOpacity(.2),
                               onPressed: () {
-                                
+        
                               },
                               child: Text(
                                 'Plus',

@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 enum Isize {
@@ -104,7 +106,20 @@ class TMBDService {
     }
   }
 
-  Future<Map<String, dynamic>> getAllGenres() {
-    return _service.v3.geners.getMovieList();
+  Future<void> getAllGenres() async {
+    Map<dynamic, dynamic> all = await _service.v3.geners.getMovieList();
+    Map<dynamic, dynamic> all2 = await _service.v3.geners.getMovieList();
+    try {
+      for (Map<String, dynamic> map in all['genres']) {
+        GetStorage().write('movie-${map['id']}', map['name']);
+      }
+	  for (Map<String, dynamic> map in all2['genres']) {
+        GetStorage().write('tv-${map['id']}', map['name']);
+		
+      }
+
+    } catch (e, stack) {
+      print(stack);
+    }
   }
 }

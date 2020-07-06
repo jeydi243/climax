@@ -2,6 +2,7 @@ import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -34,9 +35,8 @@ class _ActeursState extends State < Acteurs > {
 							itemBuilder: (BuildContext ctxt, int index) {
 								return GestureDetector(
 									onTap: () {
-										Navigator.of(context).push(MaterialPageRoute(
-											builder: (context) =>
-											ActeurDetails(personId: snap.data[index]['id'])));
+										Get.to(ActeurDetails(),arguments: {"personId":snap.data[index]['id']});
+										
 									},
 									child: Padding(
 										padding: const EdgeInsets.all(5.0),

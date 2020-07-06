@@ -9,7 +9,7 @@ class Person {
   int _id;
   String _name;
   List<String> _alsoKnownAs = [];
-  String _gender; //instead of having int we want name of genre
+  String _gender; //instead of having int we want name of genre ex: 'Action'
   String _biography;
   double _popularity;
   String _placeOfBirth;

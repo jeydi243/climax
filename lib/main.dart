@@ -5,10 +5,14 @@ import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'views/login.dart';
 
-void main() => runApp(MyApp());
+main() async {
+  await GetStorage.init();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -33,17 +37,10 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: GetMaterialApp(
-        // localizationsDelegates: [
-        // 	GlobalMaterialLocalizations.delegate,
-        // 	GlobalWidgetsLocalizations.delegate,
-        // 	const DemoLocalizationsDelegate(),
-        // ],
-        // supportedLocales: [
-        // 	const Locale('en'), // English
-        // 	const Locale('fr'), // Hebrew
-        // 	// const Locale.fromSubtags(languageCode: 'fr',countryCode: "CD"),
+		  onInit: ()async{
+			await TMBDService().getAllGenres();
+		  },
 
-        // ],
         title: 'Flutter',
         debugShowCheckedModeBanner: false,
         home: Scaffold(
