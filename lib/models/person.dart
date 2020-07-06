@@ -1,5 +1,6 @@
 import 'package:climax/Models/genre.dart';
 import 'package:climax/services/TMBDService.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class Person {
@@ -53,7 +54,7 @@ class Person {
       imdId,
       homepage});
 
-  static Person Personed(Map<dynamic, dynamic> map) {
+  static Person Personed(Map<dynamic, dynamic> map,{int genre}) {
     return Person._(
       adult: map['adult'],
       alsoKnownAs: map['also_known_as'],
@@ -68,6 +69,7 @@ class Person {
       placeOfBirth: map['place_of_birth'],
       popularity: map['popularity'],
       profilePath: map['profile_path'],
+	  gender: GetStorage().read('movie-$genre')??GetStorage().read('tv-$genre')
     );
   }
 }

@@ -37,10 +37,9 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: GetMaterialApp(
-		  onInit: ()async{
-			await TMBDService().getAllGenres();
-		  },
-
+        onInit: () async {
+          await TMBDService().getAllGenres();
+        },
         title: 'Flutter',
         debugShowCheckedModeBanner: false,
         home: Scaffold(

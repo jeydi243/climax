@@ -108,14 +108,13 @@ class TMBDService {
 
   Future<void> getAllGenres() async {
     Map<dynamic, dynamic> all = await _service.v3.geners.getMovieList();
-    Map<dynamic, dynamic> all2 = await _service.v3.geners.getMovieList();
+    Map<dynamic, dynamic> all2 = await _service.v3.geners.getTvlist();
     try {
       for (Map<String, dynamic> map in all['genres']) {
         GetStorage().write('movie-${map['id']}', map['name']);
       }
 	  for (Map<String, dynamic> map in all2['genres']) {
         GetStorage().write('tv-${map['id']}', map['name']);
-		
       }
 
     } catch (e, stack) {
