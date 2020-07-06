@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show SynchronousFuture;
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class DemoLocalizations {
   DemoLocalizations(this.locale);

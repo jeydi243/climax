@@ -1,6 +1,5 @@
 import 'package:climax/Models/movie.dart';
 import 'package:climax/services/TMBDService.dart';
-import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,6 @@ class _CustomshoMovieListState extends State < CustomshoMovieList > {
 
 	@override
 	Widget build(BuildContext context) {
-		MovieService service = Provider.of < MovieService > (context);
     TMBDService tmm = Provider.of<TMBDService>(context);
 		return Container(
 			height: 200,

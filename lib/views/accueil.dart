@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
 
+// ignore: camel_case_types
 class accueil extends StatefulWidget {
 	accueil({
 		Key key

@@ -51,6 +51,8 @@ class _ListVideosState extends State < ListVideos > {
 								return Container(
 									child: VideoPlayer(null),
 								);
+							}else{
+								return Container();
 							}
 						},
 					);

@@ -1,7 +1,5 @@
 import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/services/person_service.dart';
-import 'package:climax/Models/person.dart';
 import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +20,6 @@ class _ActeursState extends State < Acteurs > {
 	@override
 	Widget build(BuildContext context) {
 		MovieService result = Provider.of < MovieService > (context);
-		PersonService personservice = Provider.of < PersonService > (context);
 		TMBDService tmm = Provider.of < TMBDService > (context);
 		return Container(
 			height: 100,

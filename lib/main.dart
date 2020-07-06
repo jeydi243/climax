@@ -3,12 +3,12 @@ import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'views/login.dart';
 
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           lazy: false,
         )
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         // localizationsDelegates: [
         // 	GlobalMaterialLocalizations.delegate,
         // 	GlobalWidgetsLocalizations.delegate,
