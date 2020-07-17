@@ -54,22 +54,21 @@ class Person {
       imdId,
       homepage});
 
-  static Person Personed(Map<dynamic, dynamic> map,{int genre}) {
-    return Person._(
-      adult: map['adult'],
-      alsoKnownAs: map['also_known_as'],
-      biography: map['biography'],
-      birthday: map['birthday'],
-      deathday: map['deathday'],
-      homepage: map['homepage'],
-      id: map['id'],
-      imdId: map['imdb_id'],
-      knownForDepartment: map['known_for_department'],
-      name: map['name'],
-      placeOfBirth: map['place_of_birth'],
-      popularity: map['popularity'],
-      profilePath: map['profile_path'],
-	  gender: GetStorage().read('movie-$genre')??GetStorage().read('tv-$genre')
-    );
+    Person.personed(Map<dynamic, dynamic> map,String genre) {
+      _adult= map['adult'];
+      _alsoKnownAs= map['also_known_as'];
+      _biography= map['biography'];
+      _birthday= map['birthday'];
+      _deathday= map['deathday'];
+      _homepage= map['homepage'];
+      _id= map['id'];
+      _imdId= map['imdb_id'];
+      _knownForDepartment= map['known_for_department'];
+      _name= map['name'];
+      _placeOfBirth= map['place_of_birth'];
+      _popularity= map['popularity'];
+      _profilePath= map['profile_path'];
+	  _gender= genre;
+    
   }
 }

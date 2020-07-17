@@ -12,6 +12,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 class ActeurDetails extends StatefulWidget {
   ActeurDetails({Key key}) : super(key: key);
+  Person person;
   @override
   _ActeurDetailsState createState() => _ActeurDetailsState();
 }
@@ -28,62 +29,68 @@ class _ActeurDetailsState extends State<ActeurDetails> {
     MovieService movieservice = Provider.of<MovieService>(context);
     TMBDService tmm = Provider.of<TMBDService>(context);
 
-
     return GetBuilder<MovieController>(
-        init: MovieController(),
-        builder: (controller) => Scaffold(
-                body: SafeArea(
-              child: Stack(
-                children: <Widget>[
-                  SizedBox(
-                    height: (MediaQuery.of(context).size.height / 2) - 20,
-                    width: MediaQuery.of(context).size.width,
-                    child: FadeInImage.memoryNetwork(
-                        fit: BoxFit.cover,
-                        placeholder: kTransparentImage,
-                        image: 
-                            "https://via.placeholder.com/150"),
+      init: MovieController(),
+      builder: (controller){ 
+
+        print("nytr--- ${widget.person}");
+        return Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: <Widget>[
+                SizedBox(
+                  height: (MediaQuery.of(context).size.height / 2) - 20,
+                  width: MediaQuery.of(context).size.width,
+                  child: FadeInImage.memoryNetwork(
+                    fit: BoxFit.cover,
+                    placeholder: kTransparentImage,
+                    image: "https://via.placeholder.com/150"
                   ),
-                  Align(
-                    alignment: Alignment(0, 1),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30)),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 2 + 40,
-                        width: MediaQuery.of(context).size.width,
-                        color: Pigment.fromString("#141E51"),
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: ListView(
-                                physics: BouncingScrollPhysics(),
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Text(
-                                        "Aka ",
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.lobster(
-                                          fontSize: 25,
-                                          color: Colors.amber,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                ),
+                Align(
+                  alignment: Alignment(0, 1),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 2 + 40,
+                      width: MediaQuery.of(context).size.width,
+                      color: Pigment.fromString("#141E51"),
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView(
+                              physics: BouncingScrollPhysics(),
+                              children: <Widget>[
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                  Text(
+                                    "Aka ",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.lobster(
+                                    fontSize: 25,
+                                    color: Colors.amber,
+                                    ),
+                                  ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                     ),
                   ),
-                ],
-              ),
-            )));
+                  ),
+                ),
+              ],
+            ),
+          )
+        );
+      }
+    );
   }
 }

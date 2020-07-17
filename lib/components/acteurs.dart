@@ -35,7 +35,7 @@ class _ActeursState extends State < Acteurs > {
 							itemBuilder: (BuildContext ctxt, int index) {
 								return GestureDetector(
 									onTap: () {
-										Get.to(ActeurDetails(),arguments: {"personId":snap.data[index]['id']});
+										Get.to(ActeurDetails(),arguments: {"personId":snap.data[index]['id']},duration: Duration(milliseconds: 700));
 										
 									},
 									child: Padding(
