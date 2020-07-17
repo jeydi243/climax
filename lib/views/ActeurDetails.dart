@@ -1,11 +1,12 @@
 import 'package:climax/services/TMBDService.dart';
-import 'package:climax/services/movie_service.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:climax/Models/person.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
+import 'package:tmdb_dart/tmdb_dart.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ActeurDetails extends StatefulWidget {
@@ -25,14 +26,13 @@ class _ActeurDetailsState extends State<ActeurDetails> {
   @override
   Widget build(BuildContext context) {
     PersonService personservice = Provider.of<PersonService>(context);
-
+    TMBDService service = Provider.of<TMBDService>(context);
     return Scaffold(
         body: SafeArea(
-        child: FutureBuilder<Person>(
+      child: FutureBuilder<Person>(
         future: personservice.getDetails(widget.personId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-			  print("Data: ${snapshot.data}");
             return Stack(
               children: <Widget>[
                 SizedBox(
@@ -41,7 +41,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                   child: FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
                       placeholder: kTransparentImage,
-                      image: snapshot.data.profilePath ??
+                      image: service.getImageUrl(snapshot.data.profilePath) ??
                           "https://via.placeholder.com/150"),
                 ),
                 Align(
@@ -61,18 +61,31 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                             child: ListView(
                               physics: BouncingScrollPhysics(),
                               children: <Widget>[
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      "Aka ",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.lobster(
-                                        fontSize: 25,
-                                        color: Colors.amber,
-                                      ),
-                                    ),
-                                  ],
+                                Center(
+                                    child: Text(
+                                  "${snapshot.data.name}",
+                                  style: GoogleFonts.googleSans(
+                                    color: Colors.amber,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
+                                Center(
+                                  child: Row(
+									  mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text("Aka "),
+                                      FadeAnimatedTextKit(
+                                          text: snapshot.data.alsoKnownAs,
+                                          textStyle: GoogleFonts.googleSans(
+                                            color: Colors.amber,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          alignment: AlignmentDirectional
+                                              .topStart // or Alignment.topLeft
+                                          ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
