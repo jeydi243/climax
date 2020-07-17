@@ -2,7 +2,9 @@ import 'package:climax/services/TMBDService.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:climax/Models/person.dart';
+import 'package:climax/views/movie_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
@@ -74,17 +76,20 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                 )),
                                 Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Row(
-									
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
-                                        Text("Aka ",style: GoogleFonts.googleSans(
-										  color: Colors.white,
-										  fontSize: 20
-									  ),),
+                                        Text(
+                                          "Aka ",
+                                          style: GoogleFonts.googleSans(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
                                         FadeAnimatedTextKit(
-											isRepeatingAnimation: true,
+                                            isRepeatingAnimation: true,
                                             text: snapshot.data.alsoKnownAs,
                                             textStyle: GoogleFonts.notoSerif(
                                               color: Colors.amber,
@@ -99,15 +104,61 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
                                     child: Text(
                                       "${snapshot.data.biography}",
-                                      style: GoogleFonts.itim(
-                                          color: Colors.white),
+                                      style:
+                                          GoogleFonts.itim(color: Colors.white),
                                     ),
                                   ),
                                 ),
-								Text('Connue Pour ')
+                                Text(
+                                  'Connue Pour',
+                                  style: GoogleFonts.googleSans(
+                                      color: Colors.amber,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 100,
+                                  width: double.infinity,
+                                  child: FutureBuilder<Map<String, dynamic>>(
+                                    future: personservice
+                                        .getMovieCredits(widget.personId),
+                                    builder: (context, snapshot) {
+                                      return ListView.builder(
+                                        physics: BouncingScrollPhysics(),
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: snapshot.data['cast'].length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+											  onTap: (){
+												  Get.to(MovieScreen());
+											  },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: Container(
+                                                  color: Colors.white,
+                                                  child: Image.network(service
+                                                          .getImageUrl(snapshot
+                                                                      .data[
+                                                                  'cast'][index]
+                                                              [
+                                                              'poster_path']) ??
+                                                      "https://via.placeholder.com/150"),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                )
                               ],
                             ),
                           )
