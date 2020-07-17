@@ -59,6 +59,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                         children: <Widget>[
                           Expanded(
                             child: ListView(
+								scrollDirection: Axis.vertical,
                               physics: BouncingScrollPhysics(),
                               children: <Widget>[
                                 Center(
@@ -72,7 +73,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                 )),
                                 Center(
                                   child: Row(
-									  mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text("Aka "),
                                       FadeAnimatedTextKit(
@@ -86,7 +87,12 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                           ),
                                     ],
                                   ),
-                                )
+                                ),
+								Center(
+									child: Text("${snapshot.data.biography}",style: GoogleFonts.aclonica(
+										color: Colors.amber
+									),),
+								)
                               ],
                             ),
                           )
