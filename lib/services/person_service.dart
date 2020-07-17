@@ -1,5 +1,7 @@
 import 'dart:core';
+import 'package:climax/Models/person.dart';
 import 'package:climax/services/TMBDService.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class PersonService {
@@ -11,8 +13,15 @@ class PersonService {
     _lang = language;
 	}
 
-	Future < Map < String, dynamic >> getDetails(int personId) async {
-		return await _service.v3.people.getDetails(personId,language: _lang);
+	Future < Person> getDetails(int personId) async {
+		GetStorage store = GetStorage();
+		return await _service.v3.people.getDetails(personId,language: _lang)
+			.then((mymap){
+				String name = store.read("tv-${mymap['gender']}") ?? store.read("movie-${mymap['gender']}");
+				print("le store vaut: $name");
+				return Person.personed(mymap, name);
+			})
+			.catchError((onError,stack)=>print("Erreur-- :$onError au niveau de: $stack"));
 	}
 
 	Future < Map < String, dynamic >> getMovieCredits(int personId) async {

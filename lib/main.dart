@@ -11,6 +11,7 @@ import 'views/login.dart';
 
 main() async {
   await GetStorage.init();
+  await TMBDService().getAllGenres();
   runApp(MyApp());
 }
 

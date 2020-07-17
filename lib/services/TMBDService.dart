@@ -116,7 +116,7 @@ class TMBDService {
 	  for (Map<String, dynamic> map in all2['genres']) {
         GetStorage().write('tv-${map['id']}', map['name']);
       }
-
+    //   print(GetStorage());
     } catch (e, stack) {
       print(stack);
     }

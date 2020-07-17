@@ -9,7 +9,7 @@ class Person {
   String _deathday;
   int _id;
   String _name;
-  List<String> _alsoKnownAs = [];
+  List<String> _alsoKnownAs = new List<String>();
   String _gender; //instead of having int we want name of genre ex: 'Action'
   String _biography;
   double _popularity;
@@ -56,7 +56,7 @@ class Person {
 
     Person.personed(Map<dynamic, dynamic> map,String genre) {
       _adult= map['adult'];
-      _alsoKnownAs= map['also_known_as'];
+      _alsoKnownAs= map['also_known_as'].cast<String>();
       _biography= map['biography'];
       _birthday= map['birthday'];
       _deathday= map['deathday'];
