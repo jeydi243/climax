@@ -59,7 +59,8 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                         children: <Widget>[
                           Expanded(
                             child: ListView(
-								scrollDirection: Axis.vertical,
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              scrollDirection: Axis.vertical,
                               physics: BouncingScrollPhysics(),
                               children: <Widget>[
                                 Center(
@@ -72,27 +73,41 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                   ),
                                 )),
                                 Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text("Aka "),
-                                      FadeAnimatedTextKit(
-                                          text: snapshot.data.alsoKnownAs,
-                                          textStyle: GoogleFonts.googleSans(
-                                            color: Colors.amber,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          alignment: AlignmentDirectional
-                                              .topStart // or Alignment.topLeft
-                                          ),
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+									
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text("Aka ",style: GoogleFonts.googleSans(
+										  color: Colors.white,
+										  fontSize: 20
+									  ),),
+                                        FadeAnimatedTextKit(
+											isRepeatingAnimation: true,
+                                            text: snapshot.data.alsoKnownAs,
+                                            textStyle: GoogleFonts.notoSerif(
+                                              color: Colors.amber,
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            alignment: AlignmentDirectional
+                                                .topStart // or Alignment.topLeft
+                                            ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-								Center(
-									child: Text("${snapshot.data.biography}",style: GoogleFonts.aclonica(
-										color: Colors.amber
-									),),
-								)
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "${snapshot.data.biography}",
+                                      style: GoogleFonts.itim(
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+								Text('Connue Pour ')
                               ],
                             ),
                           )
