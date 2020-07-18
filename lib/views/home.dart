@@ -132,7 +132,7 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                bybuilder(context, movieservice)
+                bybuilder(context)
               ],
             ),
           ),
@@ -141,12 +141,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget one(BuildContext context, MovieService result) {
+  Widget one(BuildContext context) {
     TMBDService tmm = Provider.of<TMBDService>(context);
+	MovieService movieservice = Provider.of<MovieService>(context);
     return Row(
       children: <Widget>[
         FutureBuilder<List<Map<String, dynamic>>>(
-          future: result.getTrend2(),
+          future: movieservice.getTrend2(),
           builder: (_, snap) {
             if (snap.hasData) {
               return Expanded(
@@ -173,7 +174,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget two(BuildContext context, MovieService result) {
+  Widget two(BuildContext context) {
+	  MovieService movieservice = Provider.of<MovieService>(context);
     return ListView(physics: BouncingScrollPhysics(), children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,7 +204,7 @@ class _HomeState extends State<Home> {
         child: Row(
           children: <Widget>[
             FutureBuilder<List<Movie>>(
-              future: result.getTrend(),
+              future: movieservice.getTrend(),
               builder: (_, snap) {
                 TMBDService tmm = Provider.of<TMBDService>(context);
                 if (snap.hasData) {
@@ -326,22 +328,24 @@ class _HomeState extends State<Home> {
     ]);
   }
 
-  Widget three(BuildContext context, MovieService result) {
+  Widget three(BuildContext context) {
     return Container(
         height: double.infinity, width: double.infinity, child: TicketTree());
   }
 
-  Widget bybuilder(BuildContext context, MovieService mvs) {
+  Widget bybuilder(BuildContext context) {
     if (_page == 0) {
       return Expanded(
-        child: one(context, mvs),
+        child: one(context),
       );
     } else if (_page == 1) {
       return Expanded(
-        child: two(context, mvs),
+        child: two(context),
       );
     } else {
-      return Expanded(child: three(context, mvs));
+      return Expanded(
+		  child: three(context)
+		);
     }
   }
 }
