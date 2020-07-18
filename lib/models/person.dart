@@ -35,6 +35,7 @@ class Person {
   bool get adult => _adult;
   String get imdId => _imdId;
   String get homepage => _homepage;
+  Map get combinedCredits => _CombinedCredit;
 
   set setGender(String gender) {
     _gender = gender;
@@ -74,7 +75,7 @@ class Person {
       _knownForDepartment= map['known_for_department'];
       _name= map['name'];
       _placeOfBirth= map['place_of_birth'];
-      _popularity= map['popularity'];
+      _popularity= map['popularity'].toDouble();
       _profilePath= map['profile_path'];
 	  _gender= genre;
     

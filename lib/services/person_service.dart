@@ -37,18 +37,6 @@ class PersonService {
     // 	.catchError((onError,stack)=>print("Erreur-- :$onError au niveau de: $stack"));
   }
 
-  Future<Map<String, dynamic>> getMovieCredits(int personId) async {
-    return await _service.v3.people.getMovieCredits(personId, language: _lang);
-  }
-
-  Future<Map<String, dynamic>> getTVCredits(int personId) async {
-    return await _service.v3.people.getTvCredits(personId, language: _lang);
-  }
-
-  Future<Map<String, dynamic>> getCombinedCredits(int personId) async {
-    return await _service.v3.people
-        .getCombinedCredits(personId, language: _lang);
-  }
 
   Future<Map<String, dynamic>> getImagesOfPeople(int personId) async {
     return await _service.v3.people.getImages(personId);

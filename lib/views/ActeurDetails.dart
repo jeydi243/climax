@@ -35,13 +35,15 @@ class _ActeurDetailsState extends State<ActeurDetails> {
         future: personservice.getDetails(widget.personId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            widget.person = snapshot.data;
+						print(widget.person.toString());
+
             return Stack(
               children: <Widget>[
                 SizedBox(
                   height: (MediaQuery.of(context).size.height / 2) - 20,
                   width: MediaQuery.of(context).size.width,
-                  child: 
-				  FadeInImage.memoryNetwork(
+                  child: FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
                       placeholder: kTransparentImage,
                       image: service.getImageUrl(snapshot.data.profilePath) ??
@@ -121,45 +123,32 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: FutureBuilder<Map<String, dynamic>>(
-                                    future: personservice
-                                        .getMovieCredits(widget.personId),
-                                    builder: (context, snapshot) {
-                                      return ListView.builder(
-                                        physics: BouncingScrollPhysics(),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: snapshot.data['cast'].length,
-                                        itemBuilder: (context, index) {
-                                          return GestureDetector(
-											  onTap: (){
-												  
-											  },
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(5.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Container(
-                                                  color: Colors.white,
-                                                  child: Image.network(service
-                                                          .getImageUrl(snapshot
-                                                                      .data[
-                                                                  'cast'][index]
-                                                              [
-                                                              'poster_path']) ??
-                                                      "https://via.placeholder.com/150"),
-                                                ),
+                                    height: 100,
+                                    width: double.infinity,
+                                    child: ListView.builder(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: widget.person.combinedCredits.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Container(
+                                              color: Colors.white,
+                                              child: Image.network(
+                                                service.getImageUrl(widget
+                                                            .person
+                                                            .combinedCredits[
+                                                        'cast'][index]['backdrop_path'] ??
+                                                    "https://via.placeholder.com/150"),
                                               ),
                                             ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                )
+                                          ),
+                                        );
+                                      },
+                                    ))
                               ],
                             ),
                           )
