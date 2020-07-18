@@ -9,7 +9,6 @@ class MovieController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-
   }
 
   @override

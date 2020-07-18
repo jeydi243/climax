@@ -10,6 +10,7 @@ class Person {
   int _id;
   String _name;
   List<String> _alsoKnownAs = new List<String>();
+  Map<String,dynamic> _CombinedCredit = Map<String,dynamic>();
   String _gender; //instead of having int we want name of genre ex: 'Action'
   String _biography;
   double _popularity;
@@ -18,6 +19,7 @@ class Person {
   bool _adult;
   String _imdId;
   String _homepage;
+  Map _Images;
 
   String get birthday => _birthday;
   String get knownForDepartment => _knownForDepartment;
@@ -36,6 +38,12 @@ class Person {
 
   set setGender(String gender) {
     _gender = gender;
+  }
+  set setCombinedCredits(Map mycredit){
+	  _CombinedCredit = mycredit;
+  }
+  set setImages(Map myImages){
+     _Images = myImages;
   }
 
   Person._(

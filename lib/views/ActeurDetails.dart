@@ -40,7 +40,8 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                 SizedBox(
                   height: (MediaQuery.of(context).size.height / 2) - 20,
                   width: MediaQuery.of(context).size.width,
-                  child: FadeInImage.memoryNetwork(
+                  child: 
+				  FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
                       placeholder: kTransparentImage,
                       image: service.getImageUrl(snapshot.data.profilePath) ??
@@ -114,7 +115,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                   ),
                                 ),
                                 Text(
-                                  'Connue Pour',
+                                  'Connue pour son role dans',
                                   style: GoogleFonts.googleSans(
                                       color: Colors.amber,
                                       fontWeight: FontWeight.bold),
@@ -133,7 +134,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
 											  onTap: (){
-												  Get.to(MovieScreen());
+												  
 											  },
                                             child: Padding(
                                               padding:
