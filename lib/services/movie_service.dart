@@ -12,7 +12,21 @@ class MovieService {
 		_service = TMDB(_keys);
 		_lang = "fr-FR";
 	}
+    Future < Movie > getMovieDetails(int id) async {
+		return Future.wait([
+			_service.v3.movies.getDetails(id, language: _lang),
+            _service.v3.movies.getImages(id),
+			_service.v3.movies.getVideos(id)
 
+		]).then((List responses){
+			Movie m = Movie.fromMap(responses[0]);
+			m.setImages = responses[1];
+			m.setVideos = responses[2];
+			return m;
+		}).catchError((error,stack){
+            print("$error au niveau de $stack");
+		});
+	}
 	Future < List < Map >> searchMulti(String query) async { //Search Movies,Tv and People in one request
 		List < Map > mylist = [];
 		try {
@@ -40,10 +54,6 @@ class MovieService {
 		}
 		return list;
 	}
-	Future < Movie > getMovieDetails(int id) async {
-		Movie m = Movie.fromMap(await _service.v3.movies.getDetails(id, language: _lang));
-		return m;
-	}
 	Future < List < Map < String, dynamic >>> getMovieCredits(int movieId, String typeOfcast) async {
 		List < Map < String, dynamic >> casting = [];
 		return await _service.v3.movies.getCredits(movieId)
@@ -56,31 +66,6 @@ class MovieService {
 				print(stack);
 			});
 
-	}
-	Future < List < String >> getMovieImages(int movieId, String type) async { //just retrieve backdrops or posters Images file path ex: /ksecdigo2f.jpg
-		List < String > mylist = [];
-		try {
-			Map collect = await _service.v3.movies.getImages(movieId);
-			List < Map > backdrops = collect["backdrops"];
-			List < Map > posters = collect["posters"];
-
-			if (type == "backdrop") {
-				for (var path in backdrops) {
-					mylist.add(path['file_path']);
-				}
-			} else if (type == "posters") {
-				for (var path in posters) {
-					mylist.add(path['file_path']);
-				}
-			}
-		} catch (e) {
-
-		}
-
-		return mylist;
-	}
-	Future < Map > getMovieVideos(int movieId) async {
-		return await _service.v3.movies.getVideos(movieId);
 	}
 	Future < List < Map >> getMovieSimilar(int movieId, {
 		int page = 1
@@ -174,7 +159,5 @@ class MovieService {
 			print(e);
 		}
 	}
-	Future < List < Map < String, dynamic >>> getVideos(int movieId) async {
-		Map < String, dynamic > res = await _service.v3.movies.getVideos(movieId);
-	}
+
 }

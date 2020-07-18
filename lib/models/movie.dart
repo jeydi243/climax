@@ -27,6 +27,7 @@ class Movie {
 	String _posterPath;
 	String _backdropPath;
 	Map _images={};
+	Map _videos={};
 
 	int get budget => _budget;
 	int get id => _id;
@@ -54,8 +55,13 @@ class Movie {
 	String get posterPath => _posterPath;
 	String get backdropPath => _backdropPath;
 	Map get Images => _images;
+	Map get Videos => _videos;
+
 	set setImages(Map images){
        _images = images;
+	}
+	set setVideos(Map videos){
+       _videos = videos;
 	}
 
 	@override
