@@ -26,6 +26,7 @@ class Movie {
 	dynamic _voteAverage;
 	String _posterPath;
 	String _backdropPath;
+	Map _images={};
 
 	int get budget => _budget;
 	int get id => _id;
@@ -52,6 +53,7 @@ class Movie {
 	int get voteCount => _voteCount;
 	String get posterPath => _posterPath;
 	String get backdropPath => _backdropPath;
+	Map get Images => _images;
 
 	@override
 	String toString() {

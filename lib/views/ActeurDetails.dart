@@ -27,6 +27,8 @@ class _ActeurDetailsState extends State<ActeurDetails> {
 
   @override
   Widget build(BuildContext context) {
+    String selectedtypeContent = "movie";
+    List<String> typeContents = <String>['movie', 'tv'];
     PersonService personservice = Provider.of<PersonService>(context);
     TMBDService service = Provider.of<TMBDService>(context);
     return Scaffold(
@@ -36,7 +38,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             widget.person = snapshot.data;
-						print(widget.person.toString());
+            print(widget.person.toString());
 
             return Stack(
               children: <Widget>[
@@ -47,7 +49,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                       fit: BoxFit.cover,
                       placeholder: kTransparentImage,
                       image: service.getImageUrl(snapshot.data.profilePath) ??
-                          "https://via.placeholder.com/150"),
+                          "assets/heroes.gif"),
                 ),
                 Align(
                   alignment: Alignment(0, 1),
@@ -116,37 +118,46 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Connue pour son role dans',
-                                  style: GoogleFonts.googleSans(
-                                      color: Colors.amber,
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Connue pour son role dans',
+                                      style: GoogleFonts.googleSans(
+                                          color: Colors.amber,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Spacer(),
+                                    
+                                  ],
                                 ),
                                 SizedBox(
                                     height: 100,
-                                    width: double.infinity,
+                                    width: double.maxFinite,
                                     child: ListView.builder(
                                       physics: BouncingScrollPhysics(),
                                       scrollDirection: Axis.horizontal,
                                       itemCount: widget.person.combinedCredits.length,
                                       itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Container(
-                                              color: Colors.white,
-                                              child: Image.network(
-                                                service.getImageUrl(widget
-                                                            .person
-                                                            .combinedCredits[
-                                                        'cast'][index]['backdrop_path'] ??
-                                                    "https://via.placeholder.com/150"),
+                                       
+                                          return Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Container(
+                                                color: Colors.white,
+                                                child: Image.network(
+                                                  service.getImageUrl(widget
+                                                                  .person
+                                                                  .combinedCredits[
+                                                              'cast'][index]
+                                                          ['poster_path'] ??
+                                                      "https://via.placeholder.com/150"),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
+                                          );
+                                        
                                       },
                                     ))
                               ],
