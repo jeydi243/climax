@@ -146,8 +146,8 @@ class _HomeState extends State<Home> {
 	MovieService movieservice = Provider.of<MovieService>(context);
     return Row(
       children: <Widget>[
-        FutureBuilder<List<Map<String, dynamic>>>(
-          future: movieservice.getTrend2(),
+        FutureBuilder<List<Movie>>(
+          future: movieservice.getTrend(),
           builder: (_, snap) {
             if (snap.hasData) {
               return Expanded(
@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (_, index) {
                     return Image.network(
-                        tmm.getImageUrl(snap.data[index]["backdrop_path"]));
+                        tmm.getImageUrl(snap.data[index].backdropPath));
                   },
                 ),
               );

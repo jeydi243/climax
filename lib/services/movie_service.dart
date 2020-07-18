@@ -109,34 +109,17 @@ class MovieService {
 		}
 	}
 	
-	Future < List < Map < String, dynamic > >> getTrend2() async {
-		List < Map < String, dynamic >> listtrend = [];
-		try {
-			await _service.v3.trending.getTrending(mediaType: MediaType.movie, timeWindow: TimeWindow.week).then((res) {
-				for (var result in res["results"]) {
-					listtrend.add(result);
-				}
-			}).catchError((onError) {
-				print(onError);
-			});
-			return listtrend;
-		} catch (e) {
-			return listtrend;
-		}
-
-	}
 	Future < List < Movie >> getTrend() async {
 		List < Movie > movies = [];
 		Map res = {};
 		try {
 			res = await _service.v3.trending.getTrending(mediaType: MediaType.movie, timeWindow: TimeWindow.week);
-
 			for (Map < String, dynamic > result in res["results"]) {
 				Movie e = Movie.fromMap(result);
 				movies.add(e);
 			}
 			return movies;
-		} catch (e) {
+		} catch (e,s) {
 			print("Erreur: $e");
 			return movies;
 		}
