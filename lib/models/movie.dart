@@ -54,6 +54,9 @@ class Movie {
 	String get posterPath => _posterPath;
 	String get backdropPath => _backdropPath;
 	Map get Images => _images;
+	set setImages(Map images){
+       _images = images;
+	}
 
 	@override
 	String toString() {
