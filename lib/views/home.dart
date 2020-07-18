@@ -176,7 +176,7 @@ class _HomeState extends State<Home> {
 
   Widget two(BuildContext context) {
 	  MovieService movieservice = Provider.of<MovieService>(context);
-    return ListView(physics: BouncingScrollPhysics(), children: [
+     return ListView(physics: BouncingScrollPhysics(), children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -187,10 +187,14 @@ class _HomeState extends State<Home> {
           SizedBox(
             height: 25,
             child: FlatButton(
+			
+				padding: EdgeInsets.only(left: 0.0),
                 splashColor: Colors.amber.withOpacity(0.3),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    side: BorderSide(color: Colors.amber)),
+                shape: Border(
+					left: BorderSide(
+						color: Colors.amber,
+					)
+				),
                 onPressed: () {},
                 child: Text(
                   "Voir plus",
@@ -330,7 +334,10 @@ class _HomeState extends State<Home> {
 
   Widget three(BuildContext context) {
     return Container(
-        height: double.infinity, width: double.infinity, child: TicketTree());
+        height: double.infinity, 
+		width: double.infinity, 
+		child: TicketTree()
+		);
   }
 
   Widget bybuilder(BuildContext context) {
