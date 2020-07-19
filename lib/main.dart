@@ -4,6 +4,7 @@ import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter',
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+			backgroundColor: Pigment.fromString("#141E51"),
           body: SafeArea(
             child: Container(
               height: double.infinity,
@@ -51,12 +53,12 @@ class MyApp extends StatelessWidget {
                 alignment: AlignmentDirectional.center,
                 fit: StackFit.loose,
                 children: <Widget>[
-                  SizedBox.expand(
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Image.asset("assets/roberto.jpg"),
-                    ),
-                  ),
+                //   SizedBox.expand(
+                //     child: FittedBox(
+                //       fit: BoxFit.cover,
+                //       child: Image.asset("assets/roberto.jpg"),
+                //     ),
+                //   ),
                   LoginPage(),
                 ],
               ),

@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:flutter/gestures.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:climax/services/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -11,10 +12,9 @@ import 'package:pigment/pigment.dart';
 import 'package:climax/animations/fadein.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({this.auth, this.move, this.onSignedIn});
+  LoginPage({this.auth, this.onSignedIn});
   final BaseAuth auth;
   final VoidCallback onSignedIn;
-  final VoidCallback move;
   @override
   _LoginState createState() => _LoginState();
 }
@@ -173,56 +173,101 @@ class _LoginState extends State<LoginPage> {
                               "Réinitialisé ?",
                               style: TextStyle(color: Colors.amber),
                             ),
-                            onPressed: widget.move,
+                            onPressed: (){},
                           )
                         ],
                       ),
                     ],
                   ),
                 ),
-                FadeIn(
-                  3,
-                  Column(
-                    children: <Widget>[
-                      FittedBox(
-                          fit: BoxFit.fill,
-                          child: _isTrue
-                              ? new RaisedButton(
-                                  elevation: 12.0,
-                                  textColor: Pigment.fromString("#124A2C"),
-                                  child: new Text("Connexion",
-                                      style: TextStyle(fontSize: 17.0)),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(18.0),
-                                  ),
-                                  color: Colors.amber,
-                                  onPressed: _submit)
-                              : Loading(
-                                  indicator: BallPulseIndicator(),
-                                  size: 60.0,
-                                  color: Colors.amber)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "Vous etes nouveau ?",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          FlatButton(
-                            textColor: Colors.amber,
-                            child: Text(
-                              "M'inscrire",
-                              style: TextStyle(color: Colors.amber),
-                            ),
-                            onPressed: widget.move,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                FadeIn(3,
+                    Column(
+						children: <Widget>[
+							FittedBox(
+								fit: BoxFit.fill,
+								child: _isTrue
+									? new RaisedButton(
+										elevation: 12.0,
+										textColor: Pigment.fromString("#124A2C"),
+										child: new Text("Connexion",
+											style: TextStyle(fontSize: 17.0)),
+										shape: RoundedRectangleBorder(
+											borderRadius:
+												new BorderRadius.circular(18.0),
+										),
+										color: Colors.amber,
+										onPressed: _submit)
+									: Loading(
+										indicator: BallPulseIndicator(),
+										size: 60.0,
+										color: Colors.amber)),
+							Row(
+								children: <Widget>[
+									Expanded(
+										child: Divider(color: Colors.amber.withOpacity(0.3),endIndent: 10,)
+									),       
+
+									Text("OR",style: TextStyle(
+										color: Colors.amber
+									),),        
+
+									Expanded(
+										child: Divider(color: Colors.amber.withOpacity(0.3),indent: 10)
+									),
+								]
+							)
+						],
+                    ),
                 ),
-              ])),
+				Row(
+					children: <Widget>[
+						SignInButton(
+							Buttons.Facebook,
+							mini: true,
+							shape: RoundedRectangleBorder(
+								borderRadius: BorderRadius.circular(10)
+							),
+							onPressed: () {},
+						),
+						SignInButton(
+							Buttons.Google,
+							// mini: true,
+							shape: RoundedRectangleBorder(
+								borderRadius: BorderRadius.circular(10)
+							),
+							onPressed: () {},
+						),
+						SignInButton(
+							Buttons.Twitter,
+							mini: true,
+							shape: RoundedRectangleBorder(
+								borderRadius: BorderRadius.circular(10)
+							),
+							onPressed: () {},
+						),
+					],
+				),
+				Row(
+					mainAxisAlignment: MainAxisAlignment.center,
+					children: <Widget>[
+					Text(
+						"Vous etes nouveau ?",
+						style: TextStyle(color: Colors.white),
+					),
+					FlatButton(splashColor: Colors.amber,
+
+						textColor: Colors.amber,
+						child: Text(
+						"Inscription",
+						style: TextStyle(color: Colors.amber),
+						),
+						onPressed: (){
+
+						},
+					)
+					],
+				),
+			  ])),
     );
   }
 }

@@ -38,8 +38,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             widget.person = snapshot.data;
-            print(widget.person.toString());
-
+            Person person = snapshot.data;
             return Stack(
               children: <Widget>[
                 SizedBox(
@@ -48,7 +47,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                   child: FadeInImage.memoryNetwork(
                       fit: BoxFit.cover,
                       placeholder: kTransparentImage,
-                      image: service.getImageUrl(snapshot.data.profilePath) ??
+                      image: service.getImageUrl(person.profilePath) ??
                           "assets/heroes.gif"),
                 ),
                 Align(
@@ -95,7 +94,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                         ),
                                         FadeAnimatedTextKit(
                                             isRepeatingAnimation: true,
-                                            text: snapshot.data.alsoKnownAs,
+                                            text: person.alsoKnownAs,
                                             textStyle: GoogleFonts.notoSerif(
                                               color: Colors.amber,
                                             ),
@@ -112,7 +111,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 8.0),
                                     child: Text(
-                                      "${snapshot.data.biography}",
+                                      "${person.biography}",
                                       style:
                                           GoogleFonts.itim(color: Colors.white),
                                     ),
