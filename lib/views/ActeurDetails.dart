@@ -8,7 +8,6 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
-import 'package:tmdb_dart/tmdb_dart.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ActeurDetails extends StatefulWidget {

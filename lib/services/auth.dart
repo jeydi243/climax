@@ -1,5 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:get/get.dart';
 
 abstract class BaseAuth {
 	Future < String > signIn(String email, String password);
@@ -8,8 +11,11 @@ abstract class BaseAuth {
 	Future <void> signOut();
 
 }
-class Auth implements BaseAuth {
+class Auth extends GetxController implements BaseAuth {
 	final FirebaseAuth _fbAuth = FirebaseAuth.instance;
+    final GoogleSignIn gsign = GoogleSignIn();
+	// final FacebookLogin fbsign = FacebookLogin();
+    dynamic user = 0.obs;
 	Future <String> signIn(String email, String password) async {
 		FirebaseUser user = (await _fbAuth.signInWithEmailAndPassword(email: email, password: password)).user;
 		return user.uid;
@@ -18,11 +24,11 @@ class Auth implements BaseAuth {
 		FirebaseUser user = (await _fbAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
 		return user.uid;
 	}
-  Future <void> signOut() async {
+    Future <void> signOut() async {
 		return _fbAuth.signOut();
 	}
-  Future <String> currentUser()async{
-    FirebaseUser user = await _fbAuth.currentUser();
-    return user?.uid;
-  }
+	Future <String> currentUser()async{
+		FirebaseUser user = await _fbAuth.currentUser();
+		return user?.uid;
+	}
 }

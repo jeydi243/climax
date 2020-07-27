@@ -2,8 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:climax/services/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -221,30 +219,32 @@ class _LoginState extends State<LoginPage> {
                 ),
 				Row(
 					children: <Widget>[
-						SignInButton(
-							Buttons.Facebook,
-							mini: true,
-							shape: RoundedRectangleBorder(
-								borderRadius: BorderRadius.circular(10)
-							),
-							onPressed: () {},
-						),
-						SignInButton(
-							Buttons.Google,
-							// mini: true,
-							shape: RoundedRectangleBorder(
-								borderRadius: BorderRadius.circular(10)
-							),
-							onPressed: () {},
-						),
-						SignInButton(
-							Buttons.Twitter,
-							mini: true,
-							shape: RoundedRectangleBorder(
-								borderRadius: BorderRadius.circular(10)
-							),
-							onPressed: () {},
-						),
+						// SignInButton(
+						// 	Buttons.Facebook,
+						// 	mini: true,
+						// 	shape: RoundedRectangleBorder(
+						// 		borderRadius: BorderRadius.circular(10)
+						// 	),
+						// 	onPressed: () {
+								
+						// 	},
+						// ),
+						// SignInButton(
+						// 	Buttons.Google,
+						// 	// mini: true,
+						// 	shape: RoundedRectangleBorder(
+						// 		borderRadius: BorderRadius.circular(10)
+						// 	),
+						// 	onPressed: () {},
+						// ),
+						// SignInButton(
+						// 	Buttons.Twitter,
+						// 	mini: true,
+						// 	shape: RoundedRectangleBorder(
+						// 		borderRadius: BorderRadius.circular(10)
+						// 	),
+						// 	onPressed: () {},
+						// ),
 					],
 				),
 				Row(

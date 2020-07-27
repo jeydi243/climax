@@ -13,31 +13,28 @@ dependencies:
   fw_ticket: ^0.1.1
   chewie: any
   barcode_flutter: ^1.1.2
-  pigment: ^1.0.3
-  ticket_card: ^0.2.0
   curved_navigation_bar: ^0.3.2
   cloud_firestore: ^0.13.0+1
+  firebase_core:
+  firebase_analytics:
   firebase_auth: ^0.15.4
   flutter_icons: any
-  google_sign_in: ^4.2.0
-  google_fonts: ^0.3.9
-  loading: ^1.0.2
-  provider: ^4.0.4
-  animated_splash: ^1.0.0
   flutter_ticket_widget: 
-  simple_animations: ^1.3.9
-  slimy_card: ^1.0.1
-  tmdb_api: ^1.0.1-stable
-  tmdb_dart: ^0.1.1
-  video_player: ^0.10.8+1
-  skeleton_text:
-  transparent_image: ^1.0.0
   font_awesome_flutter: ^8.8.1
-  animated_text_kit: ^2.2.0
+  google_fonts: ^0.3.9
   get: ^3.2.0
   get_storage:
-  flutter_signin_button: ^1.0.0
-  social_media_buttons: ^0.1.2
+  google_sign_in: ^4.2.0
+  loading: ^1.0.2
+  provider: ^4.0.4
+  simple_animations: ^1.3.9
+  pigment: ^1.0.3
+  ticket_card: ^0.2.0
+  slimy_card: ^1.0.1
+  tmdb_api: ^1.0.1-stable
+  video_player: ^0.10.8+1
+  transparent_image: ^1.0.0
+  animated_text_kit: ^2.2.0
 
 
 dev_dependencies:

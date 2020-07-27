@@ -14,7 +14,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -276,15 +275,14 @@ class _HomeState extends State<Home> {
                       itemBuilder: (_, index) {
                         return Padding(
                           padding: const EdgeInsets.all(5.0),
-                          child: SkeletonAnimation(
-                            child: Container(
+                          child: Container(
                               height: 100,
                               width: 90,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Colors.white.withOpacity(0.2)),
                             ),
-                          ),
+                          
                         );
                       },
                     ),

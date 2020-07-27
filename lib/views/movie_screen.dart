@@ -5,12 +5,9 @@ import 'package:climax/components/genre.dart';
 import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 class MovieScreen extends StatefulWidget {
   MovieScreen({Key key, @required this.movie}) : super(key: key);
@@ -264,7 +261,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                 return CustomshoMovieList(
                                     moviesList: snap.data);
                               } else if (snap.hasError) {
-                                return SkeletonAnimation(child: null);
+                                return Container();
                               } else {
                                 return Container();
                               }
