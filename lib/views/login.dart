@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:climax/services/auth.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
@@ -83,8 +84,7 @@ class _LoginState extends State<LoginPage> {
       body: SafeArea(
         child: Container(
           height: double.infinity,
-          child: Stack(
-			  children: [
+          child: Stack(children: [
             Container(
               padding: EdgeInsets.all(20.0),
               child: Form(
@@ -235,36 +235,29 @@ class _LoginState extends State<LoginPage> {
                             ],
                           ),
                         ),
-                        FutureBuilder<bool>(
-                          future: auth.gsignState,
-                          builder: (context, snapshot) {
-                            if (snapshot.data == false) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  RaisedButton(
-                                    onPressed: () {
-                                      Future.wait([auth.signInWithGoogle()])
-                                          .then((value) => print(value));
-                                    },
-                                    padding: EdgeInsets.all(5),
-                                    child: Text("Google"),
-                                  ),
-                                  RaisedButton(
-                                    onPressed: () {
-                                      Future.wait([auth.signOut()])
-                                          .then((value) => print(value));
-                                    },
-                                    padding: EdgeInsets.all(5),
-                                    child: Text("Facebook"),
-                                  )
-                                ],
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            RaisedButton(
+                              onPressed: () {
+                                Future.wait([auth.signInWithGoogle()])
+                                    .then((value) {
+                                  Get.to(Home());
+                                });
+                              },
+                              padding: EdgeInsets.all(5),
+                              child: Text("Google"),
+                            ),
+                            RaisedButton(
+                              onPressed: () {
+                                Future.wait([auth.signOut()]).then((value) {
+                                  Get.to(Home());
+                                });
+                              },
+                              padding: EdgeInsets.all(5),
+                              child: Text("Facebook"),
+                            )
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

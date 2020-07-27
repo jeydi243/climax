@@ -49,12 +49,15 @@ class _HomeState extends State<Home> {
         animationDuration: Duration(milliseconds: 500),
         color: Pigment.fromString("#FDB096"),
         height: 55,
-        index: 1,
+        index: 0,
         items: <Widget>[
           Icon(Icons.add, size: 30, color: Pigment.fromString("200540")),
-          Icon(Icons.local_movies,size: 30, color: Pigment.fromString("200540")),
-          Icon(FontAwesomeIcons.calendar, size: 30, color: Pigment.fromString("200540")),
-          Icon(Icons.accessibility_new,size: 30, color: Pigment.fromString("200540")),
+          Icon(Icons.local_movies,
+              size: 30, color: Pigment.fromString("200540")),
+          Icon(FontAwesomeIcons.calendar,
+              size: 30, color: Pigment.fromString("200540")),
+          Icon(Icons.accessibility_new,
+              size: 30, color: Pigment.fromString("200540")),
         ],
         onTap: (index) {
           setState(() {
@@ -142,7 +145,7 @@ class _HomeState extends State<Home> {
 
   Widget one(BuildContext context) {
     TMBDService tmm = Provider.of<TMBDService>(context);
-	MovieService movieservice = Provider.of<MovieService>(context);
+    MovieService movieservice = Provider.of<MovieService>(context);
     return Row(
       children: <Widget>[
         FutureBuilder<List<Movie>>(
@@ -174,8 +177,41 @@ class _HomeState extends State<Home> {
   }
 
   Widget two(BuildContext context) {
-	  MovieService movieservice = Provider.of<MovieService>(context);
-     return ListView(physics: BouncingScrollPhysics(), children: [
+    MovieService movieservice = Provider.of<MovieService>(context);
+    return ListView(physics: BouncingScrollPhysics(), children: [
+      Row(
+		  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            "Populaires",
+            style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
+          ),
+          Spacer(),
+          SizedBox(
+            height: 25,
+            child: FlatButton(
+                padding: EdgeInsets.only(left: 0.0),
+                splashColor: Colors.amber.withOpacity(0.3),
+                shape: Border(
+                    left: BorderSide(
+                  color: Colors.amber,
+                )),
+                onPressed: () {},
+                child: Text(
+                  "Voir plus",
+                  style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
+                )),
+          )
+        ],
+      ),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 15.0),
+        child: Column(
+          children: <Widget>[
+            PageV(),
+          ],
+        ),
+      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -186,14 +222,12 @@ class _HomeState extends State<Home> {
           SizedBox(
             height: 25,
             child: FlatButton(
-			
-				padding: EdgeInsets.only(left: 0.0),
+                padding: EdgeInsets.only(left: 0.0),
                 splashColor: Colors.amber.withOpacity(0.3),
                 shape: Border(
-					left: BorderSide(
-						color: Colors.amber,
-					)
-				),
+                    left: BorderSide(
+                  color: Colors.amber,
+                )),
                 onPressed: () {},
                 child: Text(
                   "Voir plus",
@@ -276,13 +310,12 @@ class _HomeState extends State<Home> {
                         return Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
-                              height: 100,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Colors.white.withOpacity(0.2)),
-                            ),
-                          
+                            height: 100,
+                            width: 90,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white.withOpacity(0.2)),
+                          ),
                         );
                       },
                     ),
@@ -294,71 +327,146 @@ class _HomeState extends State<Home> {
         ),
       ),
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Populaires",
+            "Bientôt",
             style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
           ),
-          Spacer(),
-          FlatButton(
-              splashColor: Colors.amber.withOpacity(0.3),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  side: BorderSide(color: Colors.amber)),
-              onPressed: () {},
-              child: Text(
-                "Voir plus",
-                style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
-              ))
+		  
+          SizedBox(
+            height: 25,
+            child: FlatButton(
+                padding: EdgeInsets.only(left: 0.0),
+                splashColor: Colors.amber.withOpacity(0.3),
+                shape: Border(
+                    left: BorderSide(
+                  color: Colors.amber,
+                )),
+                onPressed: () {},
+                child: Text(
+                  "Voir plus",
+                  style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
+                )),
+          )
         ],
       ),
-      Padding(
-        padding: const EdgeInsets.only(bottom: 15.0),
-        child: Column(
+	  Padding(
+        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        child: Row(
           children: <Widget>[
-            PageV(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Le texte",
-                style: GoogleFonts.lobster(fontSize: 20, color: Colors.amber),
-              ),
-            )
+            FutureBuilder<List<Movie>>(
+              future: movieservice.getUpcomming(),
+              builder: (_, snap) {
+                TMBDService tmm = Provider.of<TMBDService>(context);
+                if (snap.hasData) {
+                  return Expanded(
+                    child: SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                          itemCount: snap.data.length,
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return Hero(
+                              tag: "${snap.data[index].id}",
+                              child: GestureDetector(
+                                onTap: () {
+                                //   Navigator.of(context).push(MaterialPageRoute(
+                                //       builder: (fd) => MovieScreen(
+                                //           movie: snap.data[index])));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Container(
+                                    height: 100,
+                                    width: 80,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: FadeInImage.memoryNetwork(
+                                        placeholder: kTransparentImage,
+                                        fit: BoxFit.cover,
+                                        image: tmm.getImageUrl(
+                                            snap.data[index].posterPath),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  );
+                } else if (snap.hasError) {
+                  return Container(
+                    height: 100,
+                    width: 90,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)),
+                        // color: UniqueColorGenerator.getColor(),
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"),
+                            fit: BoxFit.fill)),
+                  );
+                }
+                return Expanded(
+                  child: SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            height: 100,
+                            width: 90,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white.withOpacity(0.2)),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
-      )
-    ]);
+      ),
+	]);
   }
 
   Widget three(BuildContext context) {
     return Container();
   }
 
-  Widget four(BuildContext context){
-	  return Container(
-        height: double.infinity, 
-		width: double.infinity, 
-		child: TicketTree()
-		);
+  Widget four(BuildContext context) {
+    return Container(
+        height: double.infinity, width: double.infinity, child: TicketTree());
   }
+
   Widget bybuilder(BuildContext context) {
     if (_page == 0) {
       return Expanded(
-        child: one(context),
+        child: two(context),
       );
     } else if (_page == 1) {
       return Expanded(
-        child: two(context),
+        child: one(context),
       );
-    } else if(_page ==2) {
-      return Expanded(
-		  child: three(context)
-		);
-    }else{
-		return Expanded(
-		  child: four(context)
-		);
-	}
+    } else if (_page == 2) {
+      return Expanded(child: three(context));
+    } else {
+      return Expanded(child: four(context));
+    }
   }
 }
 

@@ -6,6 +6,7 @@ class MovieService {
 	TMDB _service;
 	ApiKeys _keys;
 	String _lang;
+	
 
 	MovieService() {
 		_keys = ApiKeys('f69d3de4926e09f3e28b56b471471aec', "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNjlkM2RlNDkyNmUwOWYzZTI4YjU2YjQ3MTQ3MWFlYyIsInN1YiI6IjVlOGIyMjNiNGQwZThkMDAxMmUxYWMxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nqmIEcBtwibYq_LkqV1zxraUeqwbxSXHpjK_ZvN-UYo");
@@ -39,20 +40,20 @@ class MovieService {
 
 		return mylist;
 	}
-	Future < List < Map >> getUpcomming() async {
-		List < Map > list = [];
-		var result;
+	Future < List < Movie >> getUpcomming({int numeroPage = 1}) async {
+		List < Movie > movies = [];
+		Map res = {};
 		try {
-			result = await _service.v3.movies.getUpcoming();
-
-			for (var movie in result["results"]) {
-				list.add(movie);
+			res = await _service.v3.movies.getUpcoming(language: _lang,page: numeroPage);
+			for (Map < String, dynamic > result in res["results"]) {
+				Movie e = Movie.fromMap(result);
+				movies.add(e);
 			}
-
-		} catch (e) {
-			print(e);
+			return movies;
+		} catch (e,s) {
+			print("Erreur: $e au niveau de $s");
+			return movies;
 		}
-		return list;
 	}
 	Future < List < Map < String, dynamic >>> getMovieCredits(int movieId, String typeOfcast) async {
 		List < Map < String, dynamic >> casting = [];
