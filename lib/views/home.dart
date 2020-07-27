@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:climax/components/Mycalendar.dart';
 import 'package:climax/services/TMBDService.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:climax/Models/movie.dart';
@@ -51,10 +52,9 @@ class _HomeState extends State<Home> {
         index: 1,
         items: <Widget>[
           Icon(Icons.add, size: 30, color: Pigment.fromString("200540")),
-          Icon(Icons.local_movies,
-              size: 30, color: Pigment.fromString("200540")),
-          Icon(Icons.accessibility_new,
-              size: 30, color: Pigment.fromString("200540")),
+          Icon(Icons.local_movies,size: 30, color: Pigment.fromString("200540")),
+          Icon(FontAwesomeIcons.calendar, size: 30, color: Pigment.fromString("200540")),
+          Icon(Icons.accessibility_new,size: 30, color: Pigment.fromString("200540")),
         ],
         onTap: (index) {
           setState(() {
@@ -331,13 +331,16 @@ class _HomeState extends State<Home> {
   }
 
   Widget three(BuildContext context) {
-    return Container(
+    return Container();
+  }
+
+  Widget four(BuildContext context){
+	  return Container(
         height: double.infinity, 
 		width: double.infinity, 
 		child: TicketTree()
 		);
   }
-
   Widget bybuilder(BuildContext context) {
     if (_page == 0) {
       return Expanded(
@@ -347,11 +350,15 @@ class _HomeState extends State<Home> {
       return Expanded(
         child: two(context),
       );
-    } else {
+    } else if(_page ==2) {
       return Expanded(
 		  child: three(context)
 		);
-    }
+    }else{
+		return Expanded(
+		  child: four(context)
+		);
+	}
   }
 }
 

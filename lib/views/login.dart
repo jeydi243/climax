@@ -8,6 +8,7 @@ import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:loading/loading.dart';
 import 'package:pigment/pigment.dart';
 import 'package:climax/animations/fadein.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({this.auth, this.onSignedIn});
@@ -43,7 +44,8 @@ class _LoginState extends State<LoginPage> {
         _isTrue = false;
       });
       try {
-        String uid = await widget.auth.signIn(_emailOrNom, _password);
+        String uid = await widget.auth
+            .signInWithEmailAndPassword(_emailOrNom, _password);
         print("L'utilisateur s'est bien connecté $uid");
         _formKey.currentState.reset();
         setState(() {
@@ -75,199 +77,218 @@ class _LoginState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      child: Form(
-          key: _formKey,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FadeIn(
-                  1,
-                  Column(
-                    children: <Widget>[
-                      new Text("Bonjour!",
-                          style: GoogleFonts.bubblegumSans(
-                              textStyle: TextStyle(
-                            color: Colors.amber,
-                            letterSpacing: .5,
-                            fontSize: 25.0,
-                          ))),
-                      new Text("Ravis de vous revoir",
-                          style: GoogleFonts.bubblegumSans(
-                              textStyle: TextStyle(
-                                  color: Colors.amber,
-                                  fontSize: 35.0,
-                                  letterSpacing: .5))),
-                    ],
-                  ),
-                ),
-                FadeIn(
-                  2,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      new TextFormField(
-                        style: TextStyle(color: Colors.white.withOpacity(.5)),
-                        onSaved: (value) => _emailOrNom = value,
-                        cursorColor: Colors.green,
-                        validator: (value) => value.isEmpty
-                            ? "L'email ou le nom doit etre renseigné"
-                            : null,
-                        decoration: new InputDecoration(
-                          focusColor: Colors.amber.withOpacity(.5),
-                          isDense: true,
-                          fillColor: Colors.white.withOpacity(.2),
-                          filled: true,
-                          prefixIcon: Icon(Icons.email, color: Colors.amber),
-                          hintText: "Email ou Nom",
-                          labelText: "Email",
-                          labelStyle: GoogleFonts.bubblegumSans(
-                              textStyle: TextStyle(
-                                  color: Colors.amber,
-                                  decorationStyle: TextDecorationStyle.dashed)),
+    Auth auth = Provider.of<Auth>(context);
+    return Scaffold(
+      backgroundColor: Pigment.fromString("#141E51"),
+      body: SafeArea(
+        child: Container(
+          height: double.infinity,
+          child: Stack(
+			  children: [
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Form(
+                  key: _formKey,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        FadeIn(
+                          1,
+                          Column(
+                            children: <Widget>[
+                              new Text("Bonjour!",
+                                  style: GoogleFonts.bubblegumSans(
+                                      textStyle: TextStyle(
+                                    color: Colors.amber,
+                                    letterSpacing: .5,
+                                    fontSize: 25.0,
+                                  ))),
+                              new Text("Ravis de vous revoir",
+                                  style: GoogleFonts.bubblegumSans(
+                                      textStyle: TextStyle(
+                                          color: Colors.amber,
+                                          fontSize: 35.0,
+                                          letterSpacing: .5))),
+                            ],
+                          ),
                         ),
-                      ),
-                      new TextFormField(
-                        style: TextStyle(color: Colors.white.withOpacity(.5)),
-                        onSaved: (value) => _password = value,
-                        cursorColor: Colors.green,
-                        validator: (value) => value.isEmpty
-                            ? "Le mot de passe doit etre renseigné"
-                            : null,
-                        decoration: new InputDecoration(
-                            fillColor: Colors.white.withOpacity(.2),
-                            filled: true,
-                            isDense: true,
-                            prefixIcon: Icon(Icons.lock, color: Colors.amber),
-                            suffixIcon: FlatButton(
-                              child: _canObscure == true
-                                  ? Text("SHOW",
-                                      style:
-                                          TextStyle(color: Colors.amber[200]))
-                                  : Text("HIDE",
-                                      style:
-                                          TextStyle(color: Colors.amber[200])),
-                              onPressed: () {
-                                setState(() {
-                                  _canObscure = _canObscure ? false : true;
-                                });
-                              },
+                        FadeIn(
+                          2,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              new TextFormField(
+                                style: TextStyle(
+                                    color: Colors.white.withOpacity(.5)),
+                                onSaved: (value) => _emailOrNom = value,
+                                cursorColor: Colors.green,
+                                validator: (value) => value.isEmpty
+                                    ? "L'email ou le nom doit etre renseigné"
+                                    : null,
+                                decoration: new InputDecoration(
+                                  focusColor: Colors.amber.withOpacity(.5),
+                                  isDense: true,
+                                  fillColor: Colors.white.withOpacity(.2),
+                                  filled: true,
+                                  prefixIcon:
+                                      Icon(Icons.email, color: Colors.amber),
+                                  hintText: "Email ou Nom",
+                                  labelText: "Email",
+                                  labelStyle: GoogleFonts.bubblegumSans(
+                                      textStyle: TextStyle(
+                                          color: Colors.amber,
+                                          decorationStyle:
+                                              TextDecorationStyle.dashed)),
+                                ),
+                              ),
+                              new TextFormField(
+                                style: TextStyle(
+                                    color: Colors.white.withOpacity(.5)),
+                                onSaved: (value) => _password = value,
+                                cursorColor: Colors.green,
+                                validator: (value) => value.isEmpty
+                                    ? "Le mot de passe doit etre renseigné"
+                                    : null,
+                                decoration: new InputDecoration(
+                                    fillColor: Colors.white.withOpacity(.2),
+                                    filled: true,
+                                    isDense: true,
+                                    prefixIcon:
+                                        Icon(Icons.lock, color: Colors.amber),
+                                    suffixIcon: FlatButton(
+                                      child: _canObscure == true
+                                          ? Text("SHOW",
+                                              style: TextStyle(
+                                                  color: Colors.amber[200]))
+                                          : Text("HIDE",
+                                              style: TextStyle(
+                                                  color: Colors.amber[200])),
+                                      onPressed: () {
+                                        setState(() {
+                                          _canObscure =
+                                              _canObscure ? false : true;
+                                        });
+                                      },
+                                    ),
+                                    labelText: "Mot de passe",
+                                    labelStyle: GoogleFonts.bubblegumSans(
+                                        textStyle: TextStyle(
+                                      color: Colors.amber,
+                                    ))),
+                                obscureText: _canObscure,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  new FlatButton(
+                                    textColor: Colors.amber,
+                                    child: Text(
+                                      "Réinitialisé ?",
+                                      style: TextStyle(color: Colors.amber),
+                                    ),
+                                    onPressed: () {},
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        FadeIn(
+                          3,
+                          Column(
+                            children: <Widget>[
+                              FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: _isTrue
+                                      ? new RaisedButton(
+                                          elevation: 12.0,
+                                          textColor:
+                                              Pigment.fromString("#124A2C"),
+                                          child: new Text("Connexion",
+                                              style: TextStyle(fontSize: 17.0)),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(18.0),
+                                          ),
+                                          color: Colors.amber,
+                                          onPressed: _submit)
+                                      : Loading(
+                                          indicator: BallPulseIndicator(),
+                                          size: 60.0,
+                                          color: Colors.amber)),
+                              Row(children: <Widget>[
+                                Expanded(
+                                    child: Divider(
+                                  color: Colors.amber.withOpacity(0.3),
+                                  endIndent: 10,
+                                )),
+                                Text(
+                                  "OR",
+                                  style: TextStyle(color: Colors.amber),
+                                ),
+                                Expanded(
+                                    child: Divider(
+                                        color: Colors.amber.withOpacity(0.3),
+                                        indent: 10)),
+                              ])
+                            ],
+                          ),
+                        ),
+                        FutureBuilder<bool>(
+                          future: auth.gsignState,
+                          builder: (context, snapshot) {
+                            if (snapshot.data == false) {
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Future.wait([auth.signInWithGoogle()])
+                                          .then((value) => print(value));
+                                    },
+                                    padding: EdgeInsets.all(5),
+                                    child: Text("Google"),
+                                  ),
+                                  RaisedButton(
+                                    onPressed: () {
+                                      Future.wait([auth.signOut()])
+                                          .then((value) => print(value));
+                                    },
+                                    padding: EdgeInsets.all(5),
+                                    child: Text("Facebook"),
+                                  )
+                                ],
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Vous etes nouveau ?",
+                              style: TextStyle(color: Colors.white),
                             ),
-                            labelText: "Mot de passe",
-                            labelStyle: GoogleFonts.bubblegumSans(
-                                textStyle: TextStyle(
-                              color: Colors.amber,
-                            ))),
-                        obscureText: _canObscure,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          new FlatButton(
-                            textColor: Colors.amber,
-                            child: Text(
-                              "Réinitialisé ?",
-                              style: TextStyle(color: Colors.amber),
-                            ),
-                            onPressed: (){},
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                FadeIn(3,
-                    Column(
-						children: <Widget>[
-							FittedBox(
-								fit: BoxFit.fill,
-								child: _isTrue
-									? new RaisedButton(
-										elevation: 12.0,
-										textColor: Pigment.fromString("#124A2C"),
-										child: new Text("Connexion",
-											style: TextStyle(fontSize: 17.0)),
-										shape: RoundedRectangleBorder(
-											borderRadius:
-												new BorderRadius.circular(18.0),
-										),
-										color: Colors.amber,
-										onPressed: _submit)
-									: Loading(
-										indicator: BallPulseIndicator(),
-										size: 60.0,
-										color: Colors.amber)),
-							Row(
-								children: <Widget>[
-									Expanded(
-										child: Divider(color: Colors.amber.withOpacity(0.3),endIndent: 10,)
-									),       
-
-									Text("OR",style: TextStyle(
-										color: Colors.amber
-									),),        
-
-									Expanded(
-										child: Divider(color: Colors.amber.withOpacity(0.3),indent: 10)
-									),
-								]
-							)
-						],
-                    ),
-                ),
-				Row(
-					children: <Widget>[
-						// SignInButton(
-						// 	Buttons.Facebook,
-						// 	mini: true,
-						// 	shape: RoundedRectangleBorder(
-						// 		borderRadius: BorderRadius.circular(10)
-						// 	),
-						// 	onPressed: () {
-								
-						// 	},
-						// ),
-						// SignInButton(
-						// 	Buttons.Google,
-						// 	// mini: true,
-						// 	shape: RoundedRectangleBorder(
-						// 		borderRadius: BorderRadius.circular(10)
-						// 	),
-						// 	onPressed: () {},
-						// ),
-						// SignInButton(
-						// 	Buttons.Twitter,
-						// 	mini: true,
-						// 	shape: RoundedRectangleBorder(
-						// 		borderRadius: BorderRadius.circular(10)
-						// 	),
-						// 	onPressed: () {},
-						// ),
-					],
-				),
-				Row(
-					mainAxisAlignment: MainAxisAlignment.center,
-					children: <Widget>[
-					Text(
-						"Vous etes nouveau ?",
-						style: TextStyle(color: Colors.white),
-					),
-					FlatButton(splashColor: Colors.amber,
-
-						textColor: Colors.amber,
-						child: Text(
-						"Inscription",
-						style: TextStyle(color: Colors.amber),
-						),
-						onPressed: (){
-
-						},
-					)
-					],
-				),
-			  ])),
+                            FlatButton(
+                              splashColor: Colors.amber,
+                              textColor: Colors.amber,
+                              child: Text(
+                                "Inscription",
+                                style: TextStyle(color: Colors.amber),
+                              ),
+                              onPressed: () {},
+                            )
+                          ],
+                        ),
+                      ])),
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }

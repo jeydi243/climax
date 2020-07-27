@@ -1,8 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:climax/services/TMBDService.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
@@ -44,27 +49,7 @@ class MyApp extends StatelessWidget {
         },
         title: 'Flutter',
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-			backgroundColor: Pigment.fromString("#141E51"),
-          body: SafeArea(
-            child: Container(
-              height: double.infinity,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                fit: StackFit.loose,
-                children: <Widget>[
-                //   SizedBox.expand(
-                //     child: FittedBox(
-                //       fit: BoxFit.cover,
-                //       child: Image.asset("assets/roberto.jpg"),
-                //     ),
-                //   ),
-                  LoginPage(),
-                ],
-              ),
-            ),
-          ),
-        ),
+        home: LoginPage(),
       ),
     );
   }
