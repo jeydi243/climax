@@ -79,10 +79,23 @@ class MovieService {
 		return list;
 
 	}
-	Future < Map > getTopRated({
+	Future < List<Movie> > getTopRated({
 		int page = 1
 	}) async {
-		return await _service.v3.movies.getTopRated(page: page, language: _lang);
+		List < Movie > movies = [];
+		Map res = {};
+		try {
+			res = await _service.v3.movies.getTopRated(page: page);
+			for (Map < String, dynamic > result in res["results"]) {
+				Movie e = Movie.fromMap(result);
+				movies.add(e);  
+			}
+			return movies;
+		} catch (e,s) {
+			print("Erreur: $e");
+			return movies;
+		}
+
 	}
 	Stream < Map > getLatestMovie() async *{
 		while (1 == 1) {

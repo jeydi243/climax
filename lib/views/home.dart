@@ -1,14 +1,11 @@
 import 'dart:math';
-import 'package:climax/components/Mycalendar.dart';
-import 'package:climax/services/TMBDService.dart';
-import 'package:transparent_image/transparent_image.dart';
-import 'package:climax/Models/movie.dart';
-import 'package:climax/components/pageV.dart';
 import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/login.dart';
-import 'package:climax/views/movie_screen.dart';
+import 'package:climax/views/home/page_deux.dart';
+import 'package:climax/views/home/page_un.dart';
+import 'package:climax/views/home/page_trois.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,12 +39,11 @@ class _HomeState extends State<Home> {
       backgroundColor: Pigment.fromString("#141E51"),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        backgroundColor:
-            Pigment.fromString("#141E51"), //Background color of selected
+        backgroundColor:Colors.transparent, //Background color of selected
         buttonBackgroundColor: Pigment.fromString("#FFBA02"),
         animationCurve: Curves.ease,
         animationDuration: Duration(milliseconds: 500),
-        color: Pigment.fromString("#FDB096"),
+        color: Pigment.fromString("#FFBA02"),
         height: 55,
         index: 0,
         items: <Widget>[
@@ -143,311 +139,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget one(BuildContext context) {
-    TMBDService tmm = Provider.of<TMBDService>(context);
-    MovieService movieservice = Provider.of<MovieService>(context);
-    return Row(
-      children: <Widget>[
-        FutureBuilder<List<Movie>>(
-          future: movieservice.getTrend(),
-          builder: (_, snap) {
-            if (snap.hasData) {
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: snap.data.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, index) {
-                    return Image.network(
-                        tmm.getImageUrl(snap.data[index].backdropPath));
-                  },
-                ),
-              );
-            } else {
-              return Container(
-                child: Text(
-                  'Le Future ne remet rien! ',
-                  style: TextStyle(color: Colors.white),
-                ),
-              );
-            }
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget two(BuildContext context) {
-    MovieService movieservice = Provider.of<MovieService>(context);
-    return ListView(physics: BouncingScrollPhysics(), children: [
-      Row(
-		  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            "Populaires",
-            style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
-          ),
-          Spacer(),
-          SizedBox(
-            height: 25,
-            child: FlatButton(
-                padding: EdgeInsets.only(left: 0.0),
-                splashColor: Colors.amber.withOpacity(0.3),
-                shape: Border(
-                    left: BorderSide(
-                  color: Colors.amber,
-                )),
-                onPressed: () {},
-                child: Text(
-                  "Voir plus",
-                  style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
-                )),
-          )
-        ],
-      ),
-      Padding(
-        padding: const EdgeInsets.only(bottom: 15.0),
-        child: Column(
-          children: <Widget>[
-            PageV(),
-          ],
-        ),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            "Tendance",
-            style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
-          ),
-          SizedBox(
-            height: 25,
-            child: FlatButton(
-                padding: EdgeInsets.only(left: 0.0),
-                splashColor: Colors.amber.withOpacity(0.3),
-                shape: Border(
-                    left: BorderSide(
-                  color: Colors.amber,
-                )),
-                onPressed: () {},
-                child: Text(
-                  "Voir plus",
-                  style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
-                )),
-          )
-        ],
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: Row(
-          children: <Widget>[
-            FutureBuilder<List<Movie>>(
-              future: movieservice.getTrend(),
-              builder: (_, snap) {
-                TMBDService tmm = Provider.of<TMBDService>(context);
-                if (snap.hasData) {
-                  return Expanded(
-                    child: SizedBox(
-                      height: 100,
-                      child: ListView.builder(
-                          itemCount: snap.data.length,
-                          scrollDirection: Axis.horizontal,
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return Hero(
-                              tag: "${snap.data[index].id}",
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (fd) => MovieScreen(
-                                          movie: snap.data[index])));
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Container(
-                                    height: 100,
-                                    width: 80,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: FadeInImage.memoryNetwork(
-                                        placeholder: kTransparentImage,
-                                        fit: BoxFit.cover,
-                                        image: tmm.getImageUrl(
-                                            snap.data[index].posterPath),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                  );
-                } else if (snap.hasError) {
-                  return Container(
-                    height: 100,
-                    width: 90,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)),
-                        // color: UniqueColorGenerator.getColor(),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"),
-                            fit: BoxFit.fill)),
-                  );
-                }
-                return Expanded(
-                  child: SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (_, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Container(
-                            height: 100,
-                            width: 90,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white.withOpacity(0.2)),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            "Bientôt",
-            style: GoogleFonts.lobster(color: Colors.amber, fontSize: 20),
-          ),
-		  
-          SizedBox(
-            height: 25,
-            child: FlatButton(
-                padding: EdgeInsets.only(left: 0.0),
-                splashColor: Colors.amber.withOpacity(0.3),
-                shape: Border(
-                    left: BorderSide(
-                  color: Colors.amber,
-                )),
-                onPressed: () {},
-                child: Text(
-                  "Voir plus",
-                  style: GoogleFonts.lobster(color: Colors.amber, fontSize: 13),
-                )),
-          )
-        ],
-      ),
-	  Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: Row(
-          children: <Widget>[
-            FutureBuilder<List<Movie>>(
-              future: movieservice.getUpcomming(),
-              builder: (_, snap) {
-                TMBDService tmm = Provider.of<TMBDService>(context);
-                if (snap.hasData) {
-                  return Expanded(
-                    child: SizedBox(
-                      height: 100,
-                      child: ListView.builder(
-                          itemCount: snap.data.length,
-                          scrollDirection: Axis.horizontal,
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return Hero(
-                              tag: "${snap.data[index].id}",
-                              child: GestureDetector(
-                                onTap: () {
-                                //   Navigator.of(context).push(MaterialPageRoute(
-                                //       builder: (fd) => MovieScreen(
-                                //           movie: snap.data[index])));
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Container(
-                                    height: 100,
-                                    width: 80,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: FadeInImage.memoryNetwork(
-                                        placeholder: kTransparentImage,
-                                        fit: BoxFit.cover,
-                                        image: tmm.getImageUrl(
-                                            snap.data[index].posterPath),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                  );
-                } else if (snap.hasError) {
-                  return Container(
-                    height: 100,
-                    width: 90,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)),
-                        // color: UniqueColorGenerator.getColor(),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"),
-                            fit: BoxFit.fill)),
-                  );
-                }
-                return Expanded(
-                  child: SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (_, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Container(
-                            height: 100,
-                            width: 90,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white.withOpacity(0.2)),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-	]);
-  }
-
-  Widget three(BuildContext context) {
-    return Container();
-  }
-
   Widget four(BuildContext context) {
     return Container(
         height: double.infinity, width: double.infinity, child: TicketTree());
@@ -456,14 +147,14 @@ class _HomeState extends State<Home> {
   Widget bybuilder(BuildContext context) {
     if (_page == 0) {
       return Expanded(
-        child: two(context),
+        child: PageUn(),
       );
     } else if (_page == 1) {
       return Expanded(
-        child: one(context),
+        child: PageDeux(),
       );
     } else if (_page == 2) {
-      return Expanded(child: three(context));
+      return Expanded(child: PageTrois());
     } else {
       return Expanded(child: four(context));
     }
