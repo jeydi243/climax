@@ -93,17 +93,21 @@ class _MovieScreenState extends State<MovieScreen> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "${widget.movie.title}",
-                            style: GoogleFonts.courgette(
-                                color: Colors.amber,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 23),
-                          ),
-                        ],
+                      child: SizedBox(
+						  height: 40,
+						  width: double.infinity,
+						  child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            Text(
+                              "${widget.movie.title}",
+                              style: GoogleFonts.courgette(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 23),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Row(

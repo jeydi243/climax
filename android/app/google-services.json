@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:364513065073:android:71382f1f1b813b8ff443d0",
+        "mobilesdk_app_id": "1:364513065073:android:898538ad1a94d323f443d0",
         "android_client_info": {
-          "package_name": "com.example.climax"
+          "package_name": "com.epinc.climax"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "364513065073-9behou26htb7p3713fbhb34nimf7684j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epinc.climax",
+            "certificate_hash": "1cb3fab9249f813002ccfe5c234bb3caeb84c722"
+          }
+        },
         {
           "client_id": "364513065073-94fnb2fopsj2gsmut02dueqbnp7jrscn.apps.googleusercontent.com",
           "client_type": 3
