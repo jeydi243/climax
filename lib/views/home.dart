@@ -1,11 +1,11 @@
 import 'dart:math';
-import 'package:climax/components/tickettree.dart';
 import 'package:climax/services/auth.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/login.dart';
 import 'package:climax/views/home/page_deux.dart';
 import 'package:climax/views/home/page_un.dart';
 import 'package:climax/views/home/page_trois.dart';
+import 'package:climax/views/home/page_quatre.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,7 +33,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context);
-    MovieService movieservice = Provider.of<MovieService>(context);
 
     return Scaffold(
       backgroundColor: Pigment.fromString("#141E51"),
@@ -138,12 +137,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  Widget four(BuildContext context) {
-    return Container(
-        height: double.infinity, width: double.infinity, child: TicketTree());
-  }
-
   Widget bybuilder(BuildContext context) {
     if (_page == 0) {
       return Expanded(
@@ -156,7 +149,7 @@ class _HomeState extends State<Home> {
     } else if (_page == 2) {
       return Expanded(child: PageTrois());
     } else {
-      return Expanded(child: four(context));
+      return Expanded(child: PageQuatre());
     }
   }
 }
