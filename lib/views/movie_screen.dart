@@ -55,15 +55,13 @@ class _MovieScreenState extends State<MovieScreen> {
                 // 	Navigator.pop(context);
                 // },
                 child: Stack(children: [
-                  Hero(
-                      tag: "${widget.movie.id}",
-                      child: SizedBox(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Image.network(
-                            tmm.getImageUrl(widget.movie.posterPath),
-                            fit: BoxFit.cover,
-                          ))),
+                  SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: Image.network(
+                        tmm.getImageUrl(widget.movie.posterPath),
+                        fit: BoxFit.cover,
+                      )),
                   Align(
                     alignment: Alignment(0, 1),
                     child: Container(
