@@ -64,10 +64,10 @@ class Movie {
        _videos = videos;
 	}
 
-	@override
-	String toString() {
-		return "* ${this._genres[0]}: ${this._title}";
-	}
+	// @override
+	// String toString() {
+	// 	return "* ${this._genres[0]}: ${this._title}";
+	// }
 
 	Movie({
 		adult,

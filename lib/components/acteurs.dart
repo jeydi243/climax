@@ -1,4 +1,4 @@
-import 'package:climax/services/TMBDService.dart';
+import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +51,9 @@ class _ActeursState extends State < Acteurs > {
 															snap.data[index]["profile_path"]),
 													)),
 											),
-									));
+									)
+									)
+									;
 							});
 					}
 					return ListView.builder(

@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:climax/views/user/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:climax/views/home.dart';
 import 'package:flutter/gestures.dart';
-import 'package:climax/services/auth.dart';
+import 'package:climax/services/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
@@ -10,10 +12,10 @@ import 'package:loading/loading.dart';
 import 'package:pigment/pigment.dart';
 import 'package:climax/animations/fadein.dart';
 import 'package:provider/provider.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({this.auth, this.onSignedIn});
-  final BaseAuth auth;
+  LoginPage({this.onSignedIn});
   final VoidCallback onSignedIn;
   @override
   _LoginState createState() => _LoginState();
@@ -36,44 +38,14 @@ class _LoginState extends State<LoginPage> {
       return false;
     }
   }
-
-  void _submit() async {
-    Navigator.of(context).push(_createRoute());
-
+ 
+  void  _submit() async {
+    Get.to(Home(),transition: Transition.size);
     if (_validateandSave()) {
       setState(() {
         _isTrue = false;
       });
-      try {
-        String uid = await widget.auth
-            .signInWithEmailAndPassword(_emailOrNom, _password);
-        print("L'utilisateur s'est bien connecté $uid");
-        _formKey.currentState.reset();
-        setState(() {
-          _isTrue = true;
-        });
-      } catch (e) {
-        print(e);
-      }
     }
-  }
-
-  Route _createRoute() {
-    return PageRouteBuilder(
-      opaque: true,
-      pageBuilder: (context, animation, secondaryAnimation) => Home(),
-      //le monde est beau
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = Offset(0.0, 1.0);
-        var end = Offset.zero;
-        var tween = Tween(begin: begin, end: end);
-        var offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
-    );
   }
 
   @override
@@ -90,7 +62,7 @@ class _LoginState extends State<LoginPage> {
               child: Form(
                   key: _formKey,
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         FadeIn(
                           1,
@@ -178,7 +150,8 @@ class _LoginState extends State<LoginPage> {
                                     ))),
                                 obscureText: _canObscure,
                               ),
-                              Row(
+                              
+							  Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
                                   new FlatButton(
@@ -250,9 +223,19 @@ class _LoginState extends State<LoginPage> {
                             ),
                             RaisedButton(
                               onPressed: () {
-                                Future.wait([auth.signOut()]).then((value) {
-                                  Get.to(Home());
-                                });
+                                BotToast.showAttachedWidget(
+
+								attachedBuilder: (_) => Center(
+								  child: Card(
+									
+								  	child: Padding(
+								  		padding: const EdgeInsets.all(5.0),
+								  		child: Text("L'authentification facebook n'est pas encore pret !")
+								  	),
+								  	),
+								),
+								duration: Duration(seconds: 2),
+								target: Offset(520, 520));
                               },
                               padding: EdgeInsets.all(5),
                               child: Text("Facebook"),
@@ -273,7 +256,9 @@ class _LoginState extends State<LoginPage> {
                                 "Inscription",
                                 style: TextStyle(color: Colors.amber),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+								  Get.to(Signup());
+							  },
                             )
                           ],
                         ),

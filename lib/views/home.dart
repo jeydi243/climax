@@ -1,7 +1,7 @@
 import 'dart:math';
-import 'package:climax/services/auth.dart';
+import 'package:climax/services/auth_service.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/views/login.dart';
+import 'package:climax/views/user/login.dart';
 import 'package:climax/views/home/page_deux.dart';
 import 'package:climax/views/home/page_un.dart';
 import 'package:climax/views/home/page_trois.dart';
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Pigment.fromString("#141E51"),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        backgroundColor:Colors.transparent, //Background color of selected
+        backgroundColor: Colors.transparent, //Background color of selected
         buttonBackgroundColor: Pigment.fromString("#FFBA02"),
         animationCurve: Curves.ease,
         animationDuration: Duration(milliseconds: 500),
@@ -72,12 +72,6 @@ class _HomeState extends State<Home> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          FontAwesomeIcons.bars,
-                        ),
-                        color: Colors.amber),
                     Text(
                       "Climax",
                       style: GoogleFonts.lobster(
@@ -100,57 +94,29 @@ class _HomeState extends State<Home> {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Container(
-                            color: Colors.white.withOpacity(0.2),
-                            child: TextFormField(
-                              cursorColor: Colors.amber,
-                              style: TextStyle(
-                                color: Colors.amber[300],
-                              ),
-                              decoration: InputDecoration(
-                                border: null,
-                                prefix: Icon(FontAwesomeIcons.search, size: 17),
-                                hintText: ("Rechercher un film ou une serie"),
-                                isDense: true,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.all(8),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                bybuilder(context)
+                Builder(
+                  builder: (context) {
+                    if (_page == 0) {
+                      return Expanded(
+                        child: PageUn(),
+                      );
+                    } else if (_page == 1) {
+                      return Expanded(
+                        child: PageDeux(),
+                      );
+                    } else if (_page == 2) {
+                      return Expanded(child: PageTrois());
+                    } else {
+                      return Expanded(child: PageQuatre());
+                    }
+                  },
+                )
               ],
             ),
           ),
         ),
       ),
     );
-  }
-  Widget bybuilder(BuildContext context) {
-    if (_page == 0) {
-      return Expanded(
-        child: PageUn(),
-      );
-    } else if (_page == 1) {
-      return Expanded(
-        child: PageDeux(),
-      );
-    } else if (_page == 2) {
-      return Expanded(child: PageTrois());
-    } else {
-      return Expanded(child: PageQuatre());
-    }
   }
 }
 

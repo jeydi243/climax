@@ -1,10 +1,8 @@
-import 'package:climax/services/TMBDService.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:climax/Models/person.dart';
-import 'package:climax/views/movie_screen.dart';
+import 'package:climax/services/tmdb_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';

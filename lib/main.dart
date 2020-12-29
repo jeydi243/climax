@@ -1,23 +1,22 @@
-import 'dart:typed_data';
-
-import 'package:climax/services/TMBDService.dart';
-import 'package:climax/services/auth.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:climax/services/tmdb_service.dart';
+import 'package:climax/services/auth_service.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:climax/services/person_service.dart';
+import 'package:climax/services/ticket_service.dart';
+import 'package:climax/views/home.dart';
+import 'package:climax/views/user/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:pigment/pigment.dart';
 import 'package:provider/provider.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'views/login.dart';
 
 main() async {
   await GetStorage.init();
   await TMBDService().getAllGenres();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -41,16 +40,34 @@ class MyApp extends StatelessWidget {
         Provider<PersonService>(
           create: (_) => new PersonService("fr-FR"),
           lazy: false,
+        ),
+        Provider<TicketService>(
+          create: (_) => new TicketService(),
+          lazy: false,
         )
       ],
       child: GetMaterialApp(
-        onInit: () async {
-          await TMBDService().getAllGenres();
-        },
-        title: 'Flutter',
-        debugShowCheckedModeBanner: false,
-        home: LoginPage(),
-      ),
+          onInit: () async {
+            await TMBDService().getAllGenres();
+          },
+          title: 'Climax',
+          builder: BotToastInit(),
+          navigatorObservers: [BotToastNavigatorObserver()],
+          debugShowCheckedModeBanner: false,
+          home: Builder(
+            builder: (context) {
+              Auth auth = Provider.of<Auth>(context);
+              return StreamBuilder(
+                  stream: auth.authStateChange(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == User) {
+                      return Home();
+                    } else {
+                      return LoginPage();
+                    }
+                  });
+            },
+          )),
     );
   }
 }

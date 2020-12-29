@@ -1,4 +1,5 @@
 
+import 'package:climax/Models/movie.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
@@ -120,5 +121,33 @@ class TMBDService {
     } catch (e, stack) {
       print(stack);
     }
+  }
+    Future< List < Movie >> search(String type,String query)async{
+		List < Movie > movies = [];
+	  if(type == "movies"){
+		  try{
+			  await _service.v3.search.queryMovies(query).then((value){
+				  for (Map < String, dynamic > movie in value["results"]) {
+						Movie e = Movie.fromMap(movie);
+						movies.add(e);
+					}
+			  });
+			  
+		  }catch(e){
+			  print(e);
+		  }
+	  }else if(type == "collections"){
+		//   return  _service.v3.search.queryCollections(query);
+	  }else if(type == "keywords"){
+		//   return  _service.v3.search.queryKeywords(query);
+	  }else if(type == "peoples"){
+		//   return  _service.v3.search.queryPeople(query);
+	  }else if(type == "series"){
+		//   return  _service.v3.search.queryTvShows(query);
+	  }else{
+		//   return  _service.v3.search.queryCompanies(query);
+	  }
+	  return movies;
+	  
   }
 }

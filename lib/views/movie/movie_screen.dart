@@ -2,7 +2,7 @@ import 'package:climax/Models/movie.dart';
 import 'package:climax/components/CustomshortMovieList.dart';
 import 'package:climax/components/acteurs.dart';
 import 'package:climax/components/genre.dart';
-import 'package:climax/services/TMBDService.dart';
+import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,20 +30,21 @@ class _MovieScreenState extends State<MovieScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
+					
           SliverAppBar(
             backgroundColor: Pigment.fromString("#141E51"),
             actions: <Widget>[
               IconButton(
                   icon: Icon(
                     Icons.favorite,
-                    color: Colors.amber,
+                    color: Colors.white,
                     size: 24.0,
                   ),
                   onPressed: null),
               IconButton(
                   icon: Icon(
                     Icons.more_vert,
-                    color: Colors.amber,
+                    color: Colors.white,
                     size: 24.0,
                   ),
                   onPressed: () {})
@@ -92,9 +93,9 @@ class _MovieScreenState extends State<MovieScreen> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 10.0),
                       child: SizedBox(
-						  height: 40,
-						  width: double.infinity,
-						  child: ListView(
+                        height: 40,
+                        width: double.infinity,
+                        child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
                             Text(
@@ -228,9 +229,7 @@ class _MovieScreenState extends State<MovieScreen> {
                             Spacer(),
                             FlatButton(
                               splashColor: Colors.amber.withOpacity(.2),
-                              onPressed: () {
-        
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'Plus',
                                 style: TextStyle(color: Colors.amber),

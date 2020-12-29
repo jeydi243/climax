@@ -1,6 +1,6 @@
-import 'package:climax/services/TMBDService.dart';
+import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/views/movie_screen.dart';
+import 'package:climax/views/movie/movie_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';

@@ -1,13 +1,13 @@
 import 'package:climax/Models/movie.dart';
 import 'package:climax/components/pageV.dart';
-import 'package:climax/services/TMBDService.dart';
+import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../movie_screen.dart';
+import '../movie/movie_screen.dart';
 
 class PageUn extends StatelessWidget {
   const PageUn({Key key}) : super(key: key);
@@ -15,7 +15,9 @@ class PageUn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 	  MovieService movieservice = Provider.of<MovieService>(context);
-	return ListView(physics: BouncingScrollPhysics(), children: [
+	return ListView(
+		physics: BouncingScrollPhysics(), 
+		children: [
       Row(
 		  mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
