@@ -82,13 +82,13 @@ class _PageDeuxState extends State<PageDeux> {
                           },
                           title: Text(
                             "${snapshot.data[index].title}",
-                            style: GoogleFonts.googleSans(
+                            style: GoogleFonts.gafata(
                                 color: Colors.amber,
                                 fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
                             "Sortie le ${snapshot.data[index].releaseDate}",
-                            style: GoogleFonts.googleSans(color: Colors.amber),
+                            style: GoogleFonts.gafata(color: Colors.amber),
                           ),
                           //leading: Image.network(service.getImageUrl(snapshot.data["results"][index]['poster_path'] ?? snapshot.data["results"][index]['backdrop_path'])),
                           leading: FadeInImage.memoryNetwork(
@@ -113,7 +113,7 @@ class _PageDeuxState extends State<PageDeux> {
               }
               return Text(
                 "Rechercher...",
-                style: GoogleFonts.googleSans(color: Colors.amber),
+                style: GoogleFonts.gafata(color: Colors.amber),
               );
             },
           ),
