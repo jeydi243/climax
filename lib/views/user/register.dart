@@ -8,8 +8,8 @@ import 'package:climax/views/home.dart';
 import 'package:loading/loading.dart';
 import 'package:pigment/pigment.dart';
 
-class Signup extends StatefulWidget {
-	Signup({
+class Register extends StatefulWidget {
+	Register({
 		this.auth,
 		this.move
 	});
@@ -20,7 +20,7 @@ class Signup extends StatefulWidget {
 	_SignupState createState() => _SignupState();
 }
 
-class _SignupState extends State < Signup > {
+class _SignupState extends State < Register > {
 	final _formKey = GlobalKey < FormState > ();
 	bool _canObscure = true;
 	String _email;
@@ -50,8 +50,8 @@ class _SignupState extends State < Signup > {
 		try {
 			if (_validateandSave()) {
 				widget.auth = new Auth();
-				await widget.auth.register(_email, _password, _nom).then((User user){
-					print("L'utilisateur s'est bien enregistré $user");
+				await widget.auth.signup(_email, _password, _nom).then((Map result){
+					print("L'utilisateur s'est bien enregistré $result");
 					_formKey.currentState.reset();
 					setState(() {
 					  verif = true;

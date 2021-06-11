@@ -1,4 +1,4 @@
-import 'package:bot_toast/bot_toast.dart';
+// import 'package:bot_toast/bot_toast.dart';
 import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/auth_service.dart';
 import 'package:climax/services/movie_service.dart';
@@ -14,10 +14,11 @@ import 'package:provider/provider.dart';
 import 'package:get_storage/get_storage.dart';
 
 main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   try {
-    await GetStorage.init();
+    await Firebase.initializeApp(); //initialize firebase app
+    await GetStorage.init(); //initialise GetStorage
     await TMBDService().getAllGenres();
-    await Firebase.initializeApp();
   } catch (e) {
     print(e);
   }
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           create: (_) => new MovieService(),
           lazy: false,
         ),
-        Provider<Auth>(
+        ChangeNotifierProvider<Auth>(
           create: (_) => new Auth(),
           lazy: false,
         ),
@@ -55,14 +56,12 @@ class MyApp extends StatelessWidget {
             await TMBDService().getAllGenres();
           },
           title: 'Climax',
-          builder: BotToastInit(),
-          navigatorObservers: [BotToastNavigatorObserver()],
           debugShowCheckedModeBanner: false,
           home: Builder(
             builder: (context) {
               Auth auth = Provider.of<Auth>(context);
               return StreamBuilder(
-                  stream: auth.authStateChange(),
+                  stream: FirebaseAuth.instance.authStateChanges(),
                   builder: (context, snapshot) {
                     if (snapshot.data == User) {
                       return Home();

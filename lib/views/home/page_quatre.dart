@@ -27,7 +27,7 @@ class _PageQuatreState extends State<PageQuatre> {
 			height: MediaQuery.of(context).size.height/2 - 80,
 			child: Center(
 				child: CircleAvatar(
-					backgroundImage: NetworkImage(mauth.getUser.photoURL)
+					backgroundImage: NetworkImage(mauth.userClimax.imgsrc)
 				),
 			),
 			),

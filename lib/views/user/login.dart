@@ -12,7 +12,7 @@ import 'package:loading/loading.dart';
 import 'package:pigment/pigment.dart';
 import 'package:climax/animations/fadein.dart';
 import 'package:provider/provider.dart';
-import 'package:bot_toast/bot_toast.dart';
+// import 'package:bot_toast/bot_toast.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({this.onSignedIn});
@@ -38,9 +38,9 @@ class _LoginState extends State<LoginPage> {
       return false;
     }
   }
- 
-  void  _submit() async {
-    Get.to(Home(),transition: Transition.size);
+
+  void _submit() async {
+    Get.to(Home(), transition: Transition.size);
     if (_validateandSave()) {
       setState(() {
         _isTrue = false;
@@ -150,8 +150,7 @@ class _LoginState extends State<LoginPage> {
                                     ))),
                                 obscureText: _canObscure,
                               ),
-                              
-							  Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
                                   new FlatButton(
@@ -222,20 +221,13 @@ class _LoginState extends State<LoginPage> {
                               child: Text("Google"),
                             ),
                             RaisedButton(
-                              onPressed: () {
-                                BotToast.showAttachedWidget(
-
-								attachedBuilder: (_) => Center(
-								  child: Card(
-									
-								  	child: Padding(
-								  		padding: const EdgeInsets.all(5.0),
-								  		child: Text("L'authentification facebook n'est pas encore pret !")
-								  	),
-								  	),
-								),
-								duration: Duration(seconds: 2),
-								target: Offset(520, 520));
+                              onPressed: () async {
+                                try {
+                                  bool result = await auth.signInWithFacebook();
+                                  if (result == true) {
+                                    print("La connexion a marché");
+                                  }
+                                } catch (e) {}
                               },
                               padding: EdgeInsets.all(5),
                               child: Text("Facebook"),
@@ -257,8 +249,8 @@ class _LoginState extends State<LoginPage> {
                                 style: TextStyle(color: Colors.amber),
                               ),
                               onPressed: () {
-								  Get.to(Signup());
-							  },
+                                Get.to(Register());
+                              },
                             )
                           ],
                         ),
