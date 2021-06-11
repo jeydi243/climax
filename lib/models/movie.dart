@@ -1,4 +1,4 @@
-import 'package:climax/Models/companie.dart';
+import 'package:climax/models/companie.dart';
 
 class Movie {
 	int _budget;

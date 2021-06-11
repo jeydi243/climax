@@ -1,4 +1,4 @@
-import 'package:climax/Models/person.dart';
+import 'package:climax/models/person.dart';
 import 'package:climax/services/person_service.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';

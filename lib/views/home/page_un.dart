@@ -1,4 +1,4 @@
-import 'package:climax/Models/movie.dart';
+import 'package:climax/models/movie.dart';
 import 'package:climax/components/pageV.dart';
 import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';

@@ -1,5 +1,5 @@
 import 'dart:core';
-import 'package:climax/Models/movie.dart';
+import 'package:climax/models/movie.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class MovieService {

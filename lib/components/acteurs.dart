@@ -1,10 +1,10 @@
 import 'package:climax/services/tmdb_service.dart';
 import 'package:climax/services/movie_service.dart';
-import 'package:climax/views/acteurDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
+import '../views/ActeurDetails.dart';
 
 class Acteurs extends StatefulWidget {
 	Acteurs({

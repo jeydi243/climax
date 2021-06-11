@@ -1,5 +1,5 @@
 import 'dart:core';
-import 'package:climax/Models/person.dart';
+import 'package:climax/models/person.dart';
 import 'package:climax/services/tmdb_service.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tmdb_api/tmdb_api.dart';

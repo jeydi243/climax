@@ -14,9 +14,13 @@ import 'package:provider/provider.dart';
 import 'package:get_storage/get_storage.dart';
 
 main() async {
-  await GetStorage.init();
-  await TMBDService().getAllGenres();
-  await Firebase.initializeApp();
+  try {
+    await GetStorage.init();
+    await TMBDService().getAllGenres();
+    await Firebase.initializeApp();
+  } catch (e) {
+    print(e);
+  }
   runApp(MyApp());
 }
 

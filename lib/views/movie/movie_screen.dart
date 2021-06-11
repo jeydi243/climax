@@ -1,4 +1,4 @@
-import 'package:climax/Models/movie.dart';
+import 'package:climax/models/movie.dart';
 import 'package:climax/components/CustomshortMovieList.dart';
 import 'package:climax/components/acteurs.dart';
 import 'package:climax/components/genre.dart';
