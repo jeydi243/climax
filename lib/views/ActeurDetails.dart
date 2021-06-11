@@ -69,7 +69,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                 Center(
                                     child: Text(
                                   "${snapshot.data.name}",
-                                  style: GoogleFonts.googleSans(
+                                  style: GoogleFonts.gafata(
                                     color: Colors.amber,
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                       children: <Widget>[
                                         Text(
                                           "Aka ",
-                                          style: GoogleFonts.googleSans(
+                                          style: GoogleFonts.gafata(
                                               color: Colors.white,
                                               fontSize: 20),
                                         ),
@@ -118,7 +118,7 @@ class _ActeurDetailsState extends State<ActeurDetails> {
                                   children: <Widget>[
                                     Text(
                                       'Connue pour son role dans',
-                                      style: GoogleFonts.googleSans(
+                                      style: GoogleFonts.gafata(
                                           color: Colors.amber,
                                           fontWeight: FontWeight.bold),
                                     ),
